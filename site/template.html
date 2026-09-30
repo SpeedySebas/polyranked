@@ -1,0 +1,3433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyTrack Power Rankings & Rating Methodology</title>
+    <meta name="description" content="Official PolyTrack Global Player Power Ranking System and comprehensive rating methodology documentation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+    <style>
+        :root {
+            --bg-base: #030712;
+            --bg-primary: #0b1120;
+            --bg-secondary: #0f172a;
+            --bg-card: rgba(15, 23, 42, 0.85);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --bg-input: #1e293b;
+            --border: #1e293b;
+            --border-highlight: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-gold: #fbbf24;
+            --accent-green: #10b981;
+            --accent-purple: #a855f7;
+            --accent-rose: #f43f5e;
+            --accent-orange: #f97316;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+
+            /* Macro-Discipline & Subgenre Palette */
+            --dom-fs-color: #38bdf8;
+            --dom-fs-bg: rgba(56, 189, 248, 0.12);
+            --dom-fs-border: rgba(56, 189, 248, 0.35);
+
+            --dom-tech-color: #fb923c;
+            --dom-tech-bg: rgba(251, 146, 60, 0.12);
+            --dom-tech-border: rgba(251, 146, 60, 0.35);
+
+            --style-fs-color: #38bdf8;
+            --style-fake-color: #60a5fa;
+            --style-tech-color: #fb923c;
+            --style-st-color: #c084fc;
+            --style-sf-color: #34d399;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+            width: 100%;
+        }
+
+        /* Header Bar */
+        header {
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.75rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #0b1120;
+            font-weight: 800;
+            font-size: 1.1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Tab Navigation */
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            padding: 0.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            gap: 0.25rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-cyan);
+            color: #0b1120;
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+        }
+
+        .tab-counter {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+        }
+
+        .tab-btn.active .tab-counter {
+            background: rgba(0, 0, 0, 0.25);
+            color: #0b1120;
+        }
+
+        /* Main Content Panes */
+        main {
+            flex: 1;
+            padding: 2rem 0 4rem 0;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-badge-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-cyan { background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .badge-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .badge-gold { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .badge-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .badge-orange { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+
+        /* Sub-Genre Pills */
+        .style-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.12rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin-left: 0.35rem;
+            text-transform: uppercase;
+        }
+
+        .style-pill-fullspeed, .style-pill-fs { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
+        .style-pill-fakespeed { background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.35); }
+        .style-pill-tech { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.35); }
+        .style-pill-speedtech { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.35); }
+        .style-pill-speedfun { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.35); }
+
+        /* Stat Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-highlight);
+        }
+
+        .stat-card.stat-gold { border-left: 4px solid var(--accent-gold); }
+        .stat-card.stat-cyan { border-left: 4px solid var(--accent-cyan); }
+        .stat-card.stat-green { border-left: 4px solid var(--accent-green); }
+        .stat-card.stat-purple { border-left: 4px solid var(--accent-purple); }
+
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+
+        .stat-val {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            line-height: 1.2;
+        }
+
+        .stat-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Controls Toolbar */
+        .controls-toolbar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-highlight);
+            color: var(--text-main);
+            padding: 0.6rem 2.2rem 0.6rem 2.25rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+        }
+
+        .search-clear-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .filters-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .filter-select, .page-size-select {
+            background: var(--bg-input);
+            border: 1px solid var(--border-highlight);
+            color: var(--text-main);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-select:hover, .page-size-select:hover {
+            border-color: #475569;
+        }
+
+        .filter-select:focus, .page-size-select:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .wr-toggle-btn {
+            background: var(--bg-input);
+            border: 1px solid var(--border-highlight);
+            color: var(--text-muted);
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+
+        .wr-toggle-btn.active {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--accent-gold);
+            border-color: rgba(251, 191, 36, 0.4);
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);
+        }
+
+        /* Leaderboard Table */
+        .table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .rankings-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        .rankings-table th {
+            background: rgba(11, 17, 32, 0.95);
+            color: var(--text-dim);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border);
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .th-content {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .sort-icon {
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        .sort-icon.asc::after { content: "▲"; opacity: 1; color: var(--accent-cyan); }
+        .sort-icon.desc::after { content: "▼"; opacity: 1; color: var(--accent-cyan); }
+
+        .rankings-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .rankings-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .rankings-table tbody tr:hover {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .rankings-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Table Cell Specifics */
+        .rank-cell {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            width: 60px;
+        }
+
+        .rank-gold { color: var(--accent-gold) !important; text-shadow: 0 0 8px rgba(251, 191, 36, 0.4); }
+        .rank-silver { color: #e2e8f0 !important; }
+        .rank-bronze { color: #f97316 !important; }
+
+        .col-player {
+            max-width: 240px;
+            width: 240px;
+        }
+
+        .player-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 100%;
+            cursor: pointer;
+        }
+
+        .player-name-text {
+            font-weight: 700;
+            color: #ffffff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            transition: color 0.15s ease;
+        }
+
+        .player-cell:hover .player-name-text {
+            color: var(--accent-cyan);
+            text-decoration: underline;
+        }
+
+        .player-gsi-chip {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .gsi-cell {
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--accent-cyan);
+        }
+
+        .pqi-cell, .vdi-cell {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .class-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .class-main-specialist { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .class-comm-specialist { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .class-all-rounder, .class-generalist { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .view-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: var(--accent-cyan);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn:hover {
+            background: var(--accent-cyan);
+            color: #0b1120;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Pagination Bar */
+        .pagination-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .page-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .page-info strong {
+            color: var(--text-main);
+        }
+
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .page-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-highlight);
+            color: var(--text-main);
+            min-width: 34px;
+            height: 34px;
+            padding: 0 0.5rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .page-btn.active {
+            background: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            color: #0b1120;
+            font-weight: 700;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .jump-box {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-left: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .jump-input {
+            width: 50px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-highlight);
+            color: var(--text-main);
+            padding: 0.35rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .jump-input:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        /* Modal Overlay & Card */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #0f172a;
+            border: 1px solid var(--border-highlight);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 820px;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .modal-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .modal-user-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-rank-chip {
+            background: var(--accent-cyan);
+            color: #0b1120;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+        }
+
+        .modal-username {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            max-width: 420px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.35rem;
+            cursor: pointer;
+            padding: 0.2rem;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            color: #ffffff;
+        }
+
+        .modal-body {
+            padding: 1.25rem 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Top Modal Grid (7 Cards) */
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .modal-stat {
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+        }
+
+        .modal-stat-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .modal-stat-val {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: var(--font-mono);
+        }
+
+        /* Dual-Discipline Mastery Section in Modal (v10.2 Dual-Axis) */
+        .discipline-section {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .discipline-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .discipline-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .discipline-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .archetype-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(249, 115, 22, 0.2));
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+        }
+
+        .dual-discipline-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .dual-discipline-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .discipline-card {
+            background: rgba(11, 15, 25, 0.65);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            transition: all 0.2s ease;
+        }
+
+        .discipline-card-fs {
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(11, 15, 25, 0.7));
+        }
+
+        .discipline-card-tech {
+            border: 1px solid rgba(251, 146, 60, 0.35);
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.05), rgba(11, 15, 25, 0.7));
+        }
+
+        .discipline-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .discipline-card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .discipline-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-fs { background: #38bdf8; box-shadow: 0 0 6px rgba(56, 189, 248, 0.6); }
+        .dot-tech { background: #fb923c; box-shadow: 0 0 6px rgba(251, 146, 60, 0.6); }
+
+        .discipline-rank-chip {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.12rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+        }
+
+        .rank-chip-fs { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
+        .rank-chip-tech { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.35); }
+
+        .discipline-rating-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.35rem;
+        }
+
+        .discipline-rating-val {
+            font-size: 1.65rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            line-height: 1;
+        }
+
+        .val-fs { color: #38bdf8; }
+        .val-tech { color: #fb923c; }
+
+        .discipline-rating-unit {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+
+        .discipline-card-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(51, 65, 85, 0.4);
+            padding-top: 0.5rem;
+        }
+
+        .discipline-meta-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .meta-label { color: var(--text-dim); }
+        .meta-val { font-family: var(--font-mono); font-weight: 600; color: #ffffff; }
+
+        /* Split Balance Bar */
+        .discipline-split-wrap {
+            background: rgba(11, 15, 25, 0.5);
+            border: 1px solid rgba(51, 65, 85, 0.4);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+
+        .split-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .split-bar-label {
+            color: var(--text-dim);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .split-bar-ratio {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .split-bar-track {
+            height: 8px;
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 9999px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .split-bar-fs {
+            height: 100%;
+            background: #38bdf8;
+            transition: width 0.4s ease;
+        }
+
+        .split-bar-tech {
+            height: 100%;
+            background: #fb923c;
+            transition: width 0.4s ease;
+        }
+
+        /* Top Tracks in Modal */
+        .modal-tracks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .modal-tracks-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .modal-tracks-legend {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .legend-chip {
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .legend-pqi { background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .legend-vdi { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+        .modal-tracks-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .modal-tracks-table th {
+            text-align: left;
+            padding: 0.5rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-tracks-table td {
+            padding: 0.55rem 0.6rem;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+        }
+
+        .trk-row-peak td { background: rgba(6, 182, 212, 0.04); }
+        .trk-row-depth td { background: rgba(15, 23, 42, 0.2); }
+
+        .modal-track-tier-divider td {
+            padding: 0.4rem 0.6rem;
+            background: #0f172a;
+            border-top: 1px solid var(--border-highlight);
+            border-bottom: 1px solid var(--border-highlight);
+        }
+
+        .tier-divider-bar {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trk-tier-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+        }
+
+        .pqi-tier { background: rgba(6, 182, 212, 0.15); color: #38bdf8; }
+        .vdi-tier { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+
+        /* Methodology Tab Styles */
+        .methodology-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #0b1120;
+            font-weight: 800;
+            font-size: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .section-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+
+        .subsection-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin: 1.5rem 0 0.65rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .concept-card {
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.15rem;
+        }
+
+        .concept-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .concept-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .formula-box {
+            background: rgba(11, 15, 25, 0.7);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+        }
+
+        .formula-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-cyan);
+            margin-bottom: 0.65rem;
+        }
+
+        .formula-math {
+            font-size: 1.1rem;
+            margin: 0.75rem 0;
+            overflow-x: auto;
+            padding: 0.25rem 0;
+        }
+
+        .formula-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 0.65rem;
+            border-top: 1px solid rgba(30, 41, 59, 0.6);
+            padding-top: 0.65rem;
+        }
+
+        .methodology-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .methodology-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.92rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .methodology-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .math-variable-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+            font-size: 0.875rem;
+        }
+
+        .math-variable-table th {
+            text-align: left;
+            padding: 0.65rem 0.85rem;
+            background: rgba(11, 17, 32, 0.8);
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .math-variable-table td {
+            padding: 0.65rem 0.85rem;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+            color: var(--text-main);
+        }
+
+        .math-variable-table td:first-child {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--accent-cyan);
+            width: 120px;
+        }
+
+        .math-variable-table td:nth-child(2) {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent-gold);
+            width: 100px;
+        }
+
+        .math-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            background: rgba(6, 182, 212, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Plain-English Overview Callout Boxes */
+        .plain-box {
+            background: rgba(15, 23, 42, 0.75);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 1.15rem 1.25rem;
+            margin: 1.15rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .plain-box-gold { border-left-color: var(--accent-gold); background: rgba(251, 191, 36, 0.04); }
+        .plain-box-purple { border-left-color: var(--accent-purple); background: rgba(168, 85, 247, 0.04); }
+        .plain-box-green { border-left-color: var(--accent-green); background: rgba(16, 185, 129, 0.04); }
+        .plain-box-orange { border-left-color: var(--accent-orange); background: rgba(249, 115, 22, 0.04); }
+
+        .plain-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plain-text {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .takeaway-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(6, 182, 212, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            margin-bottom: 0.5rem;
+        }
+
+                /* Track Weights Section & Table */
+        .track-weights-section {
+            margin-top: 2.25rem;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .tw-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tw-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tw-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .tw-table-container {
+            max-height: 540px;
+            overflow-x: auto;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+        }
+
+        .tw-table-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .tw-table-container::-webkit-scrollbar-track {
+            background: rgba(3, 7, 18, 0.4);
+        }
+        .tw-table-container::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.35);
+            border-radius: 3px;
+        }
+        .tw-table-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.6);
+        }
+
+        .tw-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.81rem;
+            text-align: left;
+        }
+
+        .tw-table th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(11, 17, 32, 0.98);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--text-dim);
+            font-weight: 700;
+            font-size: 0.71rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.65rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .tw-table td {
+            padding: 0.5rem 0.5rem;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+            color: var(--text-main);
+            white-space: nowrap;
+            font-size: 0.81rem;
+        }
+
+        .tw-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .tw-table tbody tr:hover {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .tw-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tw-cat-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.1rem 0.38rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .tw-cat-main {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.35);
+        }
+
+        .tw-cat-comm {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.35);
+        }
+
+        .tw-weight-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.4rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+
+        .tw-weight-bar-bg {
+            width: 28px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .tw-weight-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+            border-radius: 3px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(11, 17, 32, 0.9);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.85rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .col-player { max-width: 160px; width: 160px; }
+            .modal-username { max-width: 240px; font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <a href="#" class="logo-group">
+            <div class="logo-badge">⚡</div>
+            <div class="logo-text">PolyTrack Power Rankings</div>
+        </a>
+        <nav class="nav-tabs" role="tablist">
+            <button class="tab-btn active" id="tab-btn-rankings" role="tab" aria-selected="true" onclick="switchTab('rankings')">
+                <span>🏆 Leaderboard</span>
+                <span class="tab-counter">35,996</span>
+            </button>
+            <button class="tab-btn" id="tab-btn-methodology" role="tab" aria-selected="false" onclick="switchTab('methodology')">
+                <span>📐 Methodology</span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- TAB 1: Global Rankings -->
+    <div id="tab-rankings" class="tab-pane active" role="tabpanel">
+        <!-- Hero Title -->
+        <div class="hero">
+            <div class="hero-badge-wrap">
+                <span class="badge badge-purple">35,996 Players</span>
+                <span class="badge badge-cyan">78 Tracks Analyzed</span>
+                <span class="badge badge-orange" id="badge-last-updated">Last updated: 2026-09-30</span>
+            </div>
+            <h1 class="hero-title">
+                <span>Global Player Power Rankings</span>
+            </h1>
+            <p class="hero-subtitle">
+                Pure Leaderboard competitive evaluation synthesized across all 78 official campaign and community tracks across 35,996 ranked players.
+            </p>
+        </div>
+
+        <!-- Summary Stat Cards (4 Cards) -->
+        <div class="stats-grid">
+            <div class="stat-card stat-gold">
+                <div class="stat-label">👑 World #1 Champion</div>
+                <div class="stat-val">Monstrosity</div>
+                <div class="stat-sub">GSI 3769.2 • 9 World Records</div>
+            </div>
+            <div class="stat-card stat-cyan">
+                <div class="stat-label">👥 Total Ranked Players</div>
+                <div class="stat-val">35,996</div>
+                <div class="stat-sub">Top 1000 Scraped Population</div>
+            </div>
+            <div class="stat-card stat-green">
+                <div class="stat-label">🥇 World Record Holders</div>
+                <div class="stat-val">14 Players</div>
+                <div class="stat-sub">Across 78 Total Tracks</div>
+            </div>
+            <div class="stat-card stat-purple">
+                <div class="stat-label">🏁 Ecosystem Coverage</div>
+                <div class="stat-val">78 Tracks</div>
+                <div class="stat-sub">36 Fullspeed + 42 Technical (78 Pool)</div>
+            </div>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="controls-toolbar">
+            <div class="search-box-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" class="search-input" placeholder="Search player by nickname..." oninput="handleSearch(this.value)">
+                <button id="search-clear" class="search-clear-btn" onclick="clearSearch()">✕</button>
+            </div>
+            <div class="filters-group">
+                <select id="style-filter" class="filter-select" onchange="handleStyleFilter(this.value)" title="Filter leaderboard by macro-discipline">
+                    <option value="ALL">All Disciplines (Global GSI)</option>
+                    <option value="Fullspeed">Fullspeed Discipline (36 tracks)</option>
+                    <option value="Technical">Technical Discipline (42 tracks)</option>
+                </select>
+
+                <select id="class-filter" class="filter-select" onchange="handleClassFilter(this.value)" title="Filter by player classification">
+                    <option value="ALL" title="All ranked players">All Classifications (35,996)</option>
+                    <option value="Main Specialist" title="Earns ≥70% of points on official campaign tracks">Main Specialist (9,821)</option>
+                    <option value="Community Specialist" title="Earns ≥70% of points on community tracks">Community Specialist (24,947)</option>
+                    <option value="All Rounder" title="Balanced points across both campaign and community tracks (neither ≥70%)">All Rounder (1,228)</option>
+                </select>
+
+                <button id="wr-filter-btn" class="wr-toggle-btn" onclick="toggleWrFilter()" title="Show only World Record holders">
+                    <span>👑 WR Holders</span>
+                </button>
+
+                <select id="sort-select" class="filter-select" onchange="handleSortSelect(this.value)" title="Sort table">
+                    <option value="rank_asc">Sort: Rank (1 → 35,996)</option>
+                    <option value="gsi_desc">Sort: GSI Score (High → Low)</option>
+                    <option value="pqi_desc">Sort: PQI Peak (High → Low)</option>
+                    <option value="vdi_desc">Sort: VDI Depth (High → Low)</option>
+                    <option value="wr_desc">Sort: World Records (High → Low)</option>
+                    <option value="name_asc">Sort: Name (A → Z)</option>
+                </select>
+
+                <select id="page-size-select" class="page-size-select" onchange="handlePageSize(this.value)" title="Rows per page">
+                    <option value="50">50 / page</option>
+                    <option value="100">100 / page</option>
+                    <option value="250">250 / page</option>
+                    <option value="ALL">All (35,996)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Leaderboard Table Container -->
+        <div class="table-container">
+            <div class="table-scroll">
+                <table class="rankings-table">
+                    <thead id="rankings-thead">
+                        <!-- Populated dynamically based on macro-discipline filter -->
+                    </thead>
+                    <tbody id="rankings-tbody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-bar">
+            <div class="page-info" id="page-info">
+                Showing <strong>1–50</strong> of <strong>35,996</strong> players
+            </div>
+            <div class="pagination-controls" id="pagination-controls">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: Mathematical Methodology -->
+    <div id="tab-methodology" class="tab-pane" role="tabpanel">
+        <div class="methodology-container">
+            <div class="hero">
+                <h1 class="hero-title">
+                    <span>Rating Methodology & Mathematical Architecture</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A comprehensive, mathematically rigorous guide to the PolyTrack Power Ranking System: dynamic field calibration, logarithmic rank scoring, Bayesian confidence shrinkage, dual-engine skill synthesis, and dual-axis discipline mastery.
+                </p>
+            </div>
+
+            <!-- Section 0: The Plain-English Guide (How the System Works Under the Hood) -->
+            <section class="section-card" style="border-top: 4px solid var(--accent-cyan); background: linear-gradient(180deg, rgba(6, 182, 212, 0.08) 0%, rgba(15, 23, 42, 0.85) 100%);">
+                <div class="section-header">
+                    <div class="section-number">00</div>
+                    <div class="section-title-wrap">
+                        <div class="takeaway-badge">📖 Plain-English Guide</div>
+                        <h2 class="section-title" style="color: #ffffff;">How the Ranking System Works in Plain English</h2>
+                        <div class="section-subtitle">An intuitive explanation of the scoring mechanisms, track weights, and rating calculations.</div>
+                    </div>
+                </div>
+
+                <div class="plain-box plain-box-gold">
+                    <div class="plain-title">⚡ The Executive Summary (TL;DR)</div>
+                    <div class="plain-text">
+                        Your global rating combines two components: <strong>70% Peak Quality (your top 6 tracks) and 30% Versatility (your top 15 tracks)</strong>. World Records and high placements on competitive tracks earn higher point values. Completing additional tracks beyond your top 15 gives <strong>zero extra points</strong>, ensuring that rankings reward placement quality rather than playtime.
+                    </div>
+                </div>
+
+                <!-- Concept 1: Why Simple Systems Break Down -->
+                <h3 class="subsection-title">1. Why Simple Leaderboard Systems Fail in Racing</h3>
+                <p class="section-text">
+                    Common ranking systems encounter specific failure modes in time-attack racing:
+                </p>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-rose);">❌ The "Total Points" Trap (Playtime Grinding)</div>
+                        <div class="concept-desc">
+                            If a system simply sums points across all 78 tracks, someone who plays 300 hours and finishes 25th on 70 small community tracks will easily beat a World Champion who holds 8 World Records on the hardest official campaign tracks. That rewards who has the most free time, not who drives the fastest.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-rose);">❌ The "Elo / Matchmaking" Trap (Exploration Penalties)</div>
+                        <div class="concept-desc">
+                            Traditional matchmaking systems (such as Elo) update after every attempt, which penalizes trying risky lines or learning a new track. A time-attack ranking must evaluate your best submitted personal records, not exploratory runs.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plain-box">
+                    <div class="plain-title">💡 How Our Architecture Solves Both Problems</div>
+                    <div class="plain-text">
+                        The system uses hard portfolio caps on how many tracks count toward your rating (6 tracks for peak pace, 15 for versatility). A specialist who masters a focused selection of tracks can legitimately contend for the World #1 spot against someone who drives all 78 tracks.
+                    </div>
+                </div>
+
+                <!-- Concept 2: Track Difficulty Multipliers (Strength of Field) -->
+                <h3 class="subsection-title">2. Track Difficulty Multipliers (Strength of Field)</h3>
+                <p class="section-text">
+                    Finishing 1st place on Summer 1 (where nearly <strong>4.5 million players</strong> compete) is significantly more competitive than finishing 1st place on a community track with 7,000 players.
+                </p>
+                <div class="plain-box plain-box-purple">
+                    <div class="plain-title">🎯 How Track Weights Work Under the Hood</div>
+                    <div class="plain-text">
+                        Every track in the game is assigned a difficulty multiplier based on its total verified player count:
+                        <ul class="methodology-list" style="margin-top: 0.5rem;">
+                            <li><strong>Baseline Anchor (100,000 players):</strong> <strong>1.000×</strong> baseline multiplier.</li>
+                            <li><strong>High-Traffic Campaign Tracks (Summer 1, 4.5M players):</strong> <strong>1.297×</strong> multiplier (+30% bonus points).</li>
+                            <li><strong>Major Campaign Tracks (Desert 1, 1.2M players):</strong> <strong>1.193×</strong> multiplier.</li>
+                            <li><strong>Active Community Tracks (Sky Bound, 142k players):</strong> <strong>1.027×</strong> multiplier.</li>
+                            <li><strong>Smaller Community Tracks (Flying Dreams, 7.3k players):</strong> <strong>0.796×</strong> multiplier.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">📐 Why We Use a Logarithmic Curve</div>
+                        <div class="concept-desc">
+                            Doubling players from 100k to 200k increases competitive density similarly to going from 2M to 4M. A logarithmic curve rewards high-traffic courses without making smaller tracks negligible.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-gold);">🛡️ Safety Floors and Ceilings (Clamping)</div>
+                        <div class="concept-desc">
+                            Track weights are clamped between <strong>0.65×</strong> and <strong>1.85×</strong>. Smaller tracks retain a sensible scoring baseline, while mega-tracks cannot inflate ratings beyond reasonable limits.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 3: Smooth Rank Scoring & World Record Bonus -->
+                <h3 class="subsection-title">3. Smooth Leaderboard Points & World Record Bonus</h3>
+                <p class="section-text">
+                    Points scale continuously with rank rather than using discrete cutoff tiers.
+                </p>
+                <div class="plain-box plain-box-gold">
+                    <div class="plain-title">👑 World Record Bonus (1.25× Multiplier)</div>
+                    <div class="plain-text">
+                        Holding 1st place on any track earns a dedicated <strong>+25% bonus multiplier (1.25×)</strong> over base points.
+                    </div>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-gold);">🥇 1st Place (World Record)</div>
+                        <div class="concept-desc"><strong>125.0 pts</strong> baseline on 100k track | <strong>162.2 pts</strong> on Summer 1 (with 1.30× track weight + 1.25× WR Crown).</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: #e2e8f0;">🥈 2nd Place</div>
+                        <div class="concept-desc"><strong>70.6 pts</strong> baseline | <strong>91.6 pts</strong> on Summer 1. (Reflects the massive effort needed to take 1st from 2nd).</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: #f97316;">🥉 3rd Place</div>
+                        <div class="concept-desc"><strong>60.3 pts</strong> baseline | <strong>78.2 pts</strong> on Summer 1.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Top 10 to Top 100</div>
+                        <div class="concept-desc">Rank 5: <strong>50.9 pts</strong> | Rank 10: <strong>42.0 pts</strong> | Rank 50: <strong>30.0 pts</strong> | Rank 100: <strong>26.6 pts</strong> (at 1.0×).</div>
+                    </div>
+                </div>
+
+                <!-- Concept 4: The Diminishing Weight Ladder (Gamma Decay) -->
+                <h3 class="subsection-title">4. The Diminishing Weight Ladder (Why We Don't Use a Flat Average)</h3>
+                <p class="section-text">
+                    When evaluating your top 6 performances for peak pace, the system does not use a simple flat average. If you hold 2 World Records and 4 solid top-5 runs, a flat average would dilute your greatest placements.
+                </p>
+                <div class="plain-box plain-box-orange">
+                    <div class="plain-title">🪜 The 15% Diminishing Weight Ladder (Peak Pace Engine)</div>
+                    <div class="plain-text">
+                        The system sorts your scores from highest to lowest and applies a <strong>15% discount ladder</strong> ($\gamma = 0.85$) to each subsequent track:
+                        <ul class="methodology-list" style="margin-top: 0.5rem;">
+                            <li><strong>Track 1 (Best Run):</strong> <strong>100% weight (1.000)</strong></li>
+                            <li><strong>Track 2 (2nd Best):</strong> <strong>85% weight (0.850)</strong></li>
+                            <li><strong>Track 3 (3rd Best):</strong> <strong>72.3% weight (0.723)</strong></li>
+                            <li><strong>Track 4 (4th Best):</strong> <strong>61.4% weight (0.614)</strong></li>
+                            <li><strong>Track 5 (5th Best):</strong> <strong>52.2% weight (0.522)</strong></li>
+                            <li><strong>Track 6 (6th Best):</strong> <strong>44.4% weight (0.444)</strong></li>
+                        </ul>
+                        <strong>The Result:</strong> Your top 2 performances account for over <strong>55% of your total peak score</strong>. Your strongest tracks carry the most influence, while still requiring a supporting cast of 4 other strong runs.
+                    </div>
+                </div>
+
+                <!-- Concept 5: The Anti-Fluke Trust Meter (Bayesian Shrinkage) -->
+                <h3 class="subsection-title">5. The "Trust Meter" (How We Prevent 1-Hit Wonders & Flukes)</h3>
+                <p class="section-text">
+                    Imagine a brand-new driver joins the game, drives 1 single track on a quiet Tuesday, and sets a World Record. Are they immediately the #1 ranked driver in the world? Of course not - it could be beginner's luck, low competition on that course, or a fluke.
+                </p>
+                <div class="plain-box">
+                    <div class="plain-title">🛡️ How the "Trust Meter" (Bayesian Shrinkage) Works in Practice</div>
+                    <div class="plain-text">
+                        The system acts like a cautious, experienced judge:
+                        <ul class="methodology-list" style="margin-top: 0.5rem;">
+                            <li><strong>The 2 "Ghost Scores":</strong> The system starts every player with <strong>2 provisional "ghost scores" of 40 points</strong> (representing an average baseline competitor).</li>
+                            <li><strong>If you have only 1 track (e.g. 120 points):</strong> The system averages your 1 track with the 2 ghost scores: $(120 + 40 + 40) / 3 = \mathbf{66.7\text{ pts}}$. You get credit, but you aren't crowned world champion on day one.</li>
+                            <li><strong>As you complete more tracks (2, 4, 6 tracks):</strong> Your real driving performances progressively drown out the ghost scores. By 6 tracks, your actual race times account for <strong>75% of your rating</strong>, and the provisional training wheels come off completely.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Concept 6: Dual Engines: Peak Quality vs Versatility -->
+                <h3 class="subsection-title">6. Dual Engines: Peak Quality vs Versatility</h3>
+                <p class="section-text">
+                    To evaluate a driver comprehensively, the system runs two independent scoring engines with separate portfolio caps:
+                </p>
+                <div class="concept-grid">
+                    <div class="concept-card" style="border-left: 3px solid var(--accent-cyan);">
+                        <div class="concept-title" style="color: var(--accent-cyan);">🚀 Engine 1: Peak Quality Index (PQI: Peak Pace)</div>
+                        <div class="concept-desc">
+                            <strong>What it measures:</strong> Mechanical pace on your strongest courses.<br><br>
+                            • Evaluates your <strong>Top 6 best tracks</strong>.<br>
+                            • Uses the <strong>15% discount ladder</strong> ($\gamma = 0.85$) to emphasize top placements.<br>
+                            • Uses <strong>2 baseline anchor scores</strong> for sample regularization.<br>
+                            • <strong>Volume Cap:</strong> Tracks 7 through 78 give <strong>zero points</strong>.
+                        </div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid var(--accent-purple);">
+                        <div class="concept-title" style="color: var(--accent-purple);">🛡️ Engine 2: Versatility & Depth Index (VDI: Consistency & Breadth)</div>
+                        <div class="concept-desc">
+                            <strong>What it measures:</strong> Sustained pace across diverse track layouts.<br><br>
+                            • Evaluates your <strong>Top 15 best tracks</strong>.<br>
+                            • Uses a <strong>10% discount ladder</strong> ($\gamma = 0.90$) across the larger window.<br>
+                            • Uses <strong>3 baseline anchor scores (30 pts each)</strong> to ensure rating stability.<br>
+                            • <strong>Volume Cap:</strong> Tracks 16 through 78 give <strong>zero points</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 7: Global Skill Index & Standardized Z-Scores -->
+                <h3 class="subsection-title">7. Global Skill Index (GSI): The 70/30 Blend & Standardization</h3>
+                <p class="section-text">
+                    Peak Quality (PQI) and Versatility (VDI) live on different scales. To combine them fairly without one artificially overpowering the other, the system standardizes both scores using statistical standard scores ($Z$-scores):
+                </p>
+                <div class="plain-box plain-box-gold">
+                    <div class="plain-title">📊 Translating Scores into "Standard Jumps Above Average"</div>
+                    <div class="plain-text">
+                        A $Z$-score translates your raw points into a simple question: <em>"How many standard steps above the average active racer are you?"</em>
+                        <ul class="methodology-list" style="margin-top: 0.5rem;">
+                            <li><strong>Active Driver Filter:</strong> We calculate the community average using <strong>only active competitors with at least 5 completed tracks</strong>. This prevents tens of thousands of casual one-time players from dragging down the average.</li>
+                            <li><strong>The 70 / 30 Master Recipe:</strong>
+                                $$\text{Final Rating (GSI)} = 1,000 + 200 \times \left(70\% \text{ Peak Speed Jump} + 30\% \text{ Versatility Jump}\right)$$
+                            </li>
+                            <li><strong>Centered at 1,000:</strong> An average active competitive driver receives exactly <strong>1,000 GSI</strong>. Each standard leap above average adds <strong>+200 points</strong>. Elite World Champions reach <strong>3,500 to 4,100+ GSI</strong> (over 12–15 standard leaps above the median racer).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-gold);">👑 3,500+ GSI (World Championship Tier)</div>
+                        <div class="concept-desc">Elite drivers who dominate World Records across multiple major campaign and community maps simultaneously.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">🏆 2,000–3,499 GSI (Podium Contenders)</div>
+                        <div class="concept-desc">World-class drivers capable of claiming World Records and consistently finishing top 3 globally.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-purple);">⚡ 1,500–1,999 GSI (Specialists & Top 50)</div>
+                        <div class="concept-desc">Highly skilled drivers holding top 5 finishes on competitive courses.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-green);">👥 1,000–1,499 GSI (Active Competitive Median)</div>
+                        <div class="concept-desc">Solid drivers who regularly set verified competitive times across multiple tracks.</div>
+                    </div>
+                </div>
+
+                <!-- Concept 8: Driving Disciplines -->
+                <h3 class="subsection-title">8. Driving Disciplines: Fullspeed vs Technical Archetypes</h3>
+                <p class="section-text">
+                    PolyTrack maps test two fundamentally different driving styles:
+                </p>
+                <div class="concept-grid">
+                    <div class="concept-card" style="border-left: 3px solid var(--dom-fs-color);">
+                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Discipline (36 Tracks)</div>
+                        <div class="concept-desc">
+                            High velocity throughout with banking, wallrides, and loops. Includes <strong>Fullspeed</strong> (31 tracks) and <strong>Fakespeed</strong> (5 tracks).
+                        </div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid var(--dom-tech-color);">
+                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Discipline (42 Tracks)</div>
+                        <div class="concept-desc">
+                            Tight cornering, drift angles, brake taps, rapid transitions, and sliding arcs. Includes <strong>Tech</strong> (14 tracks), <strong>Speedtech</strong> (14 tracks), and <strong>Speedfun</strong> (14 tracks).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plain-box plain-box-orange">
+                    <div class="plain-title">🧭 How Driver Archetypes are Assigned</div>
+                    <div class="plain-text">
+                        The system calculates your score in each discipline (using your Top 6 tracks in that discipline) and compares them:
+                        <ul class="methodology-list" style="margin-top: 0.5rem;">
+                            <li><strong>Fullspeed Specialist:</strong> 70%+ of your rating comes from Fullspeed tracks (with at least 4 Fullspeed tracks driven).</li>
+                            <li><strong>Technical Specialist:</strong> 70%+ of your rating comes from Technical tracks (with at least 4 Technical tracks driven).</li>
+                            <li><strong>Generalist:</strong> Balanced between 30% and 70% with at least 4 tracks driven in both disciplines.</li>
+                            <li><strong>Emerging Player:</strong> Drivers who have completed fewer than 4 tracks in their primary discipline.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Concept 9: Ecosystem Bias -->
+                <h3 class="subsection-title">9. Campaign vs Community Orientation (Ecosystem Bias)</h3>
+                <p class="section-text">
+                    Separate from driving physics (Fullspeed vs Technical), the system tracks point distribution across track categories:
+                </p>
+                <div class="concept-grid">
+                    <div class="concept-card" style="border-left: 3px solid #60a5fa;">
+                        <div class="concept-title" style="color: #60a5fa;">🔵 Main Specialist</div>
+                        <div class="concept-desc">Earns <strong>70% or more of their points</strong> on official campaign tracks.</div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid #c084fc;">
+                        <div class="concept-title" style="color: #c084fc;">🟣 Community Specialist</div>
+                        <div class="concept-desc">Earns <strong>70% or more of their points</strong> on community tracks.</div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid #34d399;">
+                        <div class="concept-title" style="color: #34d399;">🟢 All Rounder</div>
+                        <div class="concept-desc">Competes actively across both official campaign and community tracks.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1: Motivation & Core Philosophy -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">01</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Design Philosophy and Theoretical Foundations</h2>
+                        <div class="section-subtitle">Why traditional leaderboard and matchmaking models break down in time-attack racing, and how our architecture solves them.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    Measuring player skill in a deterministic time-attack racing environment presents unique mathematical challenges compared to head-to-head match-based games. In PolyTrack, each competitor $i$ registers a personal best lap time $T_{i,k}$ on track $k \in \{1, \dots, K_{\text{total}}\}$ ($K_{\text{total}} = 78$). The global leaderboard on each track represents a continuous order-statistic distribution:
+                </p>
+                <div class="formula-box">
+                    <div class="formula-title">Time-Attack Order Statistics</div>
+                    <div class="formula-math">$$T_{(1),k} < T_{(2),k} < T_{(3),k} < \dots < T_{(N_k),k}$$</div>
+                    <div class="formula-desc">
+                        where $N_k$ is the verified participant population on track $k$, and $T_{(1),k}$ represents the global World Record.
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    The ecosystem contains two structurally distinct track categories:
+                </p>
+                <ul class="methodology-list">
+                    <li><strong>Official Campaign Tracks (17 Tracks):</strong> Ranging from ~370,000 verified drivers on Desert 2 up to nearly 4.5 million on Summer 1 (with 5 tracks exceeding 1 million competitors). These tracks have extensive community participation, where leaderboard margins are separated by hundredths of a second.</li>
+                    <li><strong>Community Tracks (61 Tracks):</strong> A curated pool of verified player-created circuits. Participation ranges from over 140,000 players on popular courses like Sky Bound down to ~7,350 players on tracks like Flying Dreams.</li>
+                </ul>
+
+                <h3 class="subsection-title">Failure Modes of Standard Ranking Systems in Time Attack</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-rose);">❌ Linear Summation (Volume Grinding)</div>
+                        <div class="concept-desc">
+                            Naïve total point accumulation rewards playtime over driving quality. A player placing 25th on 70 smaller tracks would overtake a World Champion holding 8 World Records on the hardest official campaign tracks.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-rose);">❌ Elo / Matchmaking Models (Exploration Penalty)</div>
+                        <div class="concept-desc">
+                            Pairwise Elo models penalize exploratory test runs. Time attack ratings should evaluate verified personal bests rather than intermediate practice attempts.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-rose);">❌ Uniform Track Weighting (Flat Equivalence)</div>
+                        <div class="concept-desc">
+                            Treating a track with 7,000 players identically to Summer 1 (4.48 million players) ignores the larger competitive field on high-population tracks.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Dynamic Strength of Field Calibration -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">02</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Dynamic Strength of Field (SoF) Calibration</h2>
+                        <div class="section-subtitle">Logarithmic difficulty scaling anchored to verified global player participation.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    Every track $k$ is assigned an intrinsic dynamic weight multiplier ($\omega_k$) calibrated from its verified participant population ($N_k \ge 1$). The baseline weight of $1.000\times$ is anchored at a reference population of $N_0 = 100,000$, governed by a logarithmic scaling function with boundary clamping:
+                </p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Dynamic Track Weight Multiplier Formula</div>
+                    <div class="formula-math">$$\omega_k = \text{clamp}\left(1.0 + \alpha \cdot \log_{10}\left(\frac{N_k}{N_0}\right), \quad \omega_{\min}, \quad \omega_{\max}\right)$$</div>
+                    <div class="formula-desc">
+                        where $\alpha = 0.18$, $N_0 = 100,000$, $\omega_{\min} = 0.650$, $\omega_{\max} = 1.850$, and the clamping operator is formally defined as:
+                        $$\text{clamp}(x, a, b) \equiv \max(a, \min(b, x))$$
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Mathematical Properties of Logarithmic Difficulty Scaling</h3>
+                <ul class="methodology-list">
+                    <li><strong>Extreme Value Distribution Alignment:</strong> In competitive time trials, the gap between subsequent percentiles compresses exponentially as population increases. Doubling participation from 100,000 to 200,000 introduces the same relative competitive density increment as scaling from 2,000,000 to 4,000,000. The base-10 logarithm ensures uniform elasticity without allowing flagship tracks to run away with runaway point inflation.</li>
+                    <li><strong>Track-Intrinsic Invariance:</strong> $\omega_k$ is an environmental property of track $k$, applied identically to all competitors on that course. It remains constant during each rating computation cycle.</li>
+                </ul>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Mega Flagship (Summer 1)</div>
+                        <div class="concept-desc">$N = 4,485,150 \rightarrow \omega = 1.0 + 0.18 \cdot \log_{10}(44.85) = \mathbf{1.297\times}$ dynamic weight.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-blue);">Major Campaign (Desert 1)</div>
+                        <div class="concept-desc">$N = 1,185,000 \rightarrow \omega = 1.0 + 0.18 \cdot \log_{10}(11.85) = \mathbf{1.193\times}$ dynamic weight.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-purple);">Active Community (Sky Bound)</div>
+                        <div class="concept-desc">$N = 142,000 \rightarrow \omega = 1.0 + 0.18 \cdot \log_{10}(1.42) = \mathbf{1.027\times}$ dynamic weight.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-green);">Smaller Community Track (Flying Dreams)</div>
+                        <div class="concept-desc">$N = 7,350 \rightarrow \omega = 1.0 + 0.18 \cdot \log_{10}(0.0735) = \mathbf{0.796\times}$ dynamic weight.</div>
+                    </div>
+                </div>
+
+                <!-- Complete 78-Track Dynamic Weights Directory -->
+                <div class="track-weights-section">
+                    <div class="tw-header">
+                        <div>
+                            <div class="tw-title">
+                                <span>⚖️ All 78 Track Weights & Difficulty Multipliers</span>
+                                <span class="badge badge-purple" id="track-count-badge">78 Tracks</span>
+                            </div>
+                            <div class="tw-subtitle">
+                                Complete catalog of all official campaign and community tracks ordered by their dynamic Strength-of-Field weight multiplier ($\omega_k$).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Track Weights Controls Toolbar -->
+                    <div class="controls-toolbar" style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(3, 7, 18, 0.6); border-radius: 8px;">
+                        <div class="search-box-wrap" style="flex: 1; min-width: 220px;">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="tw-search-input" class="search-input" placeholder="Search track name..." oninput="handleTrackWeightsSearch(this.value)">
+                            <button id="tw-search-clear" class="search-clear-btn" onclick="clearTrackWeightsSearch()">✕</button>
+                        </div>
+                        <div class="filters-group" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <select id="tw-type-filter" class="filter-select" onchange="handleTrackWeightsTypeFilter(this.value)">
+                                <option value="ALL">All Categories (78)</option>
+                                <option value="Main">Official Campaign (17)</option>
+                                <option value="Community">Community Tracks (61)</option>
+                            </select>
+                            <select id="tw-domain-filter" class="filter-select" onchange="handleTrackWeightsDomainFilter(this.value)">
+                                <option value="ALL">All Disciplines (78)</option>
+                                <option value="Fullspeed">Fullspeed (36)</option>
+                                <option value="Technical">Technical (42)</option>
+                            </select>
+                            <select id="tw-subgenre-filter" class="filter-select" onchange="handleTrackWeightsSubgenreFilter(this.value)">
+                                <option value="ALL">All Subgenres (78)</option>
+                                <option value="FS">FS (31)</option>
+                                <option value="Fakespeed">Fakespeed (5)</option>
+                                <option value="Tech">Tech (14)</option>
+                                <option value="Speedtech">Speedtech (14)</option>
+                                <option value="Speedfun">Speedfun (14)</option>
+                            </select>
+                            <select id="tw-sort-select" class="filter-select" onchange="handleTrackWeightsSort(this.value)">
+                                <option value="weight_desc">Sort: Weight (Highest → Lowest)</option>
+                                <option value="weight_asc">Sort: Weight (Lowest → Highest)</option>
+                                <option value="players_desc">Sort: Players (Most → Least)</option>
+                                <option value="name_asc">Sort: Track Name (A → Z)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Track Weights Table -->
+                    <div class="tw-table-container">
+                        <table class="tw-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 48px; text-align: center;">#</th>
+                                    <th>Track Name</th>
+                                    <th>Category</th>
+                                    <th>Discipline</th>
+                                    <th>Subgenre</th>
+                                    <th style="text-align: right;">Players ($N_k$)</th>
+                                    <th style="text-align: right;">Weight ($\omega_k$)</th>
+                                    <th style="text-align: right;">WR Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="track-weights-tbody">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Smooth Rank Scoring & World Record Crown -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">03</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Smooth Rank Scoring and World Record Crown</h2>
+                        <div class="section-subtitle">Continuous logarithmic rank decay coupled with a 1.25x World Record bonus multiplier.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    Instead of discrete tier cliffs (e.g. Formula 1 step drops where 10th receives points but 11th receives zero), points decay smoothly across the entire leaderboard according to a continuous logarithmic rank kernel $R(\text{Rank}_{i,k})$. Holding the global #1 World Record earns a dedicated <strong>1.25× World Record Crown multiplier</strong>:
+                </p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Individual Track Score Formulation</div>
+                    <div class="formula-math">$$R(\text{Rank}_{i,k}) = \frac{1}{1 + \beta \cdot \ln(\text{Rank}_{i,k})}, \quad \text{with } \beta = 0.60$$</div>
+                    <div class="formula-math">$$S_{i,k} = \omega_k \cdot 100.0 \cdot R(\text{Rank}_{i,k}) \cdot \left[1 + 0.25 \cdot \mathbb{I}(\text{Rank}_{i,k} = 1)\right]$$</div>
+                    <div class="formula-desc">
+                        where $\text{Rank}_{i,k} \in \mathbb{N}^+ = \{1, 2, 3, \dots\}$ represents the dense re-indexed finishing position of player $i$ on track $k$, and $\mathbb{I}(\text{Rank}_{i,k} = 1)$ is the indicator function evaluating to $1$ exclusively for the #1 World Record holder (and $0$ otherwise).
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Theoretical Rationale of the Logarithmic Kernel</h3>
+                <p class="section-text">
+                    As lap times approach the limit of a track, each subsequent improvement in position requires significantly greater optimization. The logarithmic rank kernel reflects this by concentrating point differentials at top positions while ensuring that every verified rank provides non-zero, monotonic scoring value.
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-gold);">🥇 Rank 1 (World Record)</div>
+                        <div class="concept-desc"><strong>125.0 pts</strong> baseline ($\omega = 1.0$) | <strong>162.2 pts</strong> on Summer 1 ($\omega = 1.297$).</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: #e2e8f0;">🥈 Rank 2</div>
+                        <div class="concept-desc"><strong>70.6 pts</strong> baseline ($R = 0.7063$) | <strong>91.6 pts</strong> on Summer 1 ($\omega = 1.297$).</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: #f97316;">🥉 Rank 3</div>
+                        <div class="concept-desc"><strong>60.3 pts</strong> baseline ($R = 0.6027$) | <strong>78.2 pts</strong> on Summer 1 ($\omega = 1.297$).</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Top 10 Placements</div>
+                        <div class="concept-desc">Rank 4: <strong>54.6 pts</strong> | Rank 5: <strong>50.9 pts</strong> | Rank 10: <strong>42.0 pts</strong> (at $\omega = 1.0$).</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Engine 1: Peak Quality Index (PQI) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">04</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Engine 1: Peak Quality Index (PQI Mechanical Ceiling)</h2>
+                        <div class="section-subtitle">Evaluating absolute peak driving skill across a player's Top 6 performances.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    <strong>Peak Quality Index (PQI)</strong> evaluates each player's absolute mechanical ceiling. Let $m$ be the total number of distinct tracks driven by player $i$, and let $S_{(1)} \ge S_{(2)} \ge \dots \ge S_{(m)}$ denote their individual track scores sorted in descending order.
+                </p>
+                <p class="section-text">
+                    The calculation defines the <strong>effective qualifying sample size</strong> as $N_{\text{eff}} = \min(6, m)$, evaluates the top scores using a <strong>geometric rank discount</strong> ($\gamma = 0.85$), and applies <strong>Bayesian confidence shrinkage</strong> against an uninformative prior:
+                </p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Raw PQI Geometric Decay & Bayesian Shrinkage</div>
+                    <div class="formula-math">$$N_{\text{eff}} = \min(6, m)$$</div>
+                    <div class="formula-math">$$\text{Raw PQI}_i = \frac{\sum_{r=1}^{N_{\text{eff}}} (0.85)^{r-1} \cdot S_{(r)}}{\sum_{r=1}^{N_{\text{eff}}} (0.85)^{r-1}}$$</div>
+                    <div class="formula-math">$$\text{PQI}_i = \frac{N_{\text{eff}} \cdot \text{Raw PQI}_i + C_{\text{PQI}} \cdot \mu_{0,\text{PQI}}}{N_{\text{eff}} + C_{\text{PQI}}}, \quad \text{where } C_{\text{PQI}} = 2.0, \; \mu_{0,\text{PQI}} = 40.0$$</div>
+                    <div class="formula-desc">
+                        <strong>Geometric Weight Sequence:</strong> For $N_{\text{eff}} = 6$, the unnormalized weights are $[1.000, 0.850, 0.723, 0.614, 0.522, 0.444]$, concentrating $55\%$ of total weight on the player's top 2 performances.
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Statistical Derivation of Bayesian Shrinkage</h3>
+                <p class="section-text">
+                    Under a conjugate Gaussian prior $\theta_i \sim \mathcal{N}(\mu_0, \sigma_0^2)$ with sample observations $\bar{X} \sim \mathcal{N}(\theta_i, \sigma^2 / N_{\text{eff}})$, the maximum a posteriori (MAP) posterior expectation is:
+                </p>
+                <div class="formula-box">
+                    <div class="formula-math">$$\mathbb{E}[\theta_i \mid \mathbf{S}_i] = \frac{N_{\text{eff}} \cdot \bar{S}_{\gamma} + C \cdot \mu_0}{N_{\text{eff}} + C}, \quad \text{with prior confidence scale } C = \frac{\sigma^2}{\sigma_0^2} = 2.0$$</div>
+                    <div class="formula-desc">
+                        <strong>Boundary Guarantees:</strong>
+                        <ul class="methodology-list" style="margin-top: 0.5rem;">
+                            <li><strong>Sample Size Regularization:</strong> When $N_{\text{eff}} \to 0$, $\text{PQI}_i \to 40.0$, preventing single-race fluke runs from topping the global leaderboard.</li>
+                            <li><strong>Volume Invariance:</strong> Completing tracks 7 through 78 has <strong>zero mathematical effect</strong> on PQI ($r > 6 \implies \text{weight} = 0$). A specialist who dominates 6 tracks cannot be overtaken by someone driving 70 tracks at mediocre pace.</li>
+                            <li><strong>Full Evidence Saturation:</strong> At $N_{\text{eff}} = 6$, empirical performance accounts for $\frac{6}{6+2} = 75\%$ of the rating, with $25\%$ prior anchoring.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Engine 2: Versatility & Depth Index (VDI) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">05</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Engine 2: Versatility & Depth Index (VDI Consistency)</h2>
+                        <div class="section-subtitle">Evaluating sustained competitive breadth across a player's Top 15 performances.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    While PQI measures peak ceiling, <strong>Versatility & Depth Index (VDI)</strong> rewards sustained excellence across a wider spectrum of tracks. The portfolio window expands to $K = 15$ tracks with gentler geometric decay ($\gamma = 0.90$) and a broader Bayesian prior:
+                </p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Raw VDI and Bayesian Shrinkage Formulation</div>
+                    <div class="formula-math">$$N_{\text{eff}} = \min(15, m)$$</div>
+                    <div class="formula-math">$$\text{Raw VDI}_i = \frac{\sum_{r=1}^{N_{\text{eff}}} (0.90)^{r-1} \cdot S_{(r)}}{\sum_{r=1}^{N_{\text{eff}}} (0.90)^{r-1}}$$</div>
+                    <div class="formula-math">$$\text{VDI}_i = \frac{N_{\text{eff}} \cdot \text{Raw VDI}_i + C_{\text{VDI}} \cdot \mu_{0,\text{VDI}}}{N_{\text{eff}} + C_{\text{VDI}}}, \quad \text{where } C_{\text{VDI}} = 3.0, \; \mu_{0,\text{VDI}} = 30.0$$</div>
+                    <div class="formula-desc">
+                        <strong>Controlled Window Principle:</strong> Evaluating exactly 15 tracks ensures players who demonstrate versatility across different map styles are rewarded, while strictly preventing volume grinding beyond track 15. At $N_{\text{eff}} = 15$, empirical evidence accounts for $\frac{15}{15+3} = 83.3\%$ of the rating.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Engine 3: Global Skill Index (GSI) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">06</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Engine 3: Global Skill Index (GSI Composite Synthesis)</h2>
+                        <div class="section-subtitle">Synthesizing 70% Peak Mechanical Pace and 30% Breadth into a standardized rating.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    The final ranking metric is the <strong>Global Skill Index (GSI)</strong>. To combine PQI (peak ceiling) and VDI (depth) onto a unified scale, both metrics are standardized into statistical standard scores ($Z$-scores) relative to the <strong>active competitor cohort</strong> $\mathcal{P}_{\text{active}} = \{i \mid m_i \ge 5\}$:
+                </p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Active Cohort Standardization & GSI Affine Synthesis</div>
+                    <div class="formula-math">$$Z_{\text{PQI},i} = \frac{\text{PQI}_i - \mu_{\text{PQI}}}{\sigma_{\text{PQI}}}, \quad Z_{\text{VDI},i} = \frac{\text{VDI}_i - \mu_{\text{VDI}}}{\sigma_{\text{VDI}}}$$</div>
+                    <div class="formula-math">$$\text{GSI}_i = 1000.0 + 200.0 \cdot \left(0.70 \cdot Z_{\text{PQI},i} + 0.30 \cdot Z_{\text{VDI},i}\right)$$</div>
+                    <div class="formula-desc">
+                        <strong>Active Population Calibration:</strong> Restricting the baseline parameters $(\mu_{\text{PQI}}, \sigma_{\text{PQI}})$ and $(\mu_{\text{VDI}}, \sigma_{\text{VDI}})$ to drivers with at least 5 completed tracks prevents the long tail of single-run casual accounts from compressing standard deviations and distorting the competitive scale.
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Understanding GSI Score Ranges</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-gold);">👑 3,500+ GSI (World Championship Tier)</div>
+                        <div class="concept-desc">Elite competitors who hold multiple World Records across high-traffic campaign and community tracks.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">🏆 2,000–3,499 GSI (Podium Contenders)</div>
+                        <div class="concept-desc">Top-tier drivers capable of claiming World Records and consistently finishing top 3 globally.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-purple);">⚡ 1,500–1,999 GSI (Specialists and Top 50 Players)</div>
+                        <div class="concept-desc">Highly skilled players holding top 5 finishes on competitive campaign or community tracks.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-green);">👥 1,000–1,499 GSI (Active Competitive Median)</div>
+                        <div class="concept-desc">Solid competitors who regularly set verified times across multiple tracks.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 2-Domain Macro-Discipline Engine (v10.2 Dual-Axis Mastery) -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">07</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">2-Domain Macro-Discipline Engine (Dual-Axis Mastery)</h2>
+                        <div class="section-subtitle">Evaluating specialized driving skill across two balanced macro-disciplines: Fullspeed and Technical.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    PolyTrack tracks feature distinct mechanical demands that separate into two core macro-disciplines:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-card" style="border-left: 3px solid var(--dom-fs-color);">
+                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Discipline (36 Tracks)</div>
+                        <div class="concept-desc">
+                            High velocity throughout with banking, wallrides, calculated entry angles, and looping layouts. Includes <strong>Fullspeed</strong> (31 tracks) and <strong>Fakespeed</strong> (5 tracks).
+                        </div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid var(--dom-tech-color);">
+                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Discipline (42 Tracks)</div>
+                        <div class="concept-desc">
+                            Tight cornering, drift angle control, brake taps, rapid transitions, and precision slide arcs. Includes <strong>Tech</strong> (14 tracks), <strong>Speedtech</strong> (14 tracks), and <strong>Speedfun</strong> (14 tracks).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">Mathematical Formulation (Discipline Rating)</div>
+                    <div class="formula-desc">
+                        For each domain $D \in \{\text{Fullspeed}, \text{Technical}\}$, let $m_D$ be the count of tracks completed by player $i$ in domain $D$. The discipline rating evaluates their <strong>Top 6 best runs</strong> ($K=6$) with geometric decay ($\gamma = 0.85$) and Bayesian shrinkage ($\mu_0 = 40.0, C = 2.0$):
+                    </div>
+                    <div class="formula-math">$$N_{\text{eff}, D} = \min(6, m_D)$$</div>
+                    <div class="formula-math">$$\text{Raw Score}(i, D) = \frac{\sum_{r=1}^{N_{\text{eff}, D}} (0.85)^{r-1} \cdot S_{(r), D}}{\sum_{r=1}^{N_{\text{eff}, D}} (0.85)^{r-1}}$$</div>
+                    <div class="formula-math">$$\text{Rating}(i, D) = \frac{N_{\text{eff}, D} \cdot \text{Raw Score}(i, D) + 2.0 \cdot 40.0}{N_{\text{eff}, D} + 2.0}$$</div>
+                    <div class="formula-desc" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                        *Note: If $m_D = 0$ (no completed tracks in domain $D$), $\text{Rating}(i, D) = 0.0$ (Unranked).*
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Discipline Bias Ratio & Archetype Partitioning</h3>
+                <p class="section-text">
+                    A player's competitive balance between the two physics disciplines is defined by the <strong>Discipline Bias Ratio</strong>:
+                </p>
+                <div class="formula-box">
+                    <div class="formula-title">Discipline Bias Ratio</div>
+                    <div class="formula-math">$$\text{Bias}(i) = \frac{\text{Rating}(i, \text{Fullspeed})}{\text{Rating}(i, \text{Fullspeed}) + \text{Rating}(i, \text{Technical})}$$</div>
+                    <div class="formula-desc" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                        *Note: Defaults to $0.50$ (neutral balance) if a player has zero total rating across both disciplines.*
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-title">Driver Archetype Classification Decision Rules</div>
+                    <div class="formula-desc">
+                        Driver archetypes are formally classified according to the following decision partition:
+                    </div>
+                    <div class="formula-math">$$\text{Archetype}(i) = \begin{cases}
+                        \textbf{Fullspeed Specialist} & \text{if } \text{Bias}(i) \ge 0.70 \text{ and } m_{\text{FS}} \ge 4 \\
+                        \textbf{Technical Specialist} & \text{if } \text{Bias}(i) \le 0.30 \text{ and } m_{\text{Tech}} \ge 4 \\
+                        \textbf{Generalist} & \text{if } 0.30 < \text{Bias}(i) < 0.70 \text{ and } m_{\text{FS}} \ge 4 \text{ and } m_{\text{Tech}} \ge 4 \\
+                        \textbf{Player (Emerging)} & \text{otherwise}
+                    \end{cases}$$</div>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Specialist</div>
+                        <div class="concept-desc">$\text{Bias}(i) \ge 0.70$ and $\ge 4$ Fullspeed tracks driven. Excels at high momentum conservation, loops, and wallrides.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Specialist</div>
+                        <div class="concept-desc">$\text{Bias}(i) \le 0.30$ and $\ge 4$ Technical tracks driven. Excels at tight drift management, slide initiation, and brake tapping.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">⚡ Generalist</div>
+                        <div class="concept-desc">$0.30 < \text{Bias}(i) < 0.70$ and $\ge 4$ tracks driven in both domains. Possesses world-class versatility across both fast and technical courses.</div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--text-muted);">🏁 Player (Emerging)</div>
+                        <div class="concept-desc">Default archetype for emerging players with $< 4$ completed tracks in their primary discipline.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Player Classifications & Ecosystem Bias -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">08</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Player Classifications and Ecosystem Bias</h2>
+                        <div class="section-subtitle">Differentiating Campaign vs Community track orientation from driving physics discipline.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    It is important to distinguish between <strong>Mechanical Discipline</strong> (Fullspeed vs Technical physics, Section 07) and <strong>Ecosystem Domain</strong> (Official Campaign vs Community tracks). Every player is classified based on the distribution of their points across these two ecosystems:
+                </p>
+
+                <div class="formula-box">
+                    <div class="formula-title">Domain Bias Formula & Classification Partition</div>
+                    <div class="formula-math">$$\text{Domain Bias}(i) = \frac{\sum_{k \in \text{Main}} S_{i,k}}{\sum_{k \in \text{Main}} S_{i,k} + \sum_{k \in \text{Community}} S_{i,k}}$$</div>
+                    <div class="formula-math">$$\text{Classification}(i) = \begin{cases}
+                        \textbf{Main Specialist} & \text{if } \text{Domain Bias}(i) \ge 0.70 \\
+                        \textbf{Community Specialist} & \text{if } \text{Domain Bias}(i) \le 0.30 \\
+                        \textbf{All Rounder} & \text{if } 0.30 < \text{Domain Bias}(i) < 0.70
+                    \end{cases}$$</div>
+                </div>
+
+                <div class="concept-grid">
+                    <div class="concept-card" style="border-left: 3px solid #60a5fa;">
+                        <div class="concept-title" style="color: #60a5fa;">🔵 Main Specialist</div>
+                        <div class="concept-desc">Players who earn <strong>70% or more of their points</strong> on official campaign tracks.</div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid #c084fc;">
+                        <div class="concept-title" style="color: #c084fc;">🟣 Community Specialist</div>
+                        <div class="concept-desc">Players who earn <strong>70% or more of their points</strong> on community tracks.</div>
+                    </div>
+                    <div class="concept-card" style="border-left: 3px solid #34d399;">
+                        <div class="concept-title" style="color: #34d399;">🟢 All Rounder</div>
+                        <div class="concept-desc">Well-rounded drivers who compete actively across both official campaign and community ecosystems.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Data Sanitization, Alt Consolidation & Dense Re-Indexing -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">09</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Data Sanitization, Alt Consolidation & Dense Re-Indexing</h2>
+                        <div class="section-subtitle">Rigorous data preprocessing pipeline ensuring legitimate human competition and fair rank spacing.</div>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    Before applying mathematical rating engines, raw leaderboard ingest undergoes a multi-stage sanitization pipeline to eliminate bot distortion and artificial rank dilution:
+                </p>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-rose);">1. [TAS] Bot Rejection</div>
+                        <div class="concept-desc">
+                            All tool-assisted speedruns and accounts prefixed with <code>[TAS]</code> are purged from leaderboards to preserve pure human competitive integrity.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-gold);">2. Canonical Identity Consolidation</div>
+                        <div class="concept-desc">
+                            Verified alternate accounts belonging to the same human competitor are mapped to their canonical primary identity. On every individual track, only the player's <strong>single fastest personal best time</strong> is retained; all duplicate entries are eliminated.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">3. Dense Rank Re-Indexing</div>
+                        <div class="concept-desc">
+                            Following alt and bot elimination, leaderboard standings are compacted into contiguous integer ranks $\text{Rank} \in \{1, 2, 3, \dots, N_{\text{human}}\}$. This ensures point formulas $R(\text{Rank})$ operate on true human relative performance without gaps.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Frequently Asked Questions -->
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-number">10</div>
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Frequently Asked Questions (FAQ)</h2>
+                        <div class="section-subtitle">Common questions regarding scoring mechanics, edge cases, and ratings.</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Q: Does grinding all 78 tracks give someone an unfair advantage?</div>
+                        <div class="concept-desc">
+                            <strong>No.</strong> Your rating is calculated exclusively from your Top 6 tracks for peak pace (PQI) and Top 15 tracks for versatility (VDI). Completing tracks 16 through 78 adds <strong>zero additional points</strong> to your score. The system rewards performance quality, not time played.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Q: Does doing a slow or casual run on a track lower my rating?</div>
+                        <div class="concept-desc">
+                            <strong>No.</strong> Unlike Elo or matchmaking ratings, our system evaluates only your best personal record on each course. Slower times simply sit outside your top scoring window with zero penalty.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Q: Why does 2nd place on Summer 1 score more than 1st place on a smaller community track?</div>
+                        <div class="concept-desc">
+                            Summer 1 has over 4.4 million verified players and has been optimized for months by the community. Finishing fractions of a second behind the World Record against millions of players represents a significantly higher competitive bar than winning on a less active track.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Q: What does the World Record bonus grant?</div>
+                        <div class="concept-desc">
+                            Every World Record receives a <strong>1.25× multiplier</strong> (+25% bonus points), providing a distinct and meaningful reward for claiming the #1 spot on any leaderboard.
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-title" style="color: var(--accent-cyan);">Q: How are alternate accounts handled?</div>
+                        <div class="concept-desc">
+                            Verified alternate accounts belonging to the same player are consolidated into the player's primary identity to ensure fair rank distribution and prevent artificial leaderboard crowding.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+<!-- Player Breakdown Modal -->
+<div id="player-modal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <div class="modal-user-row">
+                    <span id="modal-rank" class="modal-rank-chip">#1</span>
+                    <span id="modal-username" class="modal-username">SpeedySebas</span>
+                    <span id="modal-class" class="class-badge class-main-specialist" title="Main Specialist">Main Specialist</span>
+                </div>
+                <div id="modal-domain-bias" style="font-size: 0.85rem; color: var(--text-muted);">
+                    95.9% Main Track Point Bias
+                </div>
+                <div id="modal-class-desc" style="font-size: 0.78rem; color: var(--text-dim);">
+                    Main Specialist: Earns 70% or more of points on official campaign tracks.
+                </div>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body">
+            <!-- 1. Top Summary Stat Cards Grid (7 Cards) -->
+            <div class="modal-grid">
+                <div class="modal-stat">
+                    <span class="modal-stat-label">Global Skill Index</span>
+                    <span id="modal-gsi" class="modal-stat-val" style="color: var(--accent-cyan);">4119.4</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-label">Peak Quality (PQI)</span>
+                    <span id="modal-pqi" class="modal-stat-val">121.25</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-label">Versatility (VDI)</span>
+                    <span id="modal-vdi" class="modal-stat-val">103.25</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-label">Z-PQI / Z-VDI</span>
+                    <span id="modal-zscores" class="modal-stat-val" style="font-size: 1rem;">+15.75 / +15.20</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-label">World Records</span>
+                    <span id="modal-wrs" class="modal-stat-val" style="color: var(--accent-gold);">7 (7 M / 0 C)</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-label">Top Placements</span>
+                    <span id="modal-top-counts" class="modal-stat-val" style="font-size: 1rem;">9 T3 • 12 T5</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-label">Tracks Ranked</span>
+                    <span id="modal-tracks" class="modal-stat-val">18 (17 M + 1 C)</span>
+                </div>
+            </div>
+
+            <!-- 2. Dual-Discipline Mastery (v10.2 Dual-Axis Architecture) -->
+            <div class="discipline-section">
+                <div class="discipline-header">
+                    <div class="discipline-title">
+                        <span>⚡</span>
+                        <span>Dual-Discipline Mastery (v10.2)</span>
+                    </div>
+                    <div class="discipline-meta">
+                        <span id="modal-archetype" class="archetype-badge">Primary: None</span>
+                    </div>
+                </div>
+                <div class="dual-discipline-grid">
+                    <!-- Fullspeed Discipline Card -->
+                    <div class="discipline-card discipline-card-fs">
+                        <div class="discipline-card-header">
+                            <div class="discipline-card-title">
+                                <span class="discipline-dot dot-fs"></span>
+                                <span>Fullspeed Discipline</span>
+                            </div>
+                            <span id="modal-fs-rank" class="discipline-rank-chip rank-chip-fs">#- Global</span>
+                        </div>
+                        <div class="discipline-card-body">
+                            <div class="discipline-rating-row">
+                                <span id="modal-fs-rating" class="discipline-rating-val val-fs">0.0</span>
+                                <span class="discipline-rating-unit">pts</span>
+                            </div>
+                            <div class="discipline-card-meta">
+                                <div class="discipline-meta-item">
+                                    <span class="meta-label">Coverage:</span>
+                                    <span id="modal-fs-cov" class="meta-val">0 / 36 (0%)</span>
+                                </div>
+                                <div class="discipline-meta-item">
+                                    <span class="meta-label">Accolades:</span>
+                                    <span id="modal-fs-accolades" class="meta-val">0 WRs • 0 T5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Technical Discipline Card -->
+                    <div class="discipline-card discipline-card-tech">
+                        <div class="discipline-card-header">
+                            <div class="discipline-card-title">
+                                <span class="discipline-dot dot-tech"></span>
+                                <span>Technical Discipline</span>
+                            </div>
+                            <span id="modal-tech-rank" class="discipline-rank-chip rank-chip-tech">#- Global</span>
+                        </div>
+                        <div class="discipline-card-body">
+                            <div class="discipline-rating-row">
+                                <span id="modal-tech-rating" class="discipline-rating-val val-tech">0.0</span>
+                                <span class="discipline-rating-unit">pts</span>
+                            </div>
+                            <div class="discipline-card-meta">
+                                <div class="discipline-meta-item">
+                                    <span class="meta-label">Coverage:</span>
+                                    <span id="modal-tech-cov" class="meta-val">0 / 42 (0%)</span>
+                                </div>
+                                <div class="discipline-meta-item">
+                                    <span class="meta-label">Accolades:</span>
+                                    <span id="modal-tech-accolades" class="meta-val">0 WRs • 0 T5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Split Balance Bar -->
+                <div class="discipline-split-wrap">
+                    <div class="split-bar-header">
+                        <span class="split-bar-label">Discipline Balance</span>
+                        <span id="modal-split-label" class="split-bar-ratio">50% Fullspeed | 50% Technical</span>
+                    </div>
+                    <div class="split-bar-track">
+                        <div id="modal-split-fs" class="split-bar-fs" style="width: 50%;"></div>
+                        <div id="modal-split-tech" class="split-bar-tech" style="width: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Top Scoring Tracks Breakdown -->
+            <div>
+                <div class="modal-tracks-header">
+                    <div class="modal-tracks-title">
+                        <span>🔥</span>
+                        <span>Top 15 Scoring Tracks (Competitive Window)</span>
+                    </div>
+                    <div class="modal-tracks-legend">
+                        <span class="legend-chip legend-pqi">Top 1–6: Peak Ceiling (PQI & VDI)</span>
+                        <span class="legend-chip legend-vdi">Top 7–15: Depth Only (VDI)</span>
+                    </div>
+                </div>
+                <div style="overflow-x: auto; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border); border-radius: 10px;">
+                    <table class="modal-tracks-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;">#</th>
+                                <th>Track Name</th>
+                                <th>Finish</th>
+                                <th>Weight (ω)</th>
+                                <th>Points</th>
+                                <th>Window Tier</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-tracks-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        PolyTrack Global Player Ratings System.<br>
+        Dynamic Strength of Field calibration, Dual Engine Aggregation, and 2-Domain Macro-Discipline Engine.<br>
+        <span id="footer-last-updated">2026-09-30 20:42:57 UTC</span>
+    </div>
+</footer>
+
+<!-- Embedded Dataset & Client Logic -->
+<script>
+    // Track Subgenre & Domain Classifications (78 Tracks)
+    const TRACK_DOMAINS = {};
+    const TRACK_SUBGENRES = {};
+    const TRACK_STYLES = {};
+    const TRACK_WEIGHTS_DATA = [];
+
+    // Embedded Player Dataset (0 Players)
+    const PLAYERS = [];
+
+    // Leaderboard State
+    let filteredPlayers = PLAYERS.slice();
+    let currentPage = 1;
+    let pageSize = 50;
+    let currentSort = { col: 'rank', asc: true };
+    let searchQuery = '';
+    let selectedClass = 'ALL';
+    let selectedStyle = 'ALL'; // 'ALL', 'Fullspeed', 'Technical'
+    let wrOnlyFilter = false;
+
+    // Track Weights State
+    let twSearchQuery = '';
+    let twTypeFilter = 'ALL';
+    let twDomainFilter = 'ALL';
+    let twSubgenreFilter = 'ALL';
+    let twCurrentSort = 'weight_desc';
+
+    // Classification Definitions
+    const CLASS_MAP = {
+        'Main Specialist': 'class-main-specialist',
+        'Community Specialist': 'class-comm-specialist',
+        'All Rounder': 'class-all-rounder',
+        'Generalist': 'class-all-rounder'
+    };
+
+    const CLASS_DESC = {
+        'Main Specialist': 'Main Specialist: Earns 70% or more of points on official campaign tracks.',
+        'Community Specialist': 'Community Specialist: Earns 70% or more of points on community tracks.',
+        'All Rounder': 'All Rounder: Balances points across both campaign and community tracks (neither domain 70% or more).',
+        'Generalist': 'All Rounder: Balances points across both campaign and community tracks (neither domain 70% or more).'
+    };
+
+    const SUBGENRE_PILLS = {
+        'FS': 'style-pill-fullspeed',
+        'Fullspeed': 'style-pill-fullspeed',
+        'Fakespeed': 'style-pill-fakespeed',
+        'Tech': 'style-pill-tech',
+        'Speedtech': 'style-pill-speedtech',
+        'Speedfun': 'style-pill-speedfun'
+    };
+
+    // Tab Switching
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.tab-pane').forEach(pane => {
+            pane.classList.remove('active');
+        });
+
+        const activeBtn = document.getElementById('tab-btn-' + tabId);
+        const activePane = document.getElementById('tab-' + tabId);
+        if (activeBtn && activePane) {
+            activeBtn.classList.add('active');
+            activeBtn.setAttribute('aria-selected', 'true');
+            activePane.classList.add('active');
+            window.location.hash = tabId;
+        }
+        if (tabId === 'methodology') {
+            renderTrackWeightsTable();
+        }
+    }
+
+    function initHashTab() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'methodology') {
+            switchTab('methodology');
+        } else {
+            switchTab('rankings');
+        }
+    }
+
+    function handleStyleFilter(val) {
+        selectedStyle = val;
+        currentSort = { col: 'rank', asc: true };
+        applyFiltersAndSort();
+    }
+
+    function handleClassFilter(val) {
+        selectedClass = val;
+        applyFiltersAndSort();
+    }
+
+    function toggleWrFilter() {
+        wrOnlyFilter = !wrOnlyFilter;
+        const btn = document.getElementById('wr-filter-btn');
+        if (btn) btn.classList.toggle('active', wrOnlyFilter);
+        applyFiltersAndSort();
+    }
+
+    function handleSearch(val) {
+        searchQuery = val.trim();
+        const clearBtn = document.getElementById('search-clear');
+        if (clearBtn) clearBtn.style.display = searchQuery ? 'block' : 'none';
+        applyFiltersAndSort();
+    }
+
+    function clearSearch() {
+        const input = document.getElementById('search-input');
+        if (input) input.value = '';
+        handleSearch('');
+    }
+
+    function handleSortSelect(val) {
+        const parts = val.split('_');
+        const asc = parts[1] === 'asc';
+        handleSort(parts[0], asc);
+    }
+
+    function handleSort(col, explicitAsc = null) {
+        if (explicitAsc !== null) {
+            currentSort = { col, asc: explicitAsc };
+        } else if (currentSort.col === col) {
+            currentSort.asc = !currentSort.asc;
+        } else {
+            currentSort = { col, asc: (col === 'name' || col === 'rank' || col === 'style_rank') };
+        }
+        applyFiltersAndSort();
+        updateSortHeaderIcons();
+    }
+
+    // Filtering & Sorting Pipeline
+    function applyFiltersAndSort() {
+        let result = PLAYERS;
+
+        // 1. Search Query
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            result = result.filter(p => p.u.toLowerCase().includes(q));
+        }
+
+        // 2. Classification Filter
+        if (selectedClass !== 'ALL') {
+            result = result.filter(p => p.c === selectedClass);
+        }
+
+        // 3. Macro-Discipline Filter (Fullspeed or Technical)
+        if (selectedStyle === 'Fullspeed') {
+            result = result.filter(p => p.dp && p.dp.f && (p.dp.f[4] > 0 || p.dp.f[3] > 0));
+        } else if (selectedStyle === 'Technical') {
+            result = result.filter(p => p.dp && p.dp.t && (p.dp.t[4] > 0 || p.dp.t[3] > 0));
+        }
+
+        // 4. WR Filter
+        if (wrOnlyFilter) {
+            if (selectedStyle === 'Fullspeed') {
+                result = result.filter(p => p.dp && p.dp.f && p.dp.f[6] > 0);
+            } else if (selectedStyle === 'Technical') {
+                result = result.filter(p => p.dp && p.dp.t && p.dp.t[6] > 0);
+            } else {
+                result = result.filter(p => p.wt > 0);
+            }
+        }
+
+        // 5. Sorting
+        result = result.slice().sort((a, b) => {
+            let valA, valB;
+
+            if (selectedStyle === 'Fullspeed' || selectedStyle === 'Technical') {
+                const isFs = selectedStyle === 'Fullspeed';
+                // sData format: [gsi, pqi, vdi, rank, driven, total, wrs, t5]
+                const sDataA = isFs ? (a.dp?.f || [0, 0, 0, 999999, 0, 36, 0, 0]) : (a.dp?.t || [0, 0, 0, 999999, 0, 42, 0, 0]);
+                const sDataB = isFs ? (b.dp?.f || [0, 0, 0, 999999, 0, 36, 0, 0]) : (b.dp?.t || [0, 0, 0, 999999, 0, 42, 0, 0]);
+
+                switch (currentSort.col) {
+                    case 'rank':
+                    case 'style_rank':
+                        valA = sDataA[3]; valB = sDataB[3];
+                        break;
+                    case 'gsi':
+                        valA = sDataA[0]; valB = sDataB[0];
+                        break;
+                    case 'pqi':
+                    case 'style_pqi':
+                        valA = sDataA[1]; valB = sDataB[1];
+                        break;
+                    case 'vdi':
+                        valA = sDataA[2]; valB = sDataB[2];
+                        break;
+                    case 'name':
+                        valA = a.u.toLowerCase(); valB = b.u.toLowerCase();
+                        break;
+                    case 'tracks':
+                    case 'style_cov':
+                        valA = sDataA[4]; valB = sDataB[4];
+                        break;
+                    case 'wr':
+                    case 'style_wr':
+                        valA = sDataA[6]; valB = sDataB[6];
+                        if (valA === valB) { valA = sDataA[0]; valB = sDataB[0]; }
+                        break;
+                    case 'top5':
+                    case 'style_t5':
+                        valA = sDataA[7]; valB = sDataB[7];
+                        break;
+                    case 'archetype':
+                        valA = a.dp?.a || ''; valB = b.dp?.a || '';
+                        break;
+                    default:
+                        valA = sDataA[3]; valB = sDataB[3];
+                }
+            } else {
+                switch (currentSort.col) {
+                    case 'rank':
+                        valA = a.r; valB = b.r;
+                        break;
+                    case 'name':
+                        valA = a.u.toLowerCase(); valB = b.u.toLowerCase();
+                        break;
+                    case 'gsi':
+                        valA = a.g; valB = b.g;
+                        break;
+                    case 'pqi':
+                        valA = a.p; valB = b.p;
+                        break;
+                    case 'vdi':
+                        valA = a.v; valB = b.v;
+                        break;
+                    case 'wr':
+                        valA = a.wt; valB = b.wt;
+                        if (valA === valB) { valA = a.g; valB = b.g; }
+                        break;
+                    case 'top5':
+                        valA = a.t5; valB = b.t5;
+                        break;
+                    case 'tracks':
+                        valA = a.tt; valB = b.tt;
+                        break;
+                    case 'class':
+                        valA = a.c; valB = b.c;
+                        break;
+                    default:
+                        valA = a.r; valB = b.r;
+                }
+            }
+
+            if (valA < valB) return currentSort.asc ? -1 : 1;
+            if (valA > valB) return currentSort.asc ? 1 : -1;
+            return a.r - b.r;
+        });
+
+        filteredPlayers = result;
+        currentPage = 1;
+        renderTable();
+    }
+
+    // Render Table (Global View vs Discipline View)
+    function renderTable() {
+        const thead = document.getElementById('rankings-thead');
+        const tbody = document.getElementById('rankings-tbody');
+        if (!thead || !tbody) return;
+
+        const isStyleMode = selectedStyle === 'Fullspeed' || selectedStyle === 'Technical';
+        const isFs = selectedStyle === 'Fullspeed';
+        const accentColor = isFs ? '#38bdf8' : '#fb923c';
+
+        // 1. Build Dynamic Header
+        if (isStyleMode) {
+            thead.innerHTML = `<tr>
+                <th onclick="handleSort('rank')" style="width: 70px; cursor: pointer;">
+                    <div class="th-content"><span>Rank</span><span class="sort-icon" id="sort-rank"></span></div>
+                </th>
+                <th onclick="handleSort('name')" class="col-player" style="cursor: pointer;">
+                    <div class="th-content"><span>Player</span><span class="sort-icon" id="sort-name"></span></div>
+                </th>
+                <th onclick="handleSort('gsi')" style="cursor: pointer;" title="${selectedStyle} Global Skill Index (70% PQI + 30% VDI on ${selectedStyle} tracks)">
+                    <div class="th-content"><span>${selectedStyle} GSI</span><span class="sort-icon" id="sort-gsi"></span></div>
+                </th>
+                <th onclick="handleSort('pqi')" style="cursor: pointer;" title="Peak Quality Index on ${selectedStyle} tracks (Top 6 Mechanical Ceiling)">
+                    <div class="th-content"><span>PQI (Ceil)</span><span class="sort-icon" id="sort-pqi"></span></div>
+                </th>
+                <th onclick="handleSort('vdi')" style="cursor: pointer;" title="Versatility & Depth Index on ${selectedStyle} tracks (Top 15 Consistency)">
+                    <div class="th-content"><span>VDI (Depth)</span><span class="sort-icon" id="sort-vdi"></span></div>
+                </th>
+                <th onclick="handleSort('wr')" style="cursor: pointer;" title="World Records in ${selectedStyle}">
+                    <div class="th-content"><span>WRs</span><span class="sort-icon" id="sort-wr"></span></div>
+                </th>
+                <th onclick="handleSort('top5')" style="cursor: pointer;" title="Top 5 finishes in ${selectedStyle}">
+                    <div class="th-content"><span>Top 5s</span><span class="sort-icon" id="sort-top5"></span></div>
+                </th>
+                <th onclick="handleSort('tracks')" style="cursor: pointer;" title="Tracks driven in ${selectedStyle}">
+                    <div class="th-content"><span>Tracks</span><span class="sort-icon" id="sort-tracks"></span></div>
+                </th>
+                <th onclick="handleSort('archetype')" style="cursor: pointer;" title="Player Driving Archetype">
+                    <div class="th-content"><span>Archetype</span><span class="sort-icon" id="sort-archetype"></span></div>
+                </th>
+                <th style="width: 90px; text-align: center;">Details</th>
+            </tr>`;
+        } else {
+            thead.innerHTML = `<tr>
+                <th onclick="handleSort('rank')" style="width: 70px; cursor: pointer;">
+                    <div class="th-content"><span>Rank</span><span class="sort-icon" id="sort-rank"></span></div>
+                </th>
+                <th onclick="handleSort('name')" class="col-player" style="cursor: pointer;">
+                    <div class="th-content"><span>Player</span><span class="sort-icon" id="sort-name"></span></div>
+                </th>
+                <th onclick="handleSort('gsi')" style="cursor: pointer;" title="Global Skill Index (70% PQI + 30% VDI)">
+                    <div class="th-content"><span>GSI Score</span><span class="sort-icon" id="sort-gsi"></span></div>
+                </th>
+                <th onclick="handleSort('pqi')" style="cursor: pointer;" title="Peak Quality Index (Top 6 Mechanical Ceiling)">
+                    <div class="th-content"><span>PQI (Ceil)</span><span class="sort-icon" id="sort-pqi"></span></div>
+                </th>
+                <th onclick="handleSort('vdi')" style="cursor: pointer;" title="Versatility & Depth Index (Top 15 Consistency)">
+                    <div class="th-content"><span>VDI (Depth)</span><span class="sort-icon" id="sort-vdi"></span></div>
+                </th>
+                <th onclick="handleSort('wr')" style="cursor: pointer;" title="World Records (Main / Comm)">
+                    <div class="th-content"><span>WRs</span><span class="sort-icon" id="sort-wr"></span></div>
+                </th>
+                <th onclick="handleSort('top5')" style="cursor: pointer;" title="Top 5 placements">
+                    <div class="th-content"><span>Top 5s</span><span class="sort-icon" id="sort-top5"></span></div>
+                </th>
+                <th onclick="handleSort('tracks')" style="cursor: pointer;" title="Total tracks ranked">
+                    <div class="th-content"><span>Tracks</span><span class="sort-icon" id="sort-tracks"></span></div>
+                </th>
+                <th onclick="handleSort('class')" style="cursor: pointer;" title="Player Classification">
+                    <div class="th-content"><span>Classification</span><span class="sort-icon" id="sort-class"></span></div>
+                </th>
+                <th style="width: 90px; text-align: center;">Details</th>
+            </tr>`;
+        }
+
+        // 2. Pagination Slice
+        const total = filteredPlayers.length;
+        let startIdx = 0;
+        let endIdx = total;
+        if (pageSize !== 'ALL') {
+            const pSize = parseInt(pageSize, 10);
+            startIdx = (currentPage - 1) * pSize;
+            endIdx = Math.min(startIdx + pSize, total);
+        }
+        const visiblePlayers = filteredPlayers.slice(startIdx, endIdx);
+
+        // 3. Build Rows
+        if (visiblePlayers.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:3rem; color:var(--text-dim);">No matching players found for the selected filters.</td></tr>`;
+            renderPagination(0, 0, 0);
+            return;
+        }
+
+        let html = '';
+        for (let i = 0; i < visiblePlayers.length; i++) {
+            const p = visiblePlayers[i];
+
+            if (isStyleMode) {
+                const sStats = isFs ? (p.dp?.f || [0, 0, 0, 0, 0, 36, 0, 0]) : (p.dp?.t || [0, 0, 0, 0, 0, 42, 0, 0]);
+                const [sGsi, sPqi, sVdi, sRank, sDriven, sTotal, sWrs, sT5] = sStats;
+
+                const rankClass = sRank === 1 ? 'rank-gold' : (sRank === 2 ? 'rank-silver' : (sRank === 3 ? 'rank-bronze' : ''));
+                const wrBadge = sWrs > 0 ? `<span style="color:var(--accent-gold); font-weight:700;">🥇 ${sWrs}</span>` : '<span style="color:var(--text-dim);">0</span>';
+                const t5Str = sT5 > 0 ? `<span style="color:#ffffff; font-weight:600;">${sT5}</span>` : '<span style="color:var(--text-dim);">0</span>';
+                const covPct = sTotal > 0 ? Math.round((sDriven / sTotal) * 100) : 0;
+
+                html += `<tr>
+                    <td class="rank-cell ${rankClass}">#${sRank}</td>
+                    <td class="col-player">
+                        <div class="player-cell" onclick="openPlayerModal(${p.r})" title="${escapeHtml(p.u)}">
+                            <span class="player-name-text">${escapeHtml(p.u)}</span>
+                            <span class="badge badge-purple player-gsi-chip">GSI #${p.r}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span style="font-family:var(--font-mono); font-weight:800; color:${accentColor}; font-size:1.05rem;">${sGsi.toFixed(1)}</span>
+                    </td>
+                    <td class="pqi-cell">${sPqi.toFixed(2)}</td>
+                    <td class="vdi-cell">${sVdi.toFixed(2)}</td>
+                    <td>${wrBadge}</td>
+                    <td>${t5Str}</td>
+                    <td style="font-family:var(--font-mono); font-size:0.85rem;">${sDriven} / ${sTotal} <span style="color:var(--text-dim);">(${covPct}%)</span></td>
+                    <td>
+                        <span class="archetype-badge" style="font-size:0.75rem; padding:0.15rem 0.55rem;">${p.dp?.a || p.c}</span>
+                    </td>
+                    <td style="text-align: center;">
+                        <button class="view-btn" onclick="openPlayerModal(${p.r})">View</button>
+                    </td>
+                </tr>`;
+            } else {
+                const rankClass = p.r === 1 ? 'rank-gold' : (p.r === 2 ? 'rank-silver' : (p.r === 3 ? 'rank-bronze' : ''));
+                const wrDisplay = p.wt > 0 ? `<span style="color:var(--accent-gold); font-weight:700;">${p.wt} (${p.wm}/${p.wc})</span>` : `<span style="color:var(--text-dim);">0</span>`;
+                const top5Display = p.t5 > 0 ? `${p.t5}` : `<span style="color:var(--text-dim);">0</span>`;
+
+                html += `<tr>
+                    <td class="rank-cell ${rankClass}">#${p.r}</td>
+                    <td class="col-player">
+                        <div class="player-cell" onclick="openPlayerModal(${p.r})" title="${escapeHtml(p.u)}">
+                            <span class="player-name-text">${escapeHtml(p.u)}</span>
+                        </div>
+                    </td>
+                    <td class="gsi-cell">${p.g.toFixed(1)}</td>
+                    <td class="pqi-cell">${p.p.toFixed(2)}</td>
+                    <td class="vdi-cell">${p.v.toFixed(2)}</td>
+                    <td>${wrDisplay}</td>
+                    <td>${top5Display}</td>
+                    <td style="font-family:var(--font-mono); font-size:0.85rem;">${p.tm}+${p.tc}</td>
+                    <td>
+                        <span class="class-badge ${CLASS_MAP[p.c] || 'class-generalist'}" title="${CLASS_DESC[p.c] || ''}">
+                            ${p.c}
+                        </span>
+                    </td>
+                    <td style="text-align: center;">
+                        <button class="view-btn" onclick="openPlayerModal(${p.r})">View</button>
+                    </td>
+                </tr>`;
+            }
+        }
+        tbody.innerHTML = html;
+        renderPagination(total, startIdx + 1, endIdx);
+        updateSortHeaderIcons();
+    }
+
+    // Render Pagination Controls
+    function renderPagination(total, start, end) {
+        const info = document.getElementById('page-info');
+        const controls = document.getElementById('pagination-controls');
+        if (!info || !controls) return;
+
+        if (total === 0) {
+            info.innerHTML = 'Showing <strong>0</strong> players';
+            controls.innerHTML = '';
+            return;
+        }
+
+        info.innerHTML = `Showing <strong>${start.toLocaleString()}–${end.toLocaleString()}</strong> of <strong>${total.toLocaleString()}</strong> players`;
+
+        if (pageSize === 'ALL') {
+            controls.innerHTML = '';
+            return;
+        }
+
+        const pSize = parseInt(pageSize, 10);
+        const totalPages = Math.ceil(total / pSize);
+        if (totalPages <= 1) {
+            controls.innerHTML = '';
+            return;
+        }
+
+        let html = '';
+        html += `<button class="page-btn" onclick="goToPage(1)" ${currentPage === 1 ? 'disabled' : ''} title="First Page">«</button>`;
+        html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} title="Previous Page">‹</button>`;
+
+        const maxButtons = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+        let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+        if (endPage - startPage + 1 < maxButtons) {
+            startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+
+        for (let page = startPage; page <= endPage; page++) {
+            html += `<button class="page-btn ${page === currentPage ? 'active' : ''}" onclick="goToPage(${page})">${page}</button>`;
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) html += `<span style="color:var(--text-dim); padding:0 0.25rem;">...</span>`;
+            html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+        }
+
+        html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} title="Next Page">›</button>`;
+        html += `<button class="page-btn" onclick="goToPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''} title="Last Page">»</button>`;
+
+        html += `<div class="jump-box">
+            <span>Go to:</span>
+            <input type="number" min="1" max="${totalPages}" class="jump-input" value="${currentPage}" onchange="goToPage(parseInt(this.value, 10))">
+        </div>`;
+
+        controls.innerHTML = html;
+    }
+
+    function goToPage(page) {
+        const total = filteredPlayers.length;
+        if (pageSize === 'ALL') return;
+        const pSize = parseInt(pageSize, 10);
+        const totalPages = Math.ceil(total / pSize);
+        if (isNaN(page) || page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+        currentPage = page;
+        renderTable();
+        const tableContainer = document.querySelector('.table-container');
+        if (tableContainer) tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function handlePageSize(val) {
+        pageSize = val;
+        currentPage = 1;
+        renderTable();
+    }
+
+    function updateSortHeaderIcons() {
+        document.querySelectorAll('.sort-icon').forEach(icon => {
+            icon.className = 'sort-icon';
+        });
+        const activeIcon = document.getElementById('sort-' + currentSort.col);
+        if (activeIcon) {
+            activeIcon.className = 'sort-icon ' + (currentSort.asc ? 'asc' : 'desc');
+        }
+    }
+
+    // Modal Operations
+    function openPlayerModal(globalRank) {
+        const p = PLAYERS.find(x => x.r === globalRank);
+        if (!p) return;
+
+        document.getElementById('modal-rank').innerText = `#${p.r}`;
+        document.getElementById('modal-username').innerText = p.u;
+        document.getElementById('modal-username').title = p.u;
+
+        const classBadge = document.getElementById('modal-class');
+        classBadge.innerText = p.c;
+        classBadge.className = `class-badge ${CLASS_MAP[p.c] || 'class-generalist'}`;
+        classBadge.title = CLASS_DESC[p.c] || '';
+
+        document.getElementById('modal-domain-bias').innerText = `${p.db}% Main Track Point Bias`;
+        document.getElementById('modal-class-desc').innerText = CLASS_DESC[p.c] || '';
+
+        document.getElementById('modal-gsi').innerText = p.g.toFixed(1);
+        document.getElementById('modal-pqi').innerText = p.p.toFixed(2);
+        document.getElementById('modal-vdi').innerText = p.v.toFixed(2);
+        document.getElementById('modal-zscores').innerText = `${p.zp >= 0 ? '+' : ''}${p.zp.toFixed(2)} / ${p.zv >= 0 ? '+' : ''}${p.zv.toFixed(2)}`;
+        document.getElementById('modal-wrs').innerText = `${p.wt} (${p.wm} Main / ${p.wc} Comm)`;
+        document.getElementById('modal-top-counts').innerText = `${p.t3} T3 • ${p.t5} T5 • ${p.t10} T10`;
+        document.getElementById('modal-tracks').innerText = `${p.tt} (${p.tm} Main + ${p.tc} Comm)`;
+
+        // 2-Domain Profile Section: [gsi, pqi, vdi, rank, driven, total, wrs, t5]
+        const dp = p.dp || {};
+        const fsData = dp.f || [0, 0, 0, 0, 0, 36, 0, 0];
+        const techData = dp.t || [0, 0, 0, 0, 0, 42, 0, 0];
+        const bias = dp.b !== undefined ? dp.b : 0.5;
+
+        // Archetype
+        document.getElementById('modal-archetype').innerText = `Primary: ${dp.a || 'Player'}`;
+
+        // Fullspeed Card
+        const [fsGsi, fsPqi, fsVdi, fsRank, fsDriven, fsTotal, fsWrs, fsT5] = fsData;
+        document.getElementById('modal-fs-rating').innerText = `${fsGsi.toFixed(1)} GSI`;
+        document.getElementById('modal-fs-rank').innerText = fsRank > 0 ? `#${fsRank} in Fullspeed` : 'Unranked';
+        const fsCovPct = fsTotal > 0 ? Math.round((fsDriven / fsTotal) * 100) : 0;
+        document.getElementById('modal-fs-cov').innerText = `${fsDriven} / ${fsTotal} (${fsCovPct}%)`;
+        document.getElementById('modal-fs-accolades').innerText = `PQI ${fsPqi.toFixed(1)} • VDI ${fsVdi.toFixed(1)} • ${fsWrs} WRs • ${fsT5} T5`;
+
+        // Technical Card
+        const [techGsi, techPqi, techVdi, techRank, techDriven, techTotal, techWrs, techT5] = techData;
+        document.getElementById('modal-tech-rating').innerText = `${techGsi.toFixed(1)} GSI`;
+        document.getElementById('modal-tech-rank').innerText = techRank > 0 ? `#${techRank} in Technical` : 'Unranked';
+        const techCovPct = techTotal > 0 ? Math.round((techDriven / techTotal) * 100) : 0;
+        document.getElementById('modal-tech-cov').innerText = `${techDriven} / ${techTotal} (${techCovPct}%)`;
+        document.getElementById('modal-tech-accolades').innerText = `PQI ${techPqi.toFixed(1)} • VDI ${techVdi.toFixed(1)} • ${techWrs} WRs • ${techT5} T5`;
+
+        // Split Balance Bar
+        const fsPct = Math.round(bias * 100);
+        const techPct = 100 - fsPct;
+        document.getElementById('modal-split-label').innerText = `${fsPct}% Fullspeed | ${techPct}% Technical`;
+        document.getElementById('modal-split-fs').style.width = `${fsPct}%`;
+        document.getElementById('modal-split-tech').style.width = `${techPct}%`;
+
+        // Render Top 15 Scoring Tracks Table
+        const ttbody = document.getElementById('modal-tracks-tbody');
+        let ttHtml = '';
+        const trks = p.trk || [];
+        const maxTableTracks = Math.min(15, trks.length);
+
+        for (let i = 0; i < maxTableTracks; i++) {
+            const trk = trks[i];
+            const isPeak = i < 6;
+            const isFirstDepth = i === 6;
+
+            if (isFirstDepth) {
+                ttHtml += `<tr class="modal-track-tier-divider">
+                    <td colspan="6">
+                        <div class="tier-divider-bar">
+                            <span>▼ Tracks 7–15: Versatility and Depth Window (VDI Engine)</span>
+                        </div>
+                    </td>
+                </tr>`;
+            }
+
+            const trkSubg = trk.y || (TRACK_SUBGENRES[trk.t] || 'FS');
+            const pillClass = SUBGENRE_PILLS[trkSubg] || 'style-pill-fullspeed';
+            const rankIcon = trk.r === 1 ? '🥇 Rank 1 (WR)' : (trk.r === 2 ? '🥈 Rank 2' : (trk.r === 3 ? '🥉 Rank 3' : `Rank ${trk.r}`));
+            const rankStyle = trk.r === 1 ? 'color:var(--accent-gold); font-weight:700;' : (trk.r <= 3 ? 'color:#ffffff; font-weight:600;' : 'color:var(--text-muted);');
+            const tierBadge = isPeak ? '<span class="trk-tier-badge pqi-tier">Peak + Depth (PQI & VDI)</span>' : '<span class="trk-tier-badge vdi-tier">Depth Only (VDI)</span>';
+
+            ttHtml += `<tr class="${isPeak ? 'trk-row-peak' : 'trk-row-depth'}">
+                <td style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan);">${i + 1}</td>
+                <td>
+                    <span style="font-weight:600; color:#ffffff;">${escapeHtml(trk.t)}</span>
+                    <span class="style-pill ${pillClass}">[${trkSubg}]</span>
+                </td>
+                <td style="font-family:var(--font-mono); ${rankStyle}">${rankIcon}</td>
+                <td style="font-family:var(--font-mono); color:var(--text-muted); font-size:0.82rem;">${trk.w.toFixed(3)}×</td>
+                <td style="font-family:var(--font-mono); font-weight:700; color:${isPeak ? 'var(--accent-cyan)' : '#cbd5e1'};">${trk.s.toFixed(1)} pts</td>
+                <td>${tierBadge}</td>
+            </tr>`;
+        }
+        ttbody.innerHTML = ttHtml;
+
+        const modal = document.getElementById('player-modal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('player-modal');
+        if (modal) modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnBackdrop(e) {
+        if (e.target.id === 'player-modal') {
+            closeModal();
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    // Track Weights Table Logic
+    function renderTrackWeightsTable() {
+        const tbody = document.getElementById('track-weights-tbody');
+        const countBadge = document.getElementById('track-count-badge');
+        if (!tbody) return;
+
+        let list = (TRACK_WEIGHTS_DATA && TRACK_WEIGHTS_DATA.length > 0) ? TRACK_WEIGHTS_DATA.slice() : [];
+
+        // 1. Search
+        if (twSearchQuery) {
+            const q = twSearchQuery.toLowerCase();
+            list = list.filter(t => t.t.toLowerCase().includes(q));
+        }
+
+        // 2. Type Filter
+        if (twTypeFilter === 'Main') {
+            list = list.filter(t => t.m);
+        } else if (twTypeFilter === 'Community') {
+            list = list.filter(t => !t.m);
+        }
+
+        // 3. Domain Filter
+        if (twDomainFilter !== 'ALL') {
+            list = list.filter(t => t.d === twDomainFilter);
+        }
+
+        // 4. Subgenre Filter
+        if (twSubgenreFilter !== 'ALL') {
+            list = list.filter(t => t.y === twSubgenreFilter);
+        }
+
+        // 5. Sorting
+        list.sort((a, b) => {
+            switch (twCurrentSort) {
+                case 'weight_desc':
+                    return b.w - a.w || b.p - a.p;
+                case 'weight_asc':
+                    return a.w - b.w || a.p - b.p;
+                case 'players_desc':
+                    return b.p - a.p;
+                case 'name_asc':
+                    return a.t.localeCompare(b.t);
+                default:
+                    return b.w - a.w;
+            }
+        });
+
+        if (countBadge) {
+            countBadge.innerText = `${list.length} / ${TRACK_WEIGHTS_DATA.length} Tracks`;
+        }
+
+        if (list.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:2rem; color:var(--text-dim);">No matching tracks found for the selected filter criteria.</td></tr>`;
+            return;
+        }
+
+        let html = '';
+        for (let i = 0; i < list.length; i++) {
+            const trk = list[i];
+            const catBadge = trk.m
+                ? `<span class="tw-cat-badge tw-cat-main">Campaign</span>`
+                : `<span class="tw-cat-badge tw-cat-comm">Community</span>`;
+            const subgPill = `<span class="style-pill ${SUBGENRE_PILLS[trk.y] || 'style-pill-fullspeed'}">[${trk.y}]</span>`;
+            const domBadge = trk.d === 'Fullspeed'
+                ? `<span style="color:var(--dom-fs-color); font-weight:600; font-size:0.82rem;">⚡ Fullspeed</span>`
+                : `<span style="color:var(--dom-tech-color); font-weight:600; font-size:0.82rem;">🎯 Technical</span>`;
+
+            // Weight percentage bar calculation (0.65 -> 1.35)
+            const minW = 0.65, maxW = 1.35;
+            const pct = Math.max(5, Math.min(100, ((trk.w - minW) / (maxW - minW)) * 100));
+
+            html += `<tr>
+                <td style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan); text-align:center;">#${trk.r || (i + 1)}</td>
+                <td>
+                    <span style="font-weight:600; color:#ffffff;">${escapeHtml(trk.t)}</span>
+                </td>
+                <td>${catBadge}</td>
+                <td>${domBadge}</td>
+                <td>${subgPill}</td>
+                <td style="font-family:var(--font-mono); text-align:right; font-weight:600; color:#e2e8f0;">${trk.p.toLocaleString()}</td>
+                <td style="text-align:right;">
+                    <div class="tw-weight-wrap">
+                        <div class="tw-weight-bar-bg" title="Field Multiplier: ${trk.w.toFixed(4)}×">
+                            <div class="tw-weight-bar-fill" style="width:${pct.toFixed(0)}%;"></div>
+                        </div>
+                        <span style="color:var(--accent-gold); font-size:0.88rem;">${trk.w.toFixed(4)}×</span>
+                    </div>
+                </td>
+                <td style="font-family:var(--font-mono); text-align:right; font-weight:700; color:#ffffff;">${trk.wr.toFixed(1)} pts</td>
+            </tr>`;
+        }
+        tbody.innerHTML = html;
+    }
+
+    function handleTrackWeightsSearch(val) {
+        twSearchQuery = val.trim();
+        const clearBtn = document.getElementById('tw-search-clear');
+        if (clearBtn) clearBtn.style.display = twSearchQuery ? 'block' : 'none';
+        renderTrackWeightsTable();
+    }
+
+    function clearTrackWeightsSearch() {
+        const input = document.getElementById('tw-search-input');
+        if (input) input.value = '';
+        handleTrackWeightsSearch('');
+    }
+
+    function handleTrackWeightsTypeFilter(val) {
+        twTypeFilter = val;
+        renderTrackWeightsTable();
+    }
+
+    function handleTrackWeightsDomainFilter(val) {
+        twDomainFilter = val;
+        renderTrackWeightsTable();
+    }
+
+    function handleTrackWeightsSubgenreFilter(val) {
+        twSubgenreFilter = val;
+        renderTrackWeightsTable();
+    }
+
+    function handleTrackWeightsSort(val) {
+        twCurrentSort = val;
+        renderTrackWeightsTable();
+    }
+
+    // Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+        initHashTab();
+        applyFiltersAndSort();
+        renderTrackWeightsTable();
+    });
+</script>
+
+</body>
+</html>

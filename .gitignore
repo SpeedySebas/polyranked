@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+cache/
+dist/
+*.log
+power_rankings/*.json
+power_rankings/global_power_rankings.md
+power_rankings/top20_*
+power_rankings/methodology.html
