@@ -1,12 +1,42 @@
 import json
+import hashlib
+import io
 from pathlib import Path
 import tempfile
 import unittest
+from datetime import datetime, timezone
+from unittest.mock import patch
 
-from build_site import refresh_discipline_counts, save_daily_summary, validate_html, validate_leaderboards
+from build_site import refresh_discipline_counts, retain_current_snapshot, save_daily_summary, scheduled_release_time, validate_html, validate_leaderboards
 
 
 class PublicationSafetyTests(unittest.TestCase):
+    def test_staging_keeps_the_released_snapshot_until_the_boundary(self):
+        data = b'{"complete":"previous snapshot"}'
+        digest = hashlib.sha256(data).hexdigest()
+        previous = {"url": f"snapshots/{digest}.json", "sha256": digest, "generated_at": "2026-09-30T12:01:00Z", "release_at": "2026-09-30T12:07:00Z"}
+        pending = dict(previous, generated_at="2026-09-30T12:28:00Z", release_at="2026-09-30T12:37:00Z")
+        manifest = json.dumps({"snapshots": [previous, pending]}).encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            stage = Path(temporary)
+            (stage / "snapshots").mkdir()
+            with patch('build_site.urllib.request.urlopen', side_effect=[io.BytesIO(manifest), io.BytesIO(data)]):
+                retained = retain_current_snapshot(stage, datetime(2026, 9, 30, 12, 30, tzinfo=timezone.utc))
+            self.assertEqual(retained, previous)
+            self.assertEqual((stage / previous['url']).read_bytes(), data)
+
+    def test_staging_rejects_a_corrupt_previous_snapshot(self):
+        descriptor = {"url": "snapshots/" + "a" * 64 + ".json", "sha256": "a" * 64, "generated_at": "2026-09-30T12:01:00Z", "release_at": "2026-09-30T12:07:00Z"}
+        manifest = json.dumps({"snapshots": [descriptor]}).encode()
+        with tempfile.TemporaryDirectory() as temporary, patch('build_site.urllib.request.urlopen', side_effect=[io.BytesIO(manifest), io.BytesIO(b'corrupt')]):
+            with self.assertRaisesRegex(ValueError, 'integrity'):
+                retain_current_snapshot(Path(temporary), datetime(2026, 9, 30, 12, 30, tzinfo=timezone.utc))
+
+    def test_scheduled_build_prepares_the_next_boundary_and_preserves_late_target(self):
+        for start, expected in [('2026-09-30T12:27:00', '2026-09-30T12:37:00'), ('2026-09-30T12:40:00', '2026-09-30T12:37:00'), ('2026-09-30T23:58:00', '2026-10-01T00:07:00')]:
+            with self.subTest(start=start):
+                self.assertEqual(scheduled_release_time(datetime.fromisoformat(start).replace(tzinfo=timezone.utc)), datetime.fromisoformat(expected).replace(tzinfo=timezone.utc))
+
     def test_complete_small_track_is_accepted(self):
         validate_leaderboards({"A": "id"}, {"A": [{"userId": "one", "frames": 100}]}, {"A": 1})
 

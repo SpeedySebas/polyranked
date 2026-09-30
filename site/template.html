@@ -1531,9 +1531,13 @@
             .col-player { max-width: 160px; width: 160px; }
             .modal-username { max-width: 240px; font-size: 1.15rem; }
         }
+        body[data-live-loading] main, body[data-live-loading] footer { display: none; }
+        #loading-state { padding: 4rem 1.5rem; text-align: center; color: var(--text-muted); }
+        #update-countdown { font-variant-numeric: tabular-nums; min-width: 12.5rem; justify-content: center; }
+        #update-countdown[data-state="waiting"] { color: var(--accent-gold); }
     </style>
 </head>
-<body>
+<body data-live-loading>
 
 <header>
     <div class="container header-content">
@@ -1553,6 +1557,7 @@
     </div>
 </header>
 
+<div id="loading-state" class="container" role="status">Loading the latest rankings…</div>
 <main class="container">
     <!-- TAB 1: Global Rankings -->
     <div id="tab-rankings" class="tab-pane active" role="tabpanel">
@@ -1562,6 +1567,7 @@
                 <span class="badge badge-purple">35,996 Players</span>
                 <span class="badge badge-cyan">78 Tracks Analyzed</span>
                 <span class="badge badge-orange" id="badge-last-updated">Last updated: 2026-09-30</span>
+                <span class="badge badge-cyan" id="update-countdown" role="timer" aria-live="off">Checking next update…</span>
             </div>
             <h1 class="hero-title">
                 <span>Global Player Power Rankings</span>
@@ -2792,7 +2798,7 @@
     }
 
     // Filtering & Sorting Pipeline
-    function applyFiltersAndSort() {
+    function applyFiltersAndSort(resetPage = true) {
         let result = PLAYERS;
 
         // 1. Search Query
@@ -2912,7 +2918,8 @@
         });
 
         filteredPlayers = result;
-        currentPage = 1;
+        if (resetPage) currentPage = 1;
+        else if (pageSize !== 'ALL') currentPage = Math.max(1, Math.min(currentPage, Math.ceil(result.length / Number(pageSize))));
         renderTable();
     }
 
@@ -3421,13 +3428,63 @@
         renderTrackWeightsTable();
     }
 
+    // Swap already-downloaded data without reloading the page or losing filters.
+    function applyRankingSnapshot(snapshot) {
+        const modal = document.getElementById('player-modal');
+        const modalPlayer = modal.classList.contains('active') ? document.getElementById('modal-username').textContent : null;
+        const replaceArray = (target, source) => { target.length = 0; for (const value of source) target.push(value); };
+        const replaceObject = (target, source) => { for (const key of Object.keys(target)) delete target[key]; Object.assign(target, source); };
+        replaceArray(PLAYERS, snapshot.datasets.PLAYERS);
+        replaceArray(TRACK_WEIGHTS_DATA, snapshot.datasets.TRACK_WEIGHTS_DATA);
+        replaceObject(TRACK_DOMAINS, snapshot.datasets.TRACK_DOMAINS);
+        replaceObject(TRACK_SUBGENRES, snapshot.datasets.TRACK_SUBGENRES);
+        replaceObject(TRACK_STYLES, snapshot.datasets.TRACK_STYLES);
+
+        const setText = (selector, value) => { const element = document.querySelector(selector); if (element) element.textContent = value; };
+        const count = PLAYERS.length.toLocaleString();
+        const tracks = TRACK_WEIGHTS_DATA.length;
+        const champion = PLAYERS[0];
+        const fullspeed = snapshot.discipline_totals.Fullspeed;
+        const technical = snapshot.discipline_totals.Technical;
+        const timestamp = new Date(snapshot.generated_at).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+        setText('#badge-last-updated', 'Last updated: ' + timestamp);
+        setText('#last-updated-text', timestamp);
+        setText('#footer-last-updated', timestamp);
+        setText('#tab-btn-rankings .tab-counter', count);
+        setText('.hero-badge-wrap .badge-purple', count + ' Players');
+        setText('.hero-badge-wrap .badge-cyan:not(#update-countdown)', tracks + ' Tracks Analyzed');
+        setText('.hero-subtitle', `Pure Leaderboard competitive evaluation synthesized across all ${tracks} official campaign and community tracks across ${count} ranked players.`);
+        setText('.stat-gold .stat-val', champion.u);
+        setText('.stat-gold .stat-sub', `GSI ${champion.g.toFixed(1)} • ${champion.wt} World Records`);
+        setText('.stat-cyan .stat-val', count);
+        setText('.stat-green .stat-val', PLAYERS.filter(player => player.wt > 0).length + ' Players');
+        setText('.stat-green .stat-sub', `Across ${tracks} Total Tracks`);
+        setText('.stat-purple .stat-val', tracks + ' Tracks');
+        setText('.stat-purple .stat-sub', `${fullspeed} Fullspeed + ${technical} Technical (${tracks} Pool)`);
+        const classes = {};
+        for (const player of PLAYERS) classes[player.c] = (classes[player.c] || 0) + 1;
+        for (const option of document.querySelectorAll('#class-filter option')) option.textContent = option.value === 'ALL' ? `All Classifications (${count})` : `${option.value} (${(classes[option.value] || 0).toLocaleString()})`;
+        setText('#sort-select option[value="rank_asc"]', `Sort: Rank (1 → ${count})`);
+        setText('#page-size-select option[value="ALL"]', `All (${count})`);
+        for (const element of document.querySelectorAll('.concept-title, option')) {
+            element.textContent = element.textContent.replace(/(Fullspeed(?: Discipline)? \()\d+(\s*[Tt]racks)?\)/g, (_, prefix, suffix) => prefix + fullspeed + (suffix || '') + ')').replace(/(Technical(?: Discipline)? \()\d+(\s*[Tt]racks)?\)/g, (_, prefix, suffix) => prefix + technical + (suffix || '') + ')');
+        }
+        applyFiltersAndSort(false);
+        renderTrackWeightsTable();
+        if (modalPlayer) {
+            const updated = PLAYERS.find(player => player.u === modalPlayer);
+            if (updated) openPlayerModal(updated.r); else closeModal();
+        }
+        document.body.removeAttribute('data-live-loading');
+        document.getElementById('loading-state').hidden = true;
+    }
+
     // Initialization
     window.addEventListener('DOMContentLoaded', () => {
         initHashTab();
-        applyFiltersAndSort();
-        renderTrackWeightsTable();
     });
 </script>
+<script src="live-updates.js?v=LIVE_CLIENT_VERSION" defer></script>
 
 </body>
 </html>

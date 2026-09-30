@@ -6,11 +6,13 @@ PolyTrack player rankings, refreshed automatically on GitHub's servers and hoste
 - Update status and manual runs: https://github.com/SpeedySebas/polyranked/actions
 - Machine-readable freshness: https://speedysebas.github.io/polyranked/status.json
 
-The workflow runs at minutes **7 and 37 every hour (UTC)**, on source changes to `main`, and when manually requested in the Actions tab. GitHub can delay or occasionally skip scheduled runs. No personal computer, personal access token, paid runner, or paid hosting plan is needed for ongoing operation. Keep this repository public to use the free public-repository runner and Pages plans.
+The page displays fresh rankings at minutes **7 and 37 every hour (UTC)**. The workflow starts at **27 and 57**, ten minutes before each display update, to fetch, calculate, and publish the next snapshot in advance. Source changes to `main` and manual Actions runs publish immediately. GitHub can delay or occasionally skip scheduled runs. No personal computer, personal access token, paid runner, or paid hosting plan is needed for ongoing operation. Keep this repository public to use the free public-repository runner and Pages plans.
 
 ## How it works
 
-`build_site.py` fetches the top 1,000 raw entries from each of the 78 configured tracks, applies the existing ranking engine, and fills `site/template.html`. It publishes only the contents of `dist/`. Both `/` and `/methodology.html` serve the rankings. It does not publish the Python source or internal files as website assets, and it does not commit the generated HTML or large raw JSON exports.
+`build_site.py` fetches the top 1,000 raw entries from each of the 78 configured tracks and applies the existing ranking engine. It publishes a small HTML interface, an update manifest, and complete versioned ranking snapshots in `dist/`. Both `/` and `/methodology.html` serve the rankings. It does not publish Python source or internal files as website assets, and it does not commit generated datasets.
+
+Scheduled builds carry forward the current released snapshot alongside the prepared next snapshot. Browsers download, verify, and parse the next data in the background, then update the display when the live countdown reaches zero. There is no reload or network request on that transition: searches, filters, pagination, and open player details are preserved. New visitors receive the most recent released snapshot. The last-updated label includes the data-generation date and time to the minute in UTC. If the next build is late or unavailable, the page keeps the existing data and shows "Waiting for fresh data…" until a complete snapshot arrives; it never resets the timer as if an update succeeded.
 
 All tracks and pages must be present, the ranking tests must pass, and the generated page must contain a complete fresh dataset before deployment. A failed run leaves the previous successful deployment online. API requests are limited to four concurrent requests and eight requests per second, with the engine's existing retry/backoff behavior. Public leaderboard reads do not require a PolyTrack account token.
 
@@ -21,6 +23,7 @@ After a successful deployment, the workflow commits one small ranking snapshot p
 - Ranking rules, alternate accounts, and bans: `power_rankings/power_ranking_system.py`.
 - Track metadata: the two CSV files in `power_rankings/`.
 - Website layout and client-side behavior: `site/template.html`.
+- Countdown, prefetching, and release logic: `site/live-updates.js`.
 - Update schedule: `.github/workflows/update_leaderboard.yml`.
 
 Push changes to `main` to rebuild and publish. To run on demand, open **Actions → Update and publish rankings → Run workflow**. GitHub Pages' publishing source must remain **GitHub Actions**.
@@ -33,11 +36,12 @@ Use Python 3.11, then run from this repository's directory:
 python -m pip install -r requirements.txt
 python -m unittest discover -s power_rankings -p 'test_*.py'
 python -m unittest discover -s tests -p 'test_*.py'
+node --test tests/live_updates.test.cjs
 python build_site.py
 python -m http.server 8000 --directory dist
 ```
 
-Open http://localhost:8000. `site/template.html` has empty embedded datasets by design; build before viewing.
+Open http://localhost:8000. `site/template.html` has empty datasets by design; build and serve the entire `dist/` directory before viewing. The browser fetches `update.json` and the appropriate immutable snapshot; opening the HTML directly from disk is not supported.
 
 The original standalone script is also included. The scheduled site uses the stricter build entry point above, without cache fallback or large research exports. See `power_rankings/METHODOLOGY.md` for the ranking methodology.
 

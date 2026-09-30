@@ -2,8 +2,8 @@ name: Update and publish rankings
 
 on:
   schedule:
-    # Twice an hour, away from the busiest start-of-hour period (UTC).
-    - cron: '7,37 * * * *'
+    # Prepare ten minutes before the :07/:37 display updates (UTC).
+    - cron: '27,57 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -47,6 +47,7 @@ jobs:
         run: |
           python -m unittest discover -s power_rankings -p 'test_*.py'
           python -m unittest discover -s tests -p 'test_*.py'
+          node --test tests/live_updates.test.cjs
 
       - name: Fetch complete live rankings and build website
         run: python build_site.py

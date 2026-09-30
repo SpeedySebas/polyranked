@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+import urllib.request
 
 from power_rankings.power_ranking_system import (
     PowerRankingSystem,
@@ -17,6 +18,39 @@ from power_rankings.power_ranking_system import (
 
 ROOT = Path(__file__).resolve().parent
 SCRAPE_AMOUNT = 1000
+SITE_URL = "https://speedysebas.github.io/polyranked/"
+DATA_NAMES = ("PLAYERS", "TRACK_WEIGHTS_DATA", "TRACK_DOMAINS", "TRACK_SUBGENRES", "TRACK_STYLES")
+
+
+def scheduled_release_time(started_at):
+    # Jobs start at :27/:57 and stage data for the :37/:07 display boundary.
+    seconds = started_at.timestamp()
+    build_slot = ((seconds - 27 * 60) // 1800) * 1800 + 27 * 60
+    return datetime.fromtimestamp(build_slot + 600, timezone.utc)
+
+
+def iso_time(value):
+    return value.isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def retain_current_snapshot(stage, now):
+    """Carry the currently visible snapshot forward while the next one is staged."""
+    def download(path):
+        request = urllib.request.Request(SITE_URL + path, headers={"User-Agent": "PolyRanked-Updater", "Cache-Control": "no-cache"})
+        with urllib.request.urlopen(request, timeout=60) as response:
+            return response.read()
+    manifest = json.loads(download("update.json?build=" + str(int(now.timestamp()))))
+    eligible = [item for item in manifest["snapshots"] if datetime.fromisoformat(item["release_at"].replace("Z", "+00:00")) <= now]
+    if not eligible:
+        raise ValueError("No current snapshot is available to serve before the next release")
+    current = max(eligible, key=lambda item: item["generated_at"])
+    if not re.fullmatch(r"snapshots/[a-f0-9]{64}\.json", current["url"]):
+        raise ValueError("Invalid previous snapshot URL")
+    data = download(current["url"])
+    if hashlib.sha256(data).hexdigest() != current["sha256"]:
+        raise ValueError("Previous snapshot failed its integrity check")
+    (stage / current["url"]).write_bytes(data)
+    return current
 
 
 def validate_leaderboards(expected_tracks, leaderboards, totals, amount=SCRAPE_AMOUNT):
@@ -79,6 +113,7 @@ def save_daily_summary(source, history_dir):
 
 
 async def build():
+    started_at = datetime.now(timezone.utc)
     system = PowerRankingSystem()
     if len(system.registry.main_tracks) != 17 or len(system.registry.community_tracks) != 61:
         raise ValueError("Track metadata is missing or has changed; review the configured 78-track roster")
@@ -100,13 +135,36 @@ async def build():
         if not update_methodology_html(report, html_path=str(index), index_path=str(index)):
             raise ValueError("The HTML update failed; deployment cancelled")
         html = refresh_discipline_counts(index.read_text(encoding="utf-8"), report["metadata"]["discipline_totals"])
-        index.write_text(html, encoding="utf-8")
         validate_html(html, report)
-        shutil.copyfile(index, stage / "methodology.html")
-        (stage / ".nojekyll").touch()
         generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+        release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") == "schedule" else datetime.now(timezone.utc)
+        payload = {
+            "generated_at": generated_at,
+            "datasets": {name: embedded_json(html, name) for name in DATA_NAMES},
+            "discipline_totals": report["metadata"]["discipline_totals"],
+        }
+        snapshot_bytes = json.dumps(payload, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode("utf-8")
+        digest = hashlib.sha256(snapshot_bytes).hexdigest()
+        snapshot = {"version": digest, "sha256": digest, "url": f"snapshots/{digest}.json", "generated_at": generated_at, "release_at": iso_time(release_at)}
+        (stage / "snapshots").mkdir()
+        (stage / snapshot["url"]).write_bytes(snapshot_bytes)
+        snapshots = []
+        if release_at > datetime.now(timezone.utc):
+            snapshots.append(retain_current_snapshot(stage, datetime.now(timezone.utc)))
+        snapshots.append(snapshot)
+        (stage / "update.json").write_text(json.dumps({"schema": 1, "snapshots": snapshots}, separators=(",", ":")) + "\n", encoding="utf-8")
+
+        # Ship a small page shell; the browser chooses the correct released snapshot.
+        client = (ROOT / "site" / "live-updates.js").read_bytes()
+        shell = (ROOT / "site" / "template.html").read_text(encoding="utf-8").replace("LIVE_CLIENT_VERSION", hashlib.sha256(client).hexdigest()[:16])
+        index.write_text(shell, encoding="utf-8")
+        shutil.copyfile(index, stage / "methodology.html")
+        (stage / "live-updates.js").write_bytes(client)
+        (stage / ".nojekyll").touch()
         summary = {
             "generated_at": generated_at,
+            "release_at": iso_time(release_at),
+            "snapshot": snapshot["url"],
             "source_commit": os.environ.get("GITHUB_SHA", "local"),
             "tracks": len(leaderboards),
             "entries": sum(map(len, leaderboards.values())),
@@ -117,8 +175,7 @@ async def build():
         (stage / "status.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         destination = ROOT / "dist"
         destination.mkdir(exist_ok=True)
-        for file in stage.iterdir():
-            shutil.copyfile(file, destination / file.name)
+        shutil.copytree(stage, destination, dirs_exist_ok=True)
     print(f"Validated {summary['players']:,} players across {summary['tracks']} tracks; site ready in dist/", flush=True)
 
 
