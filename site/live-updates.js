@@ -25,7 +25,7 @@
                 if (manifest.schema !== 1 || !Array.isArray(manifest.snapshots) || !manifest.snapshots.length) throw new Error('Invalid update manifest');
                 const ordered = manifest.snapshots.slice().sort((a, b) => Date.parse(a.generated_at) - Date.parse(b.generated_at));
                 const due = ordered.filter(item => Date.parse(item.release_at) <= this.now()).at(-1);
-                const future = ordered.filter(item => Date.parse(item.release_at) > this.now()).slice(-1);
+                const future = ordered.filter(item => Date.parse(item.release_at) > this.now());
                 for (const descriptor of [due, ...future].filter(Boolean)) {
                     if (!Number.isFinite(Date.parse(descriptor.release_at)) || !Number.isFinite(Date.parse(descriptor.generated_at))) throw new Error('Invalid update timestamp');
                     if (this.current && Date.parse(descriptor.generated_at) <= Date.parse(this.current.generated_at)) continue;
@@ -60,11 +60,16 @@
                 this.showStatus({ state: 'loading', text: this.failed ? 'Unable to load rankings. Retrying…' : 'Loading the latest rankings…' });
                 return;
             }
-            const deadline = nextRelease(Math.max(Date.parse(this.current.release_at), Date.parse(this.current.generated_at)));
+            const upcoming = [...this.prepared.values()].map(item => item.descriptor).sort((a, b) => Date.parse(a.release_at) - Date.parse(b.release_at));
+            const testDescriptor = this.current.interval_seconds === 60 ? this.current : upcoming.find(item => item.interval_seconds === 60);
+            const testMode = testDescriptor && now < Date.parse(testDescriptor.test_until);
+            const deadline = testMode
+                ? Date.parse(testDescriptor.release_at) + (testDescriptor === this.current ? 60000 : 0)
+                : nextRelease(Math.max(Date.parse(this.current.release_at), Date.parse(this.current.generated_at), Date.parse(this.current.test_until) || 0));
             const ready = [...this.prepared.values()].some(({ descriptor }) => Date.parse(descriptor.release_at) <= deadline);
             this.showStatus(now >= deadline
                 ? { state: 'waiting', text: `Update delayed ${countdown(now - deadline)} · ${this.failed ? 'reconnecting…' : 'checking…'}`, deadline, ready: false }
-                : { state: 'counting', text: `${ready ? 'Next' : 'Scheduled'} update in ${countdown(deadline - now)}`, deadline, ready });
+                : { state: 'counting', text: `${testMode ? 'Test' : ready ? 'Next' : 'Scheduled'} update in ${countdown(deadline - now)}`, deadline, ready, testMode: Boolean(testMode) });
         }
     }
 
@@ -94,6 +99,7 @@
             badge.dataset.state = status.state;
             badge.title = status.ready ? 'Fresh rankings are downloaded and ready to appear when the timer reaches zero.'
                 : status.state === 'waiting' ? 'The cloud update is late. Checking every 15 seconds; fresh rankings will appear automatically. The last-updated time still describes the displayed data.'
+                : status.testMode ? 'Temporary one-minute cloud test. Fresh data is fetched for every update; late builds appear automatically.'
                 : 'Target update times are :07 and :37 each hour. GitHub may delay scheduled builds. The next data is not downloaded yet.';
             if (status.state === 'loading') document.getElementById('loading-state').textContent = status.text;
         },

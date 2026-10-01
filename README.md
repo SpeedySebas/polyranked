@@ -20,6 +20,10 @@ After a successful deployment, the workflow commits one small ranking snapshot p
 
 ## Update the site
 
+### Temporary one-minute cloud test
+
+Run **Actions → Test real updates every minute → Run workflow** to start a bounded 30-minute session. A single cloud runner repeatedly fetches and publishes real snapshots, starting builds at least 60 seconds apart. This does not depend on delivery of scheduled events. Each release is staged in advance for the browser's `Test update in` countdown; slow fetches or deployments can still delay a cycle. The first staged update takes about two minutes to appear. Existing and pending snapshots remain available, and the timer switches back to the normal cadence when the test expires. A final deployment restores the normal site. This is a temporary integration test, not a permanent one-minute cron schedule (GitHub's minimum cron interval is five minutes).
+
 - Ranking rules, alternate accounts, and bans: `power_rankings/power_ranking_system.py`.
 - Track metadata: the two CSV files in `power_rankings/`.
 - Website layout and client-side behavior: `site/template.html`.

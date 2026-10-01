@@ -27,7 +27,7 @@ def iso_time(value):
     return value.isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
-def retain_current_snapshot(stage, now):
+def retain_current_snapshot(stage, now, include_pending=False):
     """Carry the currently visible snapshot forward while the next one is staged."""
     def download(path):
         request = urllib.request.Request(SITE_URL + path, headers={"User-Agent": "PolyRanked-Updater", "Cache-Control": "no-cache"})
@@ -38,13 +38,17 @@ def retain_current_snapshot(stage, now):
     if not eligible:
         raise ValueError("No current snapshot is available to serve before the next release")
     current = max(eligible, key=lambda item: item["generated_at"])
-    if not re.fullmatch(r"snapshots/[a-f0-9]{64}\.json", current["url"]):
-        raise ValueError("Invalid previous snapshot URL")
-    data = download(current["url"])
-    if hashlib.sha256(data).hexdigest() != current["sha256"]:
-        raise ValueError("Previous snapshot failed its integrity check")
-    (stage / current["url"]).write_bytes(data)
-    return current
+    retained = [current]
+    if include_pending:
+        retained.extend(item for item in manifest["snapshots"] if datetime.fromisoformat(item["release_at"].replace("Z", "+00:00")) > now)
+    for item in retained:
+        if not re.fullmatch(r"snapshots/[a-f0-9]{64}\.json", item["url"]):
+            raise ValueError("Invalid previous snapshot URL")
+        data = download(item["url"])
+        if hashlib.sha256(data).hexdigest() != item["sha256"]:
+            raise ValueError("Previous snapshot failed its integrity check")
+        (stage / item["url"]).write_bytes(data)
+    return retained if include_pending else current
 
 
 def validate_leaderboards(expected_tracks, leaderboards, totals, amount=SCRAPE_AMOUNT):
@@ -156,6 +160,10 @@ async def build():
         validate_html(html, report)
         generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
         release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") == "schedule" else datetime.now(timezone.utc)
+        test_until = os.environ.get("RANKING_TEST_UNTIL")
+        if test_until:
+            # One minute to fetch/publish, plus time for browsers to prefetch.
+            release_at = datetime.fromtimestamp((started_at.timestamp() // 60) * 60 + 120, timezone.utc)
         payload = {
             "generated_at": generated_at,
             "datasets": {name: embedded_json(html, name) for name in DATA_NAMES},
@@ -164,11 +172,13 @@ async def build():
         snapshot_bytes = json.dumps(payload, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode("utf-8")
         digest = hashlib.sha256(snapshot_bytes).hexdigest()
         snapshot = {"version": digest, "sha256": digest, "url": f"snapshots/{digest}.json", "generated_at": generated_at, "release_at": iso_time(release_at)}
+        if test_until:
+            snapshot.update(interval_seconds=60, test_until=test_until)
         (stage / "snapshots").mkdir()
         (stage / snapshot["url"]).write_bytes(snapshot_bytes)
         snapshots = []
         if release_at > datetime.now(timezone.utc):
-            snapshots.append(retain_current_snapshot(stage, datetime.now(timezone.utc)))
+            snapshots.extend(retain_current_snapshot(stage, datetime.now(timezone.utc), include_pending=True))
         snapshots.append(snapshot)
         (stage / "update.json").write_text(json.dumps({"schema": 1, "snapshots": snapshots}, separators=(",", ":")) + "\n", encoding="utf-8")
 
@@ -194,6 +204,10 @@ async def build():
         destination = ROOT / "dist"
         destination.mkdir(exist_ok=True)
         shutil.copytree(stage, destination, dirs_exist_ok=True)
+        # Repeated test builds must not accumulate every historical 16 MB file.
+        for previous in (destination / "snapshots").glob("*.json"):
+            if not (stage / "snapshots" / previous.name).exists():
+                previous.unlink()
     print(f"Validated {summary['players']:,} players across {summary['tracks']} tracks; site ready in dist/", flush=True)
 
 

@@ -57,3 +57,20 @@ test('release cadence crosses the hour and countdown never goes negative', () =>
     assert.equal(nextRelease(at('12:07:00')),at('12:37:00'));
     assert.equal(countdown(-100),'00:00'); assert.equal(countdown(1),'00:01');
 });
+test('one-minute cloud mode prefetches each queued snapshot and returns to normal after expiry', async () => {
+    const f=fixture();
+    const minute1={...descriptor('minute1','12:29:30','12:31:00'), interval_seconds:60, test_until:new Date(at('12:34:00')).toISOString()};
+    const minute2={...descriptor('minute2','12:30:30','12:32:00'), interval_seconds:60, test_until:minute1.test_until};
+    f.manifest([old,minute1,minute2]); await f.updater.refresh();
+    assert.deepEqual(f.loaded,['old','minute1','minute2']);
+    assert.equal(f.states.at(-1).text,'Test update in 01:00');
+    f.offline(); f.time('12:31:00'); f.updater.tick();
+    assert.deepEqual(f.applied,['old','minute1']);
+    assert.equal(f.states.at(-1).text,'Test update in 01:00');
+    f.time('12:32:00'); f.updater.tick();
+    assert.deepEqual(f.applied,['old','minute1','minute2']);
+    f.time('12:33:04'); f.updater.tick();
+    assert.equal(f.states.at(-1).text,'Update delayed 00:04 · checking…');
+    f.time('12:34:00'); f.updater.tick();
+    assert.equal(f.states.at(-1).text,'Scheduled update in 03:00');
+});

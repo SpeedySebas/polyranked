@@ -51,6 +51,19 @@ class PublicationSafetyTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'integrity'):
                 retain_current_snapshot(Path(temporary), datetime(2026, 9, 30, 12, 30, tzinfo=timezone.utc))
 
+    def test_frequent_builds_keep_pending_releases_for_new_visitors(self):
+        data = b'{"complete":"snapshot"}'
+        digest = hashlib.sha256(data).hexdigest()
+        current = {"url": f"snapshots/{digest}.json", "sha256": digest, "generated_at": "2026-09-30T12:28:00Z", "release_at": "2026-09-30T12:29:00Z"}
+        pending = dict(current, generated_at="2026-09-30T12:29:00Z", release_at="2026-09-30T12:31:00Z")
+        manifest = json.dumps({"snapshots": [current, pending]}).encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            stage = Path(temporary)
+            (stage / 'snapshots').mkdir()
+            with patch('build_site.urllib.request.urlopen', side_effect=[io.BytesIO(manifest), io.BytesIO(data), io.BytesIO(data)]):
+                retained = retain_current_snapshot(stage, datetime(2026, 9, 30, 12, 30, tzinfo=timezone.utc), include_pending=True)
+            self.assertEqual(retained, [current, pending])
+
     def test_scheduled_build_prepares_the_next_boundary_and_preserves_late_target(self):
         for start, expected in [('2026-09-30T12:27:00', '2026-09-30T12:37:00'), ('2026-09-30T12:40:00', '2026-09-30T12:37:00'), ('2026-09-30T23:58:00', '2026-10-01T00:07:00')]:
             with self.subTest(start=start):
