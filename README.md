@@ -6,7 +6,7 @@ PolyTrack player rankings, refreshed automatically on GitHub's servers and hoste
 - Update status and manual runs: https://github.com/SpeedySebas/polyranked/actions
 - Machine-readable freshness: https://speedysebas.github.io/polyranked/status.json
 
-The main publisher fetches fresh rankings **every five minutes**, at **:02, :07, :12, …, :57 (UTC)**. It prepares snapshots three minutes ahead of the website's **:00, :05, :10, …, :55** display updates. A freshness check skips duplicate builds when that release is already prepared or published. Source changes to `main` and manual Actions runs publish immediately. GitHub can delay or skip scheduled runs; these are target times, not an exact-time guarantee. No personal computer, personal access token, paid runner, or paid hosting plan is needed for ongoing operation. Keep this repository public to use the free public-repository runner and Pages plans.
+The main publisher fetches fresh rankings **every five minutes**, at **:02, :07, :12, …, :57 (UTC)**. It prepares snapshots three minutes ahead of the website's **:00, :05, :10, …, :55** display updates. A freshness check skips duplicate builds when that release is already prepared or published. Source changes to `main` publish immediately. Manual and external workflow dispatches use the same preparation window and freshness checks as scheduled runs. GitHub can delay or skip scheduled runs; these are target times, not an exact-time guarantee. The external cron-job.org trigger uses a repository-scoped token with Actions write permission, stored only in that service. No personal computer, paid runner, or paid hosting plan is needed for ongoing operation. Keep this repository public to use the free public-repository runner and Pages plans.
 
 ## How it works
 

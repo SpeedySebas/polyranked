@@ -31,7 +31,7 @@ def build_needed(manifest, now):
 def check_schedule():
     needed = True
     now = datetime.now(timezone.utc)
-    if os.environ.get("GITHUB_EVENT_NAME") == "schedule":
+    if os.environ.get("GITHUB_EVENT_NAME") in ("schedule", "workflow_dispatch"):
         try:
             request = urllib.request.Request(
                 SITE_URL + "update.json?check=" + str(int(now.timestamp())),

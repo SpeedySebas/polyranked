@@ -168,7 +168,7 @@ async def build():
         validate_html(html, report)
         report_progress(f"Rankings calculated and validated for {len(report['players']):,} players. Preparing website files.")
         generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
-        release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") == "schedule" else datetime.now(timezone.utc)
+        release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") in ("schedule", "workflow_dispatch") else datetime.now(timezone.utc)
         payload = {
             "generated_at": generated_at,
             "datasets": {name: embedded_json(html, name) for name in DATA_NAMES},
