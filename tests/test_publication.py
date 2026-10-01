@@ -5,9 +5,28 @@ from pathlib import Path
 import tempfile
 import unittest
 from datetime import datetime, timezone
-from unittest.mock import patch
+from unittest.mock import AsyncMock, patch
 
-from build_site import refresh_discipline_counts, retain_current_snapshot, save_daily_summary, scheduled_release_time, validate_html, validate_leaderboards
+from build_site import fetch_complete_leaderboards, refresh_discipline_counts, retain_current_snapshot, save_daily_summary, scheduled_release_time, validate_html, validate_leaderboards
+
+
+class FetchRecoveryTests(unittest.IsolatedAsyncioTestCase):
+    async def test_retries_only_inconsistent_tracks(self):
+        good = [{'userId': 'one', 'frames': 100}, {'userId': 'two', 'frames': 101}]
+        duplicate = [good[0], good[0]]
+        with patch('build_site.fetch_all_leaderboards', new_callable=AsyncMock) as fetch, patch('build_site.asyncio.sleep', new_callable=AsyncMock):
+            fetch.side_effect = [({'A': good, 'B': duplicate}, {'A': 2, 'B': 2}), ({'B': good}, {'B': 2})]
+            boards, totals = await fetch_complete_leaderboards({'A': 'a', 'B': 'b'})
+            self.assertEqual(fetch.await_args_list[1].args[0], {'B': 'b'})
+            self.assertEqual(boards, {'A': good, 'B': good})
+            self.assertEqual(totals, {'A': 2, 'B': 2})
+
+    async def test_persistent_inconsistency_still_prevents_publication(self):
+        duplicate = [{'userId': 'one', 'frames': 100}] * 2
+        with patch('build_site.fetch_all_leaderboards', new_callable=AsyncMock, return_value=({'A': duplicate}, {'A': 2})) as fetch, patch('build_site.asyncio.sleep', new_callable=AsyncMock):
+            with self.assertRaisesRegex(ValueError, 'duplicate'):
+                await fetch_complete_leaderboards({'A': 'a'})
+            self.assertEqual(fetch.await_count, 3)
 
 
 class PublicationSafetyTests(unittest.TestCase):

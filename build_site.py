@@ -65,6 +65,33 @@ def validate_leaderboards(expected_tracks, leaderboards, totals, amount=SCRAPE_A
             raise ValueError(f"{name}: duplicate accounts across leaderboard pages; retry a fresh snapshot")
 
 
+async def fetch_complete_leaderboards(tracks, attempts=3):
+    """Retry inconsistent tracks without discarding valid tracks or relaxing checks."""
+    pending = dict(tracks)
+    leaderboards, totals = {}, {}
+    for attempt in range(attempts):
+        fetched, counts = await fetch_all_leaderboards(
+            pending, amount=SCRAPE_AMOUNT, rate_limit=8.0, max_concurrency=4
+        )
+        leaderboards.update(fetched)
+        totals.update(counts)
+        retry = {}
+        for name, track_id in pending.items():
+            try:
+                validate_leaderboards({name: track_id}, {name: fetched[name]} if name in fetched else {}, counts)
+            except ValueError as error:
+                print(f"Attempt {attempt + 1}/{attempts}: {error}", flush=True)
+                retry[name] = track_id
+        if not retry:
+            validate_leaderboards(tracks, leaderboards, totals)
+            return leaderboards, totals
+        pending = retry
+        if attempt + 1 < attempts:
+            await asyncio.sleep(5 * (attempt + 1))
+    validate_leaderboards(tracks, leaderboards, totals)
+    raise ValueError("Could not obtain a complete fresh snapshot")
+
+
 def embedded_json(html, name):
     match = re.search(r"const " + re.escape(name) + r" = (.*?);\s*\n", html)
     if not match:
@@ -113,10 +140,7 @@ async def build():
         raise ValueError("Track metadata is missing or has changed; review the configured 78-track roster")
     print(f"Fetching fresh data for {len(system.registry.all_tracks)} tracks", flush=True)
     # No disk-cache fallback: failed fetches must never appear as a fresh update.
-    leaderboards, totals = await fetch_all_leaderboards(
-        system.registry.all_tracks, amount=SCRAPE_AMOUNT, rate_limit=8.0, max_concurrency=4
-    )
-    validate_leaderboards(system.registry.all_tracks, leaderboards, totals)
+    leaderboards, totals = await fetch_complete_leaderboards(system.registry.all_tracks)
     system.registry.set_track_totals(totals)
     report = system.compute_all_rankings(leaderboards, track_totals=totals)
     if not report["players"]:
