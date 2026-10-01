@@ -9,6 +9,7 @@ import re
 import shutil
 import tempfile
 import urllib.request
+from publication_schedule import scheduled_release_time
 
 from power_rankings.power_ranking_system import (
     PowerRankingSystem,
@@ -20,13 +21,6 @@ ROOT = Path(__file__).resolve().parent
 SCRAPE_AMOUNT = 1000
 SITE_URL = "https://speedysebas.github.io/polyranked/"
 DATA_NAMES = ("PLAYERS", "TRACK_WEIGHTS_DATA", "TRACK_DOMAINS", "TRACK_SUBGENRES", "TRACK_STYLES")
-
-
-def scheduled_release_time(started_at):
-    # Jobs start at :27/:57 and stage data for the :37/:07 display boundary.
-    seconds = started_at.timestamp()
-    build_slot = ((seconds - 27 * 60) // 1800) * 1800 + 27 * 60
-    return datetime.fromtimestamp(build_slot + 600, timezone.utc)
 
 
 def iso_time(value):

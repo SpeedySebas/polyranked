@@ -63,8 +63,8 @@
             const deadline = nextRelease(Math.max(Date.parse(this.current.release_at), Date.parse(this.current.generated_at)));
             const ready = [...this.prepared.values()].some(({ descriptor }) => Date.parse(descriptor.release_at) <= deadline);
             this.showStatus(now >= deadline
-                ? { state: 'waiting', text: 'Waiting for fresh data…', deadline, ready: false }
-                : { state: 'counting', text: `Next update in ${countdown(deadline - now)}`, deadline, ready });
+                ? { state: 'waiting', text: `Update delayed ${countdown(now - deadline)} · ${this.failed ? 'reconnecting…' : 'checking…'}`, deadline, ready: false }
+                : { state: 'counting', text: `${ready ? 'Next' : 'Scheduled'} update in ${countdown(deadline - now)}`, deadline, ready });
         }
     }
 
@@ -92,7 +92,9 @@
             const badge = document.getElementById('update-countdown');
             badge.textContent = status.text;
             badge.dataset.state = status.state;
-            badge.title = status.ready ? 'Fresh rankings are downloaded and ready to appear when the timer reaches zero.' : 'Updates appear at :07 and :37 each hour. Late builds appear as soon as fresh data is ready.';
+            badge.title = status.ready ? 'Fresh rankings are downloaded and ready to appear when the timer reaches zero.'
+                : status.state === 'waiting' ? 'The cloud update is late. Checking every 15 seconds; fresh rankings will appear automatically. The last-updated time still describes the displayed data.'
+                : 'Target update times are :07 and :37 each hour. GitHub may delay scheduled builds. The next data is not downloaded yet.';
             if (status.state === 'loading') document.getElementById('loading-state').textContent = status.text;
         },
     });

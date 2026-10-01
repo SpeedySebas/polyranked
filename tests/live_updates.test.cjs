@@ -25,13 +25,22 @@ test('downloads and parses the next data before zero, then swaps without a fetch
     assert.equal(f.states.at(-1).text,'Next update in 07:00'); assert.equal(f.states.at(-1).ready,true);
     f.offline(); f.time('12:36:59'); f.updater.tick(); assert.deepEqual(f.applied,['old']);
     f.time('12:37:00'); f.updater.tick(); assert.deepEqual(f.applied,['old','new']);
-    assert.deepEqual(f.loaded,['old','new']); assert.equal(f.states.at(-1).text,'Next update in 30:00');
+    assert.deepEqual(f.loaded,['old','new']); assert.equal(f.states.at(-1).text,'Scheduled update in 30:00');
 });
 test('a late build preserves the old rankings and waits instead of resetting the timer', async () => {
     const f=fixture(); f.manifest([old]); await f.updater.refresh(); f.time('12:37:00'); f.updater.tick();
     assert.equal(f.states.at(-1).state,'waiting'); assert.deepEqual(f.applied,['old']);
+    f.time('12:38:12'); f.updater.tick();
+    assert.equal(f.states.at(-1).text,'Update delayed 01:12 · checking…');
     f.time('12:39:00'); f.manifest([old,fresh]); await f.updater.refresh();
-    assert.deepEqual(f.applied,['old','new']); assert.equal(f.states.at(-1).text,'Next update in 28:00');
+    assert.deepEqual(f.applied,['old','new']); assert.equal(f.states.at(-1).text,'Scheduled update in 28:00');
+});
+test('unprepared targets are identified as scheduled and offline retries stay visible', async () => {
+    const f=fixture(); f.manifest([old]); await f.updater.refresh();
+    assert.equal(f.states.at(-1).text,'Scheduled update in 07:00');
+    f.offline(); f.time('12:39:00'); await f.updater.refresh();
+    assert.equal(f.states.at(-1).text,'Update delayed 02:00 · reconnecting…');
+    assert.deepEqual(f.applied,['old']);
 });
 test('opening the page after the boundary loads the released version', async () => {
     const f=fixture(); f.time('12:40:00'); await f.updater.refresh(); assert.equal(f.applied.at(-1),'new');
