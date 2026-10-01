@@ -9,8 +9,8 @@
     };
 
     class LiveUpdater {
-        constructor({ now = Date.now, loadManifest, loadSnapshot, applySnapshot, showStatus }) {
-            Object.assign(this, { now, loadManifest, loadSnapshot, applySnapshot, showStatus });
+        constructor({ now = Date.now, loadManifest, loadSnapshot, applySnapshot, showStatus, log = () => {} }) {
+            Object.assign(this, { now, loadManifest, loadSnapshot, applySnapshot, showStatus, log });
             this.prepared = new Map();
             this.current = null;
             this.busy = false;
@@ -21,24 +21,29 @@
             if (this.busy) return;
             this.busy = true;
             try {
+                this.log('Checking the published update manifest.');
                 const manifest = await this.loadManifest();
                 if (manifest.schema !== 1 || !Array.isArray(manifest.snapshots) || !manifest.snapshots.length) throw new Error('Invalid update manifest');
                 const ordered = manifest.snapshots.slice().sort((a, b) => Date.parse(a.generated_at) - Date.parse(b.generated_at));
                 const due = ordered.filter(item => Date.parse(item.release_at) <= this.now()).at(-1);
                 const future = ordered.filter(item => Date.parse(item.release_at) > this.now()).slice(-1);
+                this.log(`Manifest received: newest data generated ${ordered.at(-1).generated_at}, release ${ordered.at(-1).release_at}.`);
                 for (const descriptor of [due, ...future].filter(Boolean)) {
                     if (!Number.isFinite(Date.parse(descriptor.release_at)) || !Number.isFinite(Date.parse(descriptor.generated_at))) throw new Error('Invalid update timestamp');
                     if (this.current && Date.parse(descriptor.generated_at) <= Date.parse(this.current.generated_at)) continue;
                     if (!this.prepared.has(descriptor.version)) {
+                        this.log(`Downloading and verifying snapshot ${descriptor.version.slice(0, 12)}.`);
                         const payload = await this.loadSnapshot(descriptor);
                         if (!payload.datasets?.PLAYERS?.length || !payload.datasets?.TRACK_WEIGHTS_DATA?.length || payload.generated_at !== descriptor.generated_at) throw new Error('Incomplete ranking snapshot');
                         this.prepared.set(descriptor.version, { descriptor, payload });
+                        this.log(`Snapshot ready: ${payload.datasets.PLAYERS.length.toLocaleString()} players; release ${descriptor.release_at}.`);
                     }
                     this.tick();
                 }
                 this.failed = false;
             } catch (error) {
                 this.failed = true;
+                this.log(`Refresh failed: ${error.message}. Keeping current rankings; retrying in 15 seconds.`);
                 console.warn('Ranking refresh will retry:', error.message);
             } finally {
                 this.busy = false;
@@ -54,6 +59,7 @@
                 const ready = eligible[0];
                 this.applySnapshot(ready.payload);
                 this.current = ready.descriptor;
+                this.log(`Displayed fresh rankings generated ${this.current.generated_at}.`);
                 for (const [version, { descriptor }] of this.prepared) if (Date.parse(descriptor.generated_at) <= Date.parse(this.current.generated_at)) this.prepared.delete(version);
             }
             if (!this.current) {
@@ -62,6 +68,11 @@
             }
             const deadline = nextRelease(Math.max(Date.parse(this.current.release_at), Date.parse(this.current.generated_at)));
             const ready = [...this.prepared.values()].some(({ descriptor }) => Date.parse(descriptor.release_at) <= deadline);
+            const state = now >= deadline ? 'waiting' : 'counting';
+            if (state !== this.lastLoggedState) {
+                this.log(state === 'waiting' ? 'Scheduled release passed without a newer snapshot. Still polling; no reload needed.' : `Next display target: ${new Date(deadline).toISOString()}.`);
+                this.lastLoggedState = state;
+            }
             this.showStatus(now >= deadline
                 ? { state: 'waiting', text: `Update delayed ${countdown(now - deadline)} · ${this.failed ? 'reconnecting…' : 'checking…'}`, deadline, ready: false }
                 : { state: 'counting', text: `${ready ? 'Next' : 'Scheduled'} update in ${countdown(deadline - now)}`, deadline, ready });
@@ -79,6 +90,7 @@
         return response;
     };
     const updater = new LiveUpdater({
+        log: message => root.rankingDiagnostics?.log(message),
         loadManifest: async () => (await fetchFile('update.json', true)).json(),
         loadSnapshot: async descriptor => {
             if (!/^snapshots\/[a-f0-9]{64}\.json$/.test(descriptor.url)) throw new Error('Invalid snapshot URL');

@@ -27,6 +27,14 @@ def iso_time(value):
     return value.isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
+def report_progress(message, level="notice"):
+    message = iso_time(datetime.now(timezone.utc)) + " " + str(message)
+    print(message, flush=True)
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        escaped = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+        print(f"::{level} title=Ranking publisher::{escaped}", flush=True)
+
+
 def retain_current_snapshot(stage, now):
     """Carry the currently visible snapshot forward while the next one is staged."""
     def download(path):
@@ -70,6 +78,7 @@ async def fetch_complete_leaderboards(tracks, attempts=3):
     pending = dict(tracks)
     leaderboards, totals = {}, {}
     for attempt in range(attempts):
+        report_progress(f"Fetch attempt {attempt + 1}/{attempts}: requesting up to 1,000 entries for each of {len(pending)} tracks (4 concurrent requests, 8 requests/second).")
         fetched, counts = await fetch_all_leaderboards(
             pending, amount=SCRAPE_AMOUNT, rate_limit=8.0, max_concurrency=4
         )
@@ -80,13 +89,15 @@ async def fetch_complete_leaderboards(tracks, attempts=3):
             try:
                 validate_leaderboards({name: track_id}, {name: fetched[name]} if name in fetched else {}, counts)
             except ValueError as error:
-                print(f"Attempt {attempt + 1}/{attempts}: {error}", flush=True)
+                report_progress(f"Attempt {attempt + 1}/{attempts}: {error}", "warning")
                 retry[name] = track_id
         if not retry:
             validate_leaderboards(tracks, leaderboards, totals)
+            report_progress(f"All {len(tracks)} tracks validated; {sum(map(len, leaderboards.values())):,} entries received.")
             return leaderboards, totals
         pending = retry
         if attempt + 1 < attempts:
+            report_progress(f"Waiting {5 * (attempt + 1)} seconds before retrying {len(pending)} inconsistent tracks.")
             await asyncio.sleep(5 * (attempt + 1))
     validate_leaderboards(tracks, leaderboards, totals)
     raise ValueError("Could not obtain a complete fresh snapshot")
@@ -138,10 +149,11 @@ async def build():
     system = PowerRankingSystem()
     if len(system.registry.main_tracks) != 17 or len(system.registry.community_tracks) != 61:
         raise ValueError("Track metadata is missing or has changed; review the configured 78-track roster")
-    print(f"Fetching fresh data for {len(system.registry.all_tracks)} tracks", flush=True)
+    report_progress(f"Build started: fetching fresh data for {len(system.registry.all_tracks)} tracks.")
     # No disk-cache fallback: failed fetches must never appear as a fresh update.
     leaderboards, totals = await fetch_complete_leaderboards(system.registry.all_tracks)
     system.registry.set_track_totals(totals)
+    report_progress("Calculating player ratings and track weights.")
     report = system.compute_all_rankings(leaderboards, track_totals=totals)
     if not report["players"]:
         raise ValueError("The ranking calculation produced no players")
@@ -154,6 +166,7 @@ async def build():
             raise ValueError("The HTML update failed; deployment cancelled")
         html = refresh_discipline_counts(index.read_text(encoding="utf-8"), report["metadata"]["discipline_totals"])
         validate_html(html, report)
+        report_progress(f"Rankings calculated and validated for {len(report['players']):,} players. Preparing website files.")
         generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
         release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") == "schedule" else datetime.now(timezone.utc)
         payload = {
@@ -168,16 +181,19 @@ async def build():
         (stage / snapshot["url"]).write_bytes(snapshot_bytes)
         snapshots = []
         if release_at > datetime.now(timezone.utc):
+            report_progress("Downloading the currently displayed snapshot to retain it until the next release.")
             snapshots.append(retain_current_snapshot(stage, datetime.now(timezone.utc)))
         snapshots.append(snapshot)
         (stage / "update.json").write_text(json.dumps({"schema": 1, "snapshots": snapshots}, separators=(",", ":")) + "\n", encoding="utf-8")
 
         # Ship a small page shell; the browser chooses the correct released snapshot.
         client = (ROOT / "site" / "live-updates.js").read_bytes()
-        shell = (ROOT / "site" / "template.html").read_text(encoding="utf-8").replace("LIVE_CLIENT_VERSION", hashlib.sha256(client).hexdigest()[:16])
+        diagnostics = (ROOT / "site" / "update-diagnostics.js").read_bytes()
+        shell = (ROOT / "site" / "template.html").read_text(encoding="utf-8").replace("LIVE_CLIENT_VERSION", hashlib.sha256(client + diagnostics).hexdigest()[:16])
         index.write_text(shell, encoding="utf-8")
         shutil.copyfile(index, stage / "methodology.html")
         (stage / "live-updates.js").write_bytes(client)
+        (stage / "update-diagnostics.js").write_bytes(diagnostics)
         (stage / ".nojekyll").touch()
         summary = {
             "generated_at": generated_at,
@@ -194,8 +210,12 @@ async def build():
         destination = ROOT / "dist"
         destination.mkdir(exist_ok=True)
         shutil.copytree(stage, destination, dirs_exist_ok=True)
-    print(f"Validated {summary['players']:,} players across {summary['tracks']} tracks; site ready in dist/", flush=True)
+    report_progress(f"Website ready: {summary['players']:,} players, {summary['tracks']} tracks. Generated {generated_at}; release {iso_time(release_at)}. Upload and deployment follow.")
 
 
 if __name__ == "__main__":
-    asyncio.run(build())
+    try:
+        asyncio.run(build())
+    except Exception as error:
+        report_progress(f"Build failed: {type(error).__name__}: {error}", "error")
+        raise

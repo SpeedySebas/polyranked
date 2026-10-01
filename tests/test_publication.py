@@ -11,6 +11,12 @@ from build_site import fetch_complete_leaderboards, refresh_discipline_counts, r
 
 
 class FetchRecoveryTests(unittest.IsolatedAsyncioTestCase):
+    def setUp(self):
+        # Simulated failures must not become real GitHub run annotations.
+        reporter = patch('build_site.report_progress')
+        reporter.start()
+        self.addCleanup(reporter.stop)
+
     async def test_retries_only_inconsistent_tracks(self):
         good = [{'userId': 'one', 'frames': 100}, {'userId': 'two', 'frames': 101}]
         duplicate = [good[0], good[0]]

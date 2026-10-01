@@ -1535,6 +1535,19 @@
         #loading-state { padding: 4rem 1.5rem; text-align: center; color: var(--text-muted); }
         #update-countdown { font-variant-numeric: tabular-nums; min-width: 12.5rem; justify-content: center; }
         #update-countdown[data-state="waiting"] { color: var(--accent-gold); }
+        .update-logs { margin: 1rem auto; padding: .85rem 1rem; border: 1px solid #294050; border-radius: 12px; background: #0c1423; color: #d5deed; }
+        .update-logs summary { cursor: pointer; color: #64d9ee; font-weight: 600; }
+        .update-logs p { margin: .65rem 0; line-height: 1.5; }
+        .update-logs h3 { margin: 1rem 0 .5rem; font-size: 1rem; }
+        .update-logs button, .update-logs a { color: #7edff3; }
+        .update-logs button { background: #172338; border: 1px solid #38506a; border-radius: 6px; padding: .4rem .65rem; cursor: pointer; }
+        .update-logs button:disabled { opacity: .5; cursor: wait; }
+        .update-logs .log-help { color: #a6b4c9; font-size: .85rem; }
+        .update-logs ol { padding-left: 1.4rem; }
+        .update-logs li { margin: .45rem 0; overflow-wrap: anywhere; }
+        .update-logs pre { background: #080e19; color: #c9d7e8; padding: .8rem; max-height: 18rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; }
+        .log-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        @media (max-width: 768px) { .log-columns { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body data-live-loading>
@@ -1558,6 +1571,23 @@
 </header>
 
 <div id="loading-state" class="container" role="status">Loading the latest rankings…</div>
+<details id="update-logs" class="container update-logs">
+    <summary>Update logs — see what’s happening</summary>
+    <p id="cloud-diagnosis" role="status">Open this panel to check the cloud updater.</p>
+    <p class="log-help">Cloud status is read directly from GitHub, even if a build fails. It refreshes every 3 minutes while this panel is open. Browser activity updates live below. All times are UTC.</p>
+    <button id="refresh-cloud-logs" type="button">Refresh cloud status</button>
+    <a href="https://github.com/SpeedySebas/polyranked/actions/workflows/update_leaderboard.yml" target="_blank" rel="noopener noreferrer">Full cloud logs on GitHub ↗</a>
+    <p id="cloud-checked" class="log-help">Cloud status not checked yet.</p>
+    <div class="log-columns">
+        <section><h3>Recent cloud runs</h3><ol id="cloud-runs"></ol></section>
+        <section><h3 id="cloud-step-heading">Run steps</h3><ol id="cloud-steps"></ol></section>
+    </div>
+    <h3>Script messages and errors</h3>
+    <p class="log-help">GitHub exposes step progress and reported messages here, not a live console stream. Full line-by-line output is available through the run link.</p>
+    <pre id="cloud-messages">Select a run to inspect its messages.</pre>
+    <h3>This browser</h3>
+    <pre id="browser-update-log">Starting refresh checks…</pre>
+</details>
 <main class="container">
     <!-- TAB 1: Global Rankings -->
     <div id="tab-rankings" class="tab-pane active" role="tabpanel">
@@ -3484,6 +3514,7 @@
         initHashTab();
     });
 </script>
+<script src="update-diagnostics.js?v=LIVE_CLIENT_VERSION" defer></script>
 <script src="live-updates.js?v=LIVE_CLIENT_VERSION" defer></script>
 
 </body>

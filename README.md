@@ -20,6 +20,8 @@ After a successful deployment, the workflow commits one small ranking snapshot p
 
 ## Update the site
 
+The website's **Update logs — see what’s happening** panel reads public GitHub run history, steps, timing, and annotations independently of Pages deployments, so failed runs remain visible. It checks cloud status every three minutes while open, or on demand, and reports public API limits without interrupting ranking updates. The publisher emits timestamped progress and failure messages as GitHub annotations; these may appear after a step finishes. Full console logs are linked per run. Browser fetch, verification, prefetch, display, and error events are shown separately in a bounded in-memory log. No credentials are embedded in the website.
+
 - Ranking rules, alternate accounts, and bans: `power_rankings/power_ranking_system.py`.
 - Track metadata: the two CSV files in `power_rankings/`.
 - Website layout and client-side behavior: `site/template.html`.

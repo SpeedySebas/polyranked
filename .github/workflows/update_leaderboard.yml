@@ -55,6 +55,7 @@ jobs:
           python -m unittest discover -s power_rankings -p 'test_*.py'
           python -m unittest discover -s tests -p 'test_*.py'
           node --test tests/live_updates.test.cjs
+          node --test tests/update_diagnostics.test.cjs
 
       - name: Fetch complete live rankings and build website
         if: steps.freshness.outputs.needed == 'true'

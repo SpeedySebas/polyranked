@@ -9,15 +9,16 @@ function fixture() {
     let now = at('12:33:00');
     let snapshots = [old, fresh];
     let offline = false;
-    const applied = [], loaded = [], states = [];
+    const applied = [], loaded = [], states = [], logs = [];
     const updater = new LiveUpdater({
         now: () => now,
         loadManifest: async () => { if (offline) throw new Error('offline'); return {schema:1,snapshots}; },
         loadSnapshot: async item => { loaded.push(item.version); return {generated_at:item.generated_at, datasets:{PLAYERS:[{u:item.version}],TRACK_WEIGHTS_DATA:[{}]}}; },
         applySnapshot: payload => applied.push(payload.datasets.PLAYERS[0].u),
         showStatus: status => states.push(status),
+        log: message => logs.push(message),
     });
-    return {updater, applied, loaded, states, time: value => now=at(value), manifest: value => snapshots=value, offline: () => offline=true};
+    return {updater, applied, loaded, states, logs, time: value => now=at(value), manifest: value => snapshots=value, offline: () => offline=true};
 }
 test('downloads and parses the next data before zero, then swaps without a fetch', async () => {
     const f = fixture(); await f.updater.refresh();
@@ -56,4 +57,13 @@ test('release cadence crosses the hour and countdown never goes negative', () =>
     assert.equal(nextRelease(at('12:55:00')),at('13:00:00'));
     assert.equal(nextRelease(at('12:00:00')),at('12:05:00'));
     assert.equal(countdown(-100),'00:00'); assert.equal(countdown(1),'00:01');
+});
+test('browser diagnostics record download, display and retry failures without flooding on ticks', async () => {
+    const f=fixture(); await f.updater.refresh();
+    assert.ok(f.logs.some(line=>line.includes('Snapshot ready')));
+    assert.ok(f.logs.some(line=>line.includes('Displayed fresh rankings')));
+    const length=f.logs.length; f.updater.tick(); f.updater.tick();
+    assert.equal(f.logs.length,length);
+    f.offline(); await f.updater.refresh();
+    assert.ok(f.logs.some(line=>line.includes('Refresh failed: offline')));
 });
