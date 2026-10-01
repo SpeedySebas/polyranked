@@ -6,7 +6,7 @@ PolyTrack player rankings, refreshed automatically on GitHub's servers and hoste
 - Update status and manual runs: https://github.com/SpeedySebas/polyranked/actions
 - Machine-readable freshness: https://speedysebas.github.io/polyranked/status.json
 
-The page targets fresh rankings at minutes **7 and 37 every hour (UTC)**. The workflow first attempts preparation at **17 and 47**, twenty minutes before each display update, with retry opportunities every ten minutes. A freshness check skips duplicate builds when that release is already prepared or published. Source changes to `main` and manual Actions runs publish immediately. GitHub can delay or skip scheduled runs, including retries; these are target times, not an exact-time guarantee. No personal computer, personal access token, paid runner, or paid hosting plan is needed for ongoing operation. Keep this repository public to use the free public-repository runner and Pages plans.
+The main publisher fetches fresh rankings **every five minutes**, at **:02, :07, :12, …, :57 (UTC)**. It prepares snapshots three minutes ahead of the website's **:00, :05, :10, …, :55** display updates. A freshness check skips duplicate builds when that release is already prepared or published. Source changes to `main` and manual Actions runs publish immediately. GitHub can delay or skip scheduled runs; these are target times, not an exact-time guarantee. No personal computer, personal access token, paid runner, or paid hosting plan is needed for ongoing operation. Keep this repository public to use the free public-repository runner and Pages plans.
 
 ## How it works
 
@@ -19,10 +19,6 @@ All tracks and pages must be present, the ranking tests must pass, and the gener
 After a successful deployment, the workflow commits one small ranking snapshot per UTC day in `history/`. This provides ranking history and ongoing repository activity for GitHub's 60-day scheduled-workflow inactivity rule. The workflow uses its automatically supplied `GITHUB_TOKEN`, which GitHub rotates per job; it does not depend on the setup token.
 
 ## Update the site
-
-### Temporary one-minute cloud test
-
-Run **Actions → Test real updates every minute → Run workflow** to start a bounded 30-minute session. A single cloud runner repeatedly fetches and publishes real snapshots, starting builds at least 60 seconds apart. This does not depend on delivery of scheduled events. Each release is staged in advance for the browser's `Test update in` countdown; slow fetches or deployments can still delay a cycle. The first staged update takes about two minutes to appear. Existing and pending snapshots remain available, and the timer switches back to the normal cadence when the test expires. A final deployment restores the normal site. This is a temporary integration test, not a permanent one-minute cron schedule (GitHub's minimum cron interval is five minutes).
 
 - Ranking rules, alternate accounts, and bans: `power_rankings/power_ranking_system.py`.
 - Track metadata: the two CSV files in `power_rankings/`.

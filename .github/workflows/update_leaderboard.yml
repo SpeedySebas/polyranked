@@ -2,9 +2,8 @@ name: Update and publish rankings
 
 on:
   schedule:
-    # Prepare 20 minutes ahead, with two retry opportunities per release.
-    # A freshness check skips fetching/deploying an already prepared release.
-    - cron: '7,17,27,37,47,57 * * * *'
+    # Fetch every five minutes, three minutes before each display boundary.
+    - cron: '2-57/5 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
