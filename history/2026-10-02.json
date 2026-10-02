@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-02T00:02:52Z",
+  "release_at": "2026-10-02T00:05:00Z",
+  "snapshot": "snapshots/7833e60cd493853d0d62b3c1cbf3caadca5808cd26437b4565d400bf3a3c860b.json",
+  "source_commit": "cb9f970c56debc68c1eb3ededf612e906f1daa63",
+  "tracks": 78,
+  "entries": 78000,
+  "players": 36064,
+  "index_sha256": "755f3f30e229e9be2b1528603d105574bf6a8a775db630a6a8a71ad51c78434e",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3758.5
+    },
+    {
+      "rank": 2,
+      "player": "SpeedySebas",
+      "gsi": 3598.1
+    },
+    {
+      "rank": 3,
+      "player": "cheesebob (81)",
+      "gsi": 3495.4
+    },
+    {
+      "rank": 4,
+      "player": "youngfella",
+      "gsi": 3456.9
+    },
+    {
+      "rank": 5,
+      "player": "TheGreatAndOnly🐐🍑",
+      "gsi": 3338.7
+    },
+    {
+      "rank": 6,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3217.9
+    },
+    {
+      "rank": 7,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3102.9
+    },
+    {
+      "rank": 8,
+      "player": "BadPlanet 𝄂𝄚𝅦𝄚 𝄞",
+      "gsi": 2616.2
+    },
+    {
+      "rank": 9,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2486.3
+    },
+    {
+      "rank": 10,
+      "player": "The Kroger",
+      "gsi": 2361.5
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2150.6
+    },
+    {
+      "rank": 12,
+      "player": "xtuov",
+      "gsi": 2092.3
+    },
+    {
+      "rank": 13,
+      "player": "hwadz",
+      "gsi": 2064.0
+    },
+    {
+      "rank": 14,
+      "player": "NeoRacer",
+      "gsi": 1965.1
+    },
+    {
+      "rank": 15,
+      "player": "jimy",
+      "gsi": 1891.5
+    },
+    {
+      "rank": 16,
+      "player": "tiro 😼",
+      "gsi": 1889.7
+    },
+    {
+      "rank": 17,
+      "player": "#### Water",
+      "gsi": 1864.2
+    },
+    {
+      "rank": 18,
+      "player": "Neki",
+      "gsi": 1827.6
+    },
+    {
+      "rank": 19,
+      "player": "Tvirty",
+      "gsi": 1814.5
+    },
+    {
+      "rank": 20,
+      "player": "Nekkhst",
+      "gsi": 1778.2
+    }
+  ]
+}
