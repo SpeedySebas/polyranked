@@ -147,8 +147,8 @@ def save_daily_summary(source, history_dir):
 async def build():
     started_at = datetime.now(timezone.utc)
     system = PowerRankingSystem()
-    if len(system.registry.main_tracks) != 17 or len(system.registry.community_tracks) != 61:
-        raise ValueError("Track metadata is missing or has changed; review the configured 78-track roster")
+    if len(system.registry.main_tracks) != 17 or len(system.registry.community_tracks) != 71:
+        raise ValueError("Track metadata is missing or has changed; review the configured 88-track roster")
     report_progress(f"Build started: fetching fresh data for {len(system.registry.all_tracks)} tracks.")
     # No disk-cache fallback: failed fetches must never appear as a fresh update.
     leaderboards, totals = await fetch_complete_leaderboards(system.registry.all_tracks)
