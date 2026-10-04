@@ -201,8 +201,8 @@ class TestTrackRegistry(unittest.TestCase):
     def test_track_counts(self):
         registry = TrackRegistry()
         self.assertEqual(len(registry.main_tracks), 17)
-        self.assertEqual(len(registry.community_tracks), 61)
-        self.assertEqual(len(registry.all_tracks), 78)
+        self.assertEqual(len(registry.community_tracks), 71)
+        self.assertEqual(len(registry.all_tracks), 88)
 
 
 class TestTrackDomainMapping(unittest.TestCase):
@@ -260,9 +260,9 @@ class TestTrackDomainMapping(unittest.TestCase):
         domain_totals = registry.get_domain_totals()
         self.assertIn("Fullspeed", domain_totals)
         self.assertIn("Technical", domain_totals)
-        self.assertEqual(domain_totals["Fullspeed"], 35)
-        self.assertEqual(domain_totals["Technical"], 43)
-        self.assertEqual(domain_totals["Fullspeed"] + domain_totals["Technical"], 78)
+        self.assertEqual(domain_totals["Fullspeed"], 41)
+        self.assertEqual(domain_totals["Technical"], 47)
+        self.assertEqual(domain_totals["Fullspeed"] + domain_totals["Technical"], 88)
 
 
 class TestDisciplineEngine(unittest.TestCase):
