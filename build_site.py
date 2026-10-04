@@ -188,12 +188,10 @@ async def build():
 
         # Ship a small page shell; the browser chooses the correct released snapshot.
         client = (ROOT / "site" / "live-updates.js").read_bytes()
-        diagnostics = (ROOT / "site" / "update-diagnostics.js").read_bytes()
-        shell = (ROOT / "site" / "template.html").read_text(encoding="utf-8").replace("LIVE_CLIENT_VERSION", hashlib.sha256(client + diagnostics).hexdigest()[:16])
+        shell = (ROOT / "site" / "template.html").read_text(encoding="utf-8").replace("LIVE_CLIENT_VERSION", hashlib.sha256(client).hexdigest()[:16])
         index.write_text(shell, encoding="utf-8")
         shutil.copyfile(index, stage / "methodology.html")
         (stage / "live-updates.js").write_bytes(client)
-        (stage / "update-diagnostics.js").write_bytes(diagnostics)
         (stage / ".nojekyll").touch()
         summary = {
             "generated_at": generated_at,

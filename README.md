@@ -20,7 +20,7 @@ After a successful deployment, the workflow commits one small ranking snapshot p
 
 ## Update the site
 
-The website's **Update logs — see what’s happening** panel reads public GitHub run history, steps, timing, and annotations independently of Pages deployments, so failed runs remain visible. It checks cloud status every three minutes while open, or on demand, and reports public API limits without interrupting ranking updates. The publisher emits timestamped progress and failure messages as GitHub annotations; these may appear after a step finishes. Full console logs are linked per run. Browser fetch, verification, prefetch, display, and error events are shown separately in a bounded in-memory log. No credentials are embedded in the website.
+Public pages do not display diagnostic logs. Inspect cloud progress and failures in GitHub Actions.
 
 - Ranking rules, alternate accounts, and bans: `power_rankings/power_ranking_system.py`.
 - Track metadata: the two CSV files in `power_rankings/`.
@@ -28,7 +28,7 @@ The website's **Update logs — see what’s happening** panel reads public GitH
 - Countdown, prefetching, and release logic: `site/live-updates.js`.
 - Update schedule: `.github/workflows/update_leaderboard.yml`.
 
-Push changes to `main` to rebuild and publish. To run on demand, open **Actions → Update and publish rankings → Run workflow**. GitHub Pages' publishing source must remain **GitHub Actions**.
+Develop changes on `development` (or a feature branch), never directly on `main`. Build and test locally, then serve `dist/` on localhost for preview. Development branches do not deploy to Pages; the publication job only runs on `main`. After verification, merge the tested changes into `main` and push to publish. The public site continues its scheduled updates from the stable `main` branch while development is in progress. Development source branches are public, but the local preview is not a public website. To run on demand, open **Actions → Update and publish rankings → Run workflow**. GitHub Pages' publishing source must remain **GitHub Actions**.
 
 ## Run locally
 
