@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-05T00:03:21Z",
+  "release_at": "2026-10-05T00:05:00Z",
+  "snapshot": "snapshots/bd194bbf3bcd27e2eb4da1de60444eeccc5a28613171f33e9ffbcd73ca274db9.json",
+  "source_commit": "72042561322086f4f286a0f75997a5e2f1b0bacd",
+  "tracks": 88,
+  "entries": 88000,
+  "players": 39581,
+  "index_sha256": "132333a0b2272acc1c2876a069c3c243f017b9a724a14c0f598e2c7e9124ba93",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3863.2
+    },
+    {
+      "rank": 2,
+      "player": "SpeedySebas",
+      "gsi": 3698.2
+    },
+    {
+      "rank": 3,
+      "player": "cheesebob (81)",
+      "gsi": 3588.1
+    },
+    {
+      "rank": 4,
+      "player": "youngfella",
+      "gsi": 3547.2
+    },
+    {
+      "rank": 5,
+      "player": "TheGreatAndOnly🐐🍑",
+      "gsi": 3427.8
+    },
+    {
+      "rank": 6,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3335.7
+    },
+    {
+      "rank": 7,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3300.5
+    },
+    {
+      "rank": 8,
+      "player": "BadPlanet 𝄂𝄚𝅦𝄚 𝄞",
+      "gsi": 2737.0
+    },
+    {
+      "rank": 9,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2569.8
+    },
+    {
+      "rank": 10,
+      "player": "The Kroger",
+      "gsi": 2418.9
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2196.7
+    },
+    {
+      "rank": 12,
+      "player": "xtuov",
+      "gsi": 2138.1
+    },
+    {
+      "rank": 13,
+      "player": "hwadz",
+      "gsi": 2110.2
+    },
+    {
+      "rank": 14,
+      "player": "Tvirty",
+      "gsi": 2101.6
+    },
+    {
+      "rank": 15,
+      "player": "NeoRacer",
+      "gsi": 2024.3
+    },
+    {
+      "rank": 16,
+      "player": "#### Water",
+      "gsi": 1945.1
+    },
+    {
+      "rank": 17,
+      "player": "jimy",
+      "gsi": 1936.4
+    },
+    {
+      "rank": 18,
+      "player": "tiro 😼",
+      "gsi": 1923.5
+    },
+    {
+      "rank": 19,
+      "player": "Neki",
+      "gsi": 1866.6
+    },
+    {
+      "rank": 20,
+      "player": "OL",
+      "gsi": 1828.4
+    }
+  ]
+}
