@@ -115,6 +115,8 @@ ALT_MAPPINGS: Dict[str, str] = {
 # legitimate players move up to their rightful positions before their ranks
 # are inputted into the PQI, VDI, and GSI formulas.
 BLACKLISTED_PLAYERS: Set[str] = {
+    "BadPlanet 𝄂𝄚𝅦𝄚 𝄞",
+    "clipradar.net",
     # Ben (disqualified for cheated runs on 2026-09-13)
     "Ben",
     "09f0741c8e7e793380c6dee978ec3dae563f891c5d5832497efdfb709cbf92a2",
