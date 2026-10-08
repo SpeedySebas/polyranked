@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-08T21:38:43Z",
+  "release_at": "2026-10-08T21:40:00Z",
+  "snapshot": "snapshots/ae539f155e06e61f62a2601d876611c712c74993ec0540612413f97096eb9beb.json",
+  "source_commit": "9dc5df73872436c92f1205e335a751cd0c1c2806",
+  "tracks": 88,
+  "entries": 88000,
+  "players": 39822,
+  "index_sha256": "132333a0b2272acc1c2876a069c3c243f017b9a724a14c0f598e2c7e9124ba93",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "cheesebob (81)",
+      "gsi": 3592.3
+    },
+    {
+      "rank": 2,
+      "player": "youngfella",
+      "gsi": 3539.0
+    },
+    {
+      "rank": 3,
+      "player": "SpeedySebas",
+      "gsi": 3517.4
+    },
+    {
+      "rank": 4,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3501.9
+    },
+    {
+      "rank": 5,
+      "player": "Monstrosity",
+      "gsi": 3469.6
+    },
+    {
+      "rank": 6,
+      "player": "The5andOnly🐐🍑",
+      "gsi": 3433.2
+    },
+    {
+      "rank": 7,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3308.3
+    },
+    {
+      "rank": 8,
+      "player": "clipradar.net",
+      "gsi": 2775.0
+    },
+    {
+      "rank": 9,
+      "player": "BadPlanet 𝄂𝄚𝅦𝄚 𝄞",
+      "gsi": 2720.1
+    },
+    {
+      "rank": 10,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2510.7
+    },
+    {
+      "rank": 11,
+      "player": "clipradar.net",
+      "gsi": 2307.6
+    },
+    {
+      "rank": 12,
+      "player": "Schemzboi",
+      "gsi": 2194.3
+    },
+    {
+      "rank": 13,
+      "player": "Tvirty",
+      "gsi": 2103.9
+    },
+    {
+      "rank": 14,
+      "player": "The Kroger",
+      "gsi": 2099.8
+    },
+    {
+      "rank": 15,
+      "player": "xtuov",
+      "gsi": 2072.6
+    },
+    {
+      "rank": 16,
+      "player": "hwadz",
+      "gsi": 2059.9
+    },
+    {
+      "rank": 17,
+      "player": "NeoRacer",
+      "gsi": 2015.8
+    },
+    {
+      "rank": 18,
+      "player": "#### Water",
+      "gsi": 1945.3
+    },
+    {
+      "rank": 19,
+      "player": "jimy",
+      "gsi": 1937.6
+    },
+    {
+      "rank": 20,
+      "player": "tiro 😼",
+      "gsi": 1917.1
+    }
+  ]
+}
