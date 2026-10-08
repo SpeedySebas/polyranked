@@ -11,15 +11,29 @@ on:
       - 'history/**'
       - 'README.md'
 
-concurrency:
-  group: github-pages
-  cancel-in-progress: false
-
 permissions:
   contents: read
 
 jobs:
+  recover:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Recover stale publication runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 recover_runs.py
+
   publish:
+    needs: recover
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15

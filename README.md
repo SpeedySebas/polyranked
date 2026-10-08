@@ -50,3 +50,7 @@ The original standalone script is also included. The scheduled site uses the str
 ## Free-plan limits
 
 GitHub Pages has a 1 GB site limit and a 100 GB/month soft bandwidth limit. Pages deployment artifacts are retained for only one day. If a run fails, inspect its Actions log; the public `status.json` records the last successful site's generation time and source revision.
+
+## Automatic recovery
+
+Each trigger first runs an independent recovery job outside the Pages environment and publishing concurrency group. It force-cancels active main-branch runs of this workflow older than 20 minutes, rechecking their state first. Normal builds retain their 15-minute timeout. Only publishing is serialized. Recovery needs GitHub runners and a working trigger; it cannot repair a GitHub-wide outage. Recovery actions appear in the workflow logs.
