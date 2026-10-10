@@ -192,6 +192,38 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "1ff021b58da72bc58a920fcdb768c70af152434c4b2110a22f1e29c764704e1c": {
+      "userId": "1ff021b58da72bc58a920fcdb768c70af152434c4b2110a22f1e29c764704e1c",
+      "nickname": "Cheating",
+      "recording_id": 59960409,
+      "uploaded_at": "2026-10-10T21:26:38.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 59372564,
+      "original_uploaded_at": "2026-10-09T08:22:09.000Z",
+      "matched_through_frame": 11062,
+      "frames": 22124,
+      "original_frames": 22123,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
+    },
+    "139245ec957c360464ada2bc755274e1050933b87bc6d1cbb3366b6399d33412": {
+      "userId": "139245ec957c360464ada2bc755274e1050933b87bc6d1cbb3366b6399d33412",
+      "nickname": "using cheats",
+      "recording_id": 59960494,
+      "uploaded_at": "2026-10-10T21:27:32.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 59372564,
+      "original_uploaded_at": "2026-10-09T08:22:09.000Z",
+      "matched_through_frame": 11069,
+      "frames": 22138,
+      "original_frames": 22123,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
