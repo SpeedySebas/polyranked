@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-10T02:28:30Z",
+  "release_at": "2026-10-10T02:30:00Z",
+  "snapshot": "snapshots/cc0a0fcce72324a4224c8f2bab5fdf6d49b6c1342f1c484cc2f5b5277196c0da.json",
+  "source_commit": "be260fd37ce635cab75c7b5ebf2994904097ba67",
+  "tracks": 88,
+  "entries": 88000,
+  "players": 39888,
+  "index_sha256": "132333a0b2272acc1c2876a069c3c243f017b9a724a14c0f598e2c7e9124ba93",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3749.9
+    },
+    {
+      "rank": 2,
+      "player": "cheesebob (81)",
+      "gsi": 3551.7
+    },
+    {
+      "rank": 3,
+      "player": "youngfella",
+      "gsi": 3487.1
+    },
+    {
+      "rank": 4,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3454.7
+    },
+    {
+      "rank": 5,
+      "player": "The5andOnly🐐🍑",
+      "gsi": 3398.2
+    },
+    {
+      "rank": 6,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3276.2
+    },
+    {
+      "rank": 7,
+      "player": "SpeedySebas",
+      "gsi": 3252.2
+    },
+    {
+      "rank": 8,
+      "player": "rightrightright",
+      "gsi": 3022.0
+    },
+    {
+      "rank": 9,
+      "player": "############# 𝄂𝄚𝅦𝄚 𝄞",
+      "gsi": 2553.9
+    },
+    {
+      "rank": 10,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2530.4
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2171.0
+    },
+    {
+      "rank": 12,
+      "player": "freecheats48hnegotiate",
+      "gsi": 2138.3
+    },
+    {
+      "rank": 13,
+      "player": "xtuov",
+      "gsi": 2121.1
+    },
+    {
+      "rank": 14,
+      "player": "leakingscriptin48h",
+      "gsi": 2076.9
+    },
+    {
+      "rank": 15,
+      "player": "Tvirty",
+      "gsi": 2074.6
+    },
+    {
+      "rank": 16,
+      "player": "The Kroger",
+      "gsi": 2029.2
+    },
+    {
+      "rank": 17,
+      "player": "NeoRacer",
+      "gsi": 2010.6
+    },
+    {
+      "rank": 18,
+      "player": "hwadz",
+      "gsi": 2007.3
+    },
+    {
+      "rank": 19,
+      "player": "#### Water",
+      "gsi": 1930.0
+    },
+    {
+      "rank": 20,
+      "player": "tiro 😼",
+      "gsi": 1907.3
+    }
+  ]
+}
