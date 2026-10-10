@@ -1571,7 +1571,14 @@ class PowerRankingSystem:
         self.engine_vdi = VersatilityDepthIndexEngine(top_k=top_k_vdi, gamma=gamma_vdi)
         self.active_min_tracks = active_min_tracks
         self.alt_mappings = alt_mappings or ALT_MAPPINGS
-        self.blacklisted_players = blacklisted_players if blacklisted_players is not None else BLACKLISTED_PLAYERS
+        self.blacklisted_players = set(blacklisted_players if blacklisted_players is not None else BLACKLISTED_PLAYERS)
+        automatic_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'history', 'automatic_blacklist.json')
+        if os.path.exists(automatic_path):
+            with open(automatic_path, encoding='utf-8') as handle:
+                automatic = json.load(handle)
+            if automatic.get('schema') != 1 or not isinstance(automatic.get('bans'), dict):
+                raise ValueError('Invalid automatic blacklist ledger')
+            self.blacklisted_players.update(set(automatic['bans']) - set(automatic.get('exempt_user_ids', [])))
 
     async def ingest_leaderboards(
         self,

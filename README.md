@@ -51,6 +51,43 @@ The original standalone script is also included. The scheduled site uses the str
 
 GitHub Pages has a 1 GB site limit and a 100 GB/month soft bandwidth limit. Pages deployment artifacts are retained for only one day. If a run fails, inspect its Actions log; the public `status.json` records the last successful site's generation time and source revision.
 
+## Automatic copy detection
+
+Each build scans the raw top ten on all 88 tracks before calculating any ratings.
+Ghost inputs are Base64/zlib decoded into exact button-toggle frames. Two runs
+match when every control state is identical from frame zero through
+`ceil(max(finish_frames_a, finish_frames_b) / 2)`, inclusive, or when a run demonstrates
+high-confidence copy characteristics (at least 80% matching first-half toggles or at
+least 75% overall matching toggles combined with a contiguous identical sequence of at
+least 10 toggles in a single control channel). This covers exact prefix copies where
+cheaters only alter the end of the run, as well as slightly modified copies that inject
+micro-taps, tap jitter, or minor timing shifts (such as FlamBys17). A longer run whose
+midpoint exceeds the shorter run's finish is not comparable. Finish frames come from the
+API, not the last input change. Isolated tap spam cannot cause false positives because
+high-similarity detection requires a significant contiguous block of identical inputs.
+
+The API's exact UTC `time` determines the earlier original among directly matching
+runs. Rank, recording ID, and local first-seen time are never used as chronology.
+Equal or missing timestamps are reported without a new ban; known alts of the
+same player are not treated as different authors. This identifies the earliest
+available matching upload, not independent proof of who originally drove it.
+
+A detected account is excluded by `userId` from **every track and all overall
+rankings**, including the standalone ranking engine. The durable evidence ledger
+is `history/automatic_blacklist.json`, committed after successful publication.
+To override an automatic exclusion, add its user ID to `exempt_user_ids` in that
+file; manual bans still apply. No changes are made to the game's leaderboard.
+
+Previously scanned top-ten ghosts are cached in `cache/cheat_detection.json`
+and restored in Actions. Missing ghosts are fetched in batches of up to ten,
+at one request per second with a shared cooldown for rate-limit responses.
+They remain references after leaving the top ten; cache
+eviction loses those references but does not remove durable bans. Detection
+details, unresolved pairs, and unavailable recordings appear in
+`cache/cheat_detection_report.json` and the Actions `copy-detection-report`
+artifact, not the website. Failed fetches/decodes never create bans; existing
+bans remain active. An unreadable durable ledger stops publication.
+
 ## Automatic recovery
 
 Each trigger first runs an independent recovery job outside the Pages environment and publishing concurrency group. It force-cancels active main-branch runs of this workflow older than 20 minutes, rechecking their state first. Normal builds retain their 15-minute timeout. Only publishing is serialized. Recovery needs GitHub runners and a working trigger; it cannot repair a GitHub-wide outage. Recovery actions appear in the workflow logs.

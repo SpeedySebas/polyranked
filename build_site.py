@@ -10,6 +10,7 @@ import shutil
 import tempfile
 import urllib.request
 from publication_schedule import scheduled_release_time
+from power_rankings.cheat_detection import scan_leaderboards
 
 from power_rankings.power_ranking_system import (
     PowerRankingSystem,
@@ -152,6 +153,17 @@ async def build():
     report_progress(f"Build started: fetching fresh data for {len(system.registry.all_tracks)} tracks.")
     # No disk-cache fallback: failed fetches must never appear as a fresh update.
     leaderboards, totals = await fetch_complete_leaderboards(system.registry.all_tracks)
+    report_progress("Checking top-ten ghost recordings for copied runs.")
+    automatic_bans, detection = await scan_leaderboards(
+        leaderboards, system.registry.all_tracks,
+        ROOT / 'history' / 'automatic_blacklist.json',
+        ROOT / 'cache' / 'cheat_detection.json',
+        ROOT / 'cache' / 'cheat_detection_report.json',
+        system.alt_mappings,
+        progress=report_progress,
+    )
+    system.blacklisted_players = set(system.blacklisted_players) | automatic_bans
+    report_progress(f"Copy detection: {len(automatic_bans)} excluded accounts; {detection['findings']} matches, {detection['unresolved']} unresolved pairs, {detection['unavailable']} unavailable recordings.")
     system.registry.set_track_totals(totals)
     report_progress("Calculating player ratings and track weights.")
     report = system.compute_all_rankings(leaderboards, track_totals=totals)
