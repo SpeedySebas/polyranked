@@ -336,6 +336,22 @@
       "track": "Snow Park",
       "trackId": "191737cc4d1b74949e992d99371e5c7f5fc446a716af571c6e5449b23e9f4558",
       "game_version": "0.6.2"
+    },
+    "19fad03745d042c7300ab062cca52a933b7340054e9dac02ce6bef4764851cac": {
+      "userId": "19fad03745d042c7300ab062cca52a933b7340054e9dac02ce6bef4764851cac",
+      "nickname": "🫀👎",
+      "recording_id": 60144178,
+      "uploaded_at": "2026-10-11T17:10:14.000Z",
+      "original_userId": "62e199602161765222e91b23db71fc2389e697746a0474a34f519857e2451635",
+      "original_recording_id": 12502704,
+      "original_uploaded_at": "2026-04-21T08:49:01.000Z",
+      "matched_through_frame": 17211,
+      "frames": 34422,
+      "original_frames": 34410,
+      "rule_version": 1,
+      "track": "Arabica",
+      "trackId": "8cf99166f12cbb56a9df4e022a0e9b8c78973adb929dbf1e265ebb9f99f01163",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
