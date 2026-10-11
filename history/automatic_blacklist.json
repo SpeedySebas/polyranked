@@ -320,6 +320,22 @@
       "track": "Winter 1",
       "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
       "game_version": "0.6.2"
+    },
+    "7ea4c7c9598d77d43e9304793515df947f6febabea6d5844eb62171d71bbf919": {
+      "userId": "7ea4c7c9598d77d43e9304793515df947f6febabea6d5844eb62171d71bbf919",
+      "nickname": "mobile777",
+      "recording_id": 60128617,
+      "uploaded_at": "2026-10-11T15:43:12.000Z",
+      "original_userId": "0641686a43714adbe76dc63874648c04952dd91557add4000ef776b5197abb70",
+      "original_recording_id": 53289600,
+      "original_uploaded_at": "2026-09-26T16:18:09.000Z",
+      "matched_through_frame": 11059,
+      "frames": 22118,
+      "original_frames": 22118,
+      "rule_version": 1,
+      "track": "Snow Park",
+      "trackId": "191737cc4d1b74949e992d99371e5c7f5fc446a716af571c6e5449b23e9f4558",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
