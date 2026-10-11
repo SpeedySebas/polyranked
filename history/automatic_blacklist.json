@@ -352,6 +352,22 @@
       "track": "Arabica",
       "trackId": "8cf99166f12cbb56a9df4e022a0e9b8c78973adb929dbf1e265ebb9f99f01163",
       "game_version": "0.6.2"
+    },
+    "4883a10377cc3b1881fc57f1c4c85ce11989250b30d0398ea816736486ffa487": {
+      "userId": "4883a10377cc3b1881fc57f1c4c85ce11989250b30d0398ea816736486ffa487",
+      "nickname": "up up",
+      "recording_id": 60170460,
+      "uploaded_at": "2026-10-11T20:23:29.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 58049269,
+      "original_uploaded_at": "2026-10-07T02:44:36.000Z",
+      "matched_through_frame": 8501,
+      "frames": 17002,
+      "original_frames": 16999,
+      "rule_version": 1,
+      "track": "Winter 1",
+      "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
