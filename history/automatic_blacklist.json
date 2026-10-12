@@ -448,6 +448,22 @@
       "track": "Winter 1",
       "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
       "game_version": "0.6.2"
+    },
+    "3ab4b9e8102e2daf487a59bdd92d76dfd066251d44dca4122cb6a9ab44014316": {
+      "userId": "3ab4b9e8102e2daf487a59bdd92d76dfd066251d44dca4122cb6a9ab44014316",
+      "nickname": "coolguy(im a chud)",
+      "recording_id": 60539458,
+      "uploaded_at": "2026-10-12T19:16:11.000Z",
+      "original_userId": "62e199602161765222e91b23db71fc2389e697746a0474a34f519857e2451635",
+      "original_recording_id": 11573214,
+      "original_uploaded_at": "2026-04-17T05:40:37.000Z",
+      "matched_through_frame": 11131,
+      "frames": 22262,
+      "original_frames": 22262,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
