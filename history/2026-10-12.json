@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-12T00:03:16Z",
+  "release_at": "2026-10-12T00:05:00Z",
+  "snapshot": "snapshots/3fcd192b3635935b8300c41daacce9e8c9cd66ad2846c33f079926da36b17ca8.json",
+  "source_commit": "79310daea53e9eeecaf697af20bc7114f242b8d9",
+  "tracks": 88,
+  "entries": 88000,
+  "players": 39855,
+  "index_sha256": "132333a0b2272acc1c2876a069c3c243f017b9a724a14c0f598e2c7e9124ba93",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3869.9
+    },
+    {
+      "rank": 2,
+      "player": "cheesebob (81)",
+      "gsi": 3587.9
+    },
+    {
+      "rank": 3,
+      "player": "youngfella",
+      "gsi": 3555.6
+    },
+    {
+      "rank": 4,
+      "player": "SpeedySebas",
+      "gsi": 3520.8
+    },
+    {
+      "rank": 5,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3499.1
+    },
+    {
+      "rank": 6,
+      "player": "The5andOnly🐐🍑",
+      "gsi": 3448.4
+    },
+    {
+      "rank": 7,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3307.8
+    },
+    {
+      "rank": 8,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2821.1
+    },
+    {
+      "rank": 9,
+      "player": "The Kroger",
+      "gsi": 2421.9
+    },
+    {
+      "rank": 10,
+      "player": "hwadz",
+      "gsi": 2210.4
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2200.3
+    },
+    {
+      "rank": 12,
+      "player": "xtuov",
+      "gsi": 2183.4
+    },
+    {
+      "rank": 13,
+      "player": "Tvirty",
+      "gsi": 2134.6
+    },
+    {
+      "rank": 14,
+      "player": "NeoRacer",
+      "gsi": 2043.6
+    },
+    {
+      "rank": 15,
+      "player": "jimy",
+      "gsi": 1953.5
+    },
+    {
+      "rank": 16,
+      "player": "#### Water",
+      "gsi": 1942.6
+    },
+    {
+      "rank": 17,
+      "player": "tiro 😼",
+      "gsi": 1932.9
+    },
+    {
+      "rank": 18,
+      "player": "Neki",
+      "gsi": 1893.9
+    },
+    {
+      "rank": 19,
+      "player": "OL",
+      "gsi": 1847.5
+    },
+    {
+      "rank": 20,
+      "player": "CSniper",
+      "gsi": 1815.0
+    }
+  ]
+}
