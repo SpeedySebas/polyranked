@@ -560,6 +560,22 @@
       "track": "Desert 3",
       "trackId": "2806030c503abb41a1a26fa9a570888be14296172bb273798ef0ad87a108a2ec",
       "game_version": "0.6.2"
+    },
+    "26d8cd14bd453d8c6ec786945b07cfdedabba778b12890a081e9a8ea565a8220": {
+      "userId": "26d8cd14bd453d8c6ec786945b07cfdedabba778b12890a081e9a8ea565a8220",
+      "nickname": "zepstein prime ####",
+      "recording_id": 60661168,
+      "uploaded_at": "2026-10-13T06:25:10.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 56840729,
+      "original_uploaded_at": "2026-10-04T12:18:18.000Z",
+      "matched_through_frame": 14039,
+      "frames": 28073,
+      "original_frames": 28078,
+      "rule_version": 1,
+      "track": "𐌀𐌕𐌋𐌀𐌍𐌕𐌉𐌔",
+      "trackId": "27c3384de80b1bed23f1ea15316abe62c8cca33e955805f23d461803f6dee8d4",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
