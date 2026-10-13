@@ -496,6 +496,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "ac4446046ea33c1e6bde20b4cbbf4d704127be8aa35d3f6b3a6d1e270d561806": {
+      "userId": "ac4446046ea33c1e6bde20b4cbbf4d704127be8aa35d3f6b3a6d1e270d561806",
+      "nickname": "get a better anti cheat",
+      "recording_id": 60577703,
+      "uploaded_at": "2026-10-12T23:50:25.000Z",
+      "original_userId": "8a20be6e1f16bf393882db438e6ebb8fc225457c9299a2b25dbb4f4a54789f99",
+      "original_recording_id": 26669921,
+      "original_uploaded_at": "2026-06-06T21:58:52.000Z",
+      "matched_through_frame": 13415,
+      "frames": 26829,
+      "original_frames": 26830,
+      "rule_version": 1,
+      "track": "Winter 2",
+      "trackId": "99864b635d1891d22e17eb9267527a07a92c49c0f02893729fa2ded90e3ca0f9",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
