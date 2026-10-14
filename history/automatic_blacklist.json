@@ -608,6 +608,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "1fdc13e8fb91c4507600155725eed1132887db7907df2affb33d76b5c384dafd": {
+      "userId": "1fdc13e8fb91c4507600155725eed1132887db7907df2affb33d76b5c384dafd",
+      "nickname": "Maor Pupkin Shaltiel",
+      "recording_id": 61192007,
+      "uploaded_at": "2026-10-14T07:37:39.000Z",
+      "original_userId": "c664b56045879cf0a9936de88335c5d00e24ef4318a230228404cdb7e5f7124c",
+      "original_recording_id": 26887652,
+      "original_uploaded_at": "2026-06-07T22:24:44.000Z",
+      "matched_through_frame": 15412,
+      "frames": 30823,
+      "original_frames": 30823,
+      "rule_version": 1,
+      "track": "Launch Control",
+      "trackId": "28b658c7d10eb8b5de6f465e034e87e40f70b37e4534d8c37d1f2af06b5a36d7",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
