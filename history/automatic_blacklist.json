@@ -624,6 +624,22 @@
       "track": "Launch Control",
       "trackId": "28b658c7d10eb8b5de6f465e034e87e40f70b37e4534d8c37d1f2af06b5a36d7",
       "game_version": "0.6.2"
+    },
+    "d849d285e0aa7867c64c266836802c7916d147e12a351f4188e177104daf013d": {
+      "userId": "d849d285e0aa7867c64c266836802c7916d147e12a351f4188e177104daf013d",
+      "nickname": "George Floyd",
+      "recording_id": 61229036,
+      "uploaded_at": "2026-10-14T09:00:11.000Z",
+      "original_userId": "c664b56045879cf0a9936de88335c5d00e24ef4318a230228404cdb7e5f7124c",
+      "original_recording_id": 26887652,
+      "original_uploaded_at": "2026-06-07T22:24:44.000Z",
+      "matched_through_frame": 15412,
+      "frames": 30813,
+      "original_frames": 30823,
+      "rule_version": 1,
+      "track": "Launch Control",
+      "trackId": "28b658c7d10eb8b5de6f465e034e87e40f70b37e4534d8c37d1f2af06b5a36d7",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
