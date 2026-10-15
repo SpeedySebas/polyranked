@@ -720,6 +720,22 @@
       "track": "Desert 3",
       "trackId": "2806030c503abb41a1a26fa9a570888be14296172bb273798ef0ad87a108a2ec",
       "game_version": "0.6.2"
+    },
+    "b593c72247089b7648b1d429f7e9a405d11e956c41cebf1c6f0c0112d6598132": {
+      "userId": "b593c72247089b7648b1d429f7e9a405d11e956c41cebf1c6f0c0112d6598132",
+      "nickname": "Taylor Bingle 67",
+      "recording_id": 62008555,
+      "uploaded_at": "2026-10-15T17:37:49.000Z",
+      "original_userId": "0242738c933112690c03077e63d1e5e6167029ddf2a4b909ae1736fb75c8b1bf",
+      "original_recording_id": 10037003,
+      "original_uploaded_at": "2026-04-10T20:20:00.000Z",
+      "matched_through_frame": 14558,
+      "frames": 29116,
+      "original_frames": 29114,
+      "rule_version": 1,
+      "track": "Desert 5",
+      "trackId": "e5d084e06db4ab71196fea44efeceb23c8561266a78669c324a38f92581fe2db",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
