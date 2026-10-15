@@ -656,6 +656,22 @@
       "track": "Summer 2",
       "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
       "game_version": "0.6.2"
+    },
+    "9d84a825aaa592272eea124a52eeb0e67bf54a89a9fd0a14afec48596255d1a4": {
+      "userId": "9d84a825aaa592272eea124a52eeb0e67bf54a89a9fd0a14afec48596255d1a4",
+      "nickname": "Pancho IB 0",
+      "recording_id": 61757389,
+      "uploaded_at": "2026-10-15T09:37:54.000Z",
+      "original_userId": "ce5bc665229844f77b5c3c4c6c4424ef17df808e7a5a2c5154930d68d9797830",
+      "original_recording_id": 60095303,
+      "original_uploaded_at": "2026-10-11T12:58:39.000Z",
+      "matched_through_frame": 11060,
+      "frames": 22120,
+      "original_frames": 22084,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
