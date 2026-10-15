@@ -640,6 +640,22 @@
       "track": "Launch Control",
       "trackId": "28b658c7d10eb8b5de6f465e034e87e40f70b37e4534d8c37d1f2af06b5a36d7",
       "game_version": "0.6.2"
+    },
+    "4f07bb3da926b703b9f5633823129b0a0b361d241eb69d5b9af58ab9abc9a91b": {
+      "userId": "4f07bb3da926b703b9f5633823129b0a0b361d241eb69d5b9af58ab9abc9a91b",
+      "nickname": "Joseo y Dedeo de Panchas",
+      "recording_id": 61753410,
+      "uploaded_at": "2026-10-15T09:30:02.000Z",
+      "original_userId": "f630d2d467a0e909268eb43be6935a213ece2780cfe6e63bcb2badd4eb6a624f",
+      "original_recording_id": 35931844,
+      "original_uploaded_at": "2026-07-16T20:12:49.000Z",
+      "matched_through_frame": 7592,
+      "frames": 15183,
+      "original_frames": 15178,
+      "rule_version": 1,
+      "track": "Summer 2",
+      "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
