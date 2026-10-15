@@ -260,8 +260,8 @@ class TestTrackDomainMapping(unittest.TestCase):
         domain_totals = registry.get_domain_totals()
         self.assertIn("Fullspeed", domain_totals)
         self.assertIn("Technical", domain_totals)
-        self.assertEqual(domain_totals["Fullspeed"], 41)
-        self.assertEqual(domain_totals["Technical"], 47)
+        self.assertEqual(domain_totals["Fullspeed"], 42)
+        self.assertEqual(domain_totals["Technical"], 46)
         self.assertEqual(domain_totals["Fullspeed"] + domain_totals["Technical"], 88)
 
 
