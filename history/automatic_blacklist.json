@@ -736,6 +736,22 @@
       "track": "Desert 5",
       "trackId": "e5d084e06db4ab71196fea44efeceb23c8561266a78669c324a38f92581fe2db",
       "game_version": "0.6.2"
+    },
+    "90bc4ee7512792698913ee9465b84c04c1445bbea87223a6fe9c1acfccde2ed4": {
+      "userId": "90bc4ee7512792698913ee9465b84c04c1445bbea87223a6fe9c1acfccde2ed4",
+      "nickname": "Joseo y Dedeo",
+      "recording_id": 62227092,
+      "uploaded_at": "2026-10-16T07:48:51.000Z",
+      "original_userId": "2e27bc0c064a3c76d63fc662a2852a2803db689a51cd0784dfbcbdf35a23bb41",
+      "original_recording_id": 33895308,
+      "original_uploaded_at": "2026-07-02T20:37:19.000Z",
+      "matched_through_frame": 10185,
+      "frames": 20370,
+      "original_frames": 20302,
+      "rule_version": 1,
+      "track": "Desert 3",
+      "trackId": "2806030c503abb41a1a26fa9a570888be14296172bb273798ef0ad87a108a2ec",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
