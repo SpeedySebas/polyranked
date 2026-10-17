@@ -832,6 +832,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "52da46c89adfec98292112afb183eb9d2e146b47ea1e9d3eeeed68f5c38e5374": {
+      "userId": "52da46c89adfec98292112afb183eb9d2e146b47ea1e9d3eeeed68f5c38e5374",
+      "nickname": "Anonymous",
+      "recording_id": 62575763,
+      "uploaded_at": "2026-10-16T23:34:51.000Z",
+      "original_userId": "0641686a43714adbe76dc63874648c04952dd91557add4000ef776b5197abb70",
+      "original_recording_id": 53950830,
+      "original_uploaded_at": "2026-09-28T15:05:39.000Z",
+      "matched_through_frame": 24174,
+      "frames": 48348,
+      "original_frames": 48310,
+      "rule_version": 1,
+      "track": "La Infinita",
+      "trackId": "387aab2d3400ebf74b5a780d15c911cdc695053b94be3e7ad23f6ae313b2471c",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
