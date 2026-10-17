@@ -880,6 +880,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "ec110b2ef5fe86b758c4f2a6909c226627398c7e28f0be0c9f6df6ed1750fd76": {
+      "userId": "ec110b2ef5fe86b758c4f2a6909c226627398c7e28f0be0c9f6df6ed1750fd76",
+      "nickname": "Taylor Bingle 67",
+      "recording_id": 62694989,
+      "uploaded_at": "2026-10-17T12:36:27.000Z",
+      "original_userId": "f630d2d467a0e909268eb43be6935a213ece2780cfe6e63bcb2badd4eb6a624f",
+      "original_recording_id": 36567552,
+      "original_uploaded_at": "2026-07-22T01:42:12.000Z",
+      "matched_through_frame": 9656,
+      "frames": 19300,
+      "original_frames": 19311,
+      "rule_version": 1,
+      "track": "Winter 4",
+      "trackId": "7d134c939df80c676a258266201beedd3b93572d5603f3ff4339ff8679803715",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
