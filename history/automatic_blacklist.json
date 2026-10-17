@@ -848,6 +848,22 @@
       "track": "La Infinita",
       "trackId": "387aab2d3400ebf74b5a780d15c911cdc695053b94be3e7ad23f6ae313b2471c",
       "game_version": "0.6.2"
+    },
+    "c5fbffb15f7f114271f0a71371905f446c1ee1f7f26f1159ff8fb219032aaf04": {
+      "userId": "c5fbffb15f7f114271f0a71371905f446c1ee1f7f26f1159ff8fb219032aaf04",
+      "nickname": "Anonymous",
+      "recording_id": 62578833,
+      "uploaded_at": "2026-10-16T23:58:46.000Z",
+      "original_userId": "c664b56045879cf0a9936de88335c5d00e24ef4318a230228404cdb7e5f7124c",
+      "original_recording_id": 40905187,
+      "original_uploaded_at": "2026-08-22T00:39:32.000Z",
+      "matched_through_frame": 16442,
+      "frames": 32884,
+      "original_frames": 32676,
+      "rule_version": 1,
+      "track": "Cogware",
+      "trackId": "9acd9aef650c4ccc41bb01f72ed44dfaa13f2e4404d2e3466f09cc1adcd9a9c0",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
