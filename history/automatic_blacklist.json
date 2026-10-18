@@ -912,6 +912,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "c62f03a83286a9c2e1afafcba300ad179ed91ee56b9cae1f58612beba0c057d8": {
+      "userId": "c62f03a83286a9c2e1afafcba300ad179ed91ee56b9cae1f58612beba0c057d8",
+      "nickname": "Green Goonblin",
+      "recording_id": 62951650,
+      "uploaded_at": "2026-10-18T16:24:30.000Z",
+      "original_userId": "0242738c933112690c03077e63d1e5e6167029ddf2a4b909ae1736fb75c8b1bf",
+      "original_recording_id": 44592411,
+      "original_uploaded_at": "2026-09-05T22:00:41.000Z",
+      "matched_through_frame": 11130,
+      "frames": 22260,
+      "original_frames": 22223,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
