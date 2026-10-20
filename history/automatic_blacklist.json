@@ -944,6 +944,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "7e2258ccfc22c5c31b9f492ae7abd421e282abc6ec7eaf7db85aafe3f74ec1e6": {
+      "userId": "7e2258ccfc22c5c31b9f492ae7abd421e282abc6ec7eaf7db85aafe3f74ec1e6",
+      "nickname": "Julian Agoua",
+      "recording_id": 63660909,
+      "uploaded_at": "2026-10-20T11:59:46.000Z",
+      "original_userId": "feaa0d18256f8cb5dfc53da072ff5fda038f7ea7e52f575bc3cc7e4ca25a7bad",
+      "original_recording_id": 54673709,
+      "original_uploaded_at": "2026-09-29T23:10:49.000Z",
+      "matched_through_frame": 12632,
+      "frames": 25264,
+      "original_frames": 25259,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
