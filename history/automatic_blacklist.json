@@ -1024,6 +1024,22 @@
       "track": "Summer 2",
       "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
       "game_version": "0.6.2"
+    },
+    "e7dd75d44d01633b167a1a5dd7b88bff332b5ca8a27ad71d2c8cadca90a87f8b": {
+      "userId": "e7dd75d44d01633b167a1a5dd7b88bff332b5ca8a27ad71d2c8cadca90a87f8b",
+      "nickname": "TELA WAS HERE ",
+      "recording_id": 64192388,
+      "uploaded_at": "2026-10-21T13:26:14.000Z",
+      "original_userId": "5c93c9be80433c03f7e2fc61a2db0c797ef51107a89f3ba4dfff383dd60af35c",
+      "original_recording_id": 36147656,
+      "original_uploaded_at": "2026-07-18T12:26:38.000Z",
+      "matched_through_frame": 11136,
+      "frames": 22271,
+      "original_frames": 22270,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
