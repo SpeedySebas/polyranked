@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-23T00:03:24Z",
+  "release_at": "2026-10-23T00:05:00Z",
+  "snapshot": "snapshots/a798c8bbd9db4fcae9dac44ac7c9a7ee01aa89c69aab1c5b7bc169c982e7358a.json",
+  "source_commit": "814e9268ea0f17456bff66ce071280168dd38e20",
+  "tracks": 88,
+  "entries": 88000,
+  "players": 40248,
+  "index_sha256": "132333a0b2272acc1c2876a069c3c243f017b9a724a14c0f598e2c7e9124ba93",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3908.0
+    },
+    {
+      "rank": 2,
+      "player": "cheesebob (81)",
+      "gsi": 3617.5
+    },
+    {
+      "rank": 3,
+      "player": "youngfella",
+      "gsi": 3590.2
+    },
+    {
+      "rank": 4,
+      "player": "SpeedySebas",
+      "gsi": 3545.8
+    },
+    {
+      "rank": 5,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3540.8
+    },
+    {
+      "rank": 6,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3381.6
+    },
+    {
+      "rank": 7,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2913.3
+    },
+    {
+      "rank": 8,
+      "player": "The Kroger",
+      "gsi": 2553.8
+    },
+    {
+      "rank": 9,
+      "player": "hwadz",
+      "gsi": 2543.0
+    },
+    {
+      "rank": 10,
+      "player": "jimy",
+      "gsi": 2267.6
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2227.3
+    },
+    {
+      "rank": 12,
+      "player": "Mooki3x!",
+      "gsi": 2149.7
+    },
+    {
+      "rank": 13,
+      "player": "xtuov",
+      "gsi": 2140.4
+    },
+    {
+      "rank": 14,
+      "player": "NeoRacer",
+      "gsi": 2086.2
+    },
+    {
+      "rank": 15,
+      "player": "Tvirty",
+      "gsi": 1983.9
+    },
+    {
+      "rank": 16,
+      "player": "OL",
+      "gsi": 1946.2
+    },
+    {
+      "rank": 17,
+      "player": "tiro 😼",
+      "gsi": 1922.1
+    },
+    {
+      "rank": 18,
+      "player": "Neki",
+      "gsi": 1896.6
+    },
+    {
+      "rank": 19,
+      "player": "CSniper",
+      "gsi": 1815.4
+    },
+    {
+      "rank": 20,
+      "player": "sv5",
+      "gsi": 1773.5
+    }
+  ]
+}
