@@ -1232,6 +1232,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "ac4fb7873ff65d5d356d48b1a657449e59a9ed71a6295e4e0e888ddc338e95a0": {
+      "userId": "ac4fb7873ff65d5d356d48b1a657449e59a9ed71a6295e4e0e888ddc338e95a0",
+      "nickname": "Anonymous",
+      "recording_id": 65655930,
+      "uploaded_at": "2026-10-25T12:55:59.000Z",
+      "original_userId": "6368f9b4eecd42938f7082ff29458b36b401797d9c3096f784fe59ec4f0e8261",
+      "original_recording_id": 33512588,
+      "original_uploaded_at": "2026-06-30T23:51:53.000Z",
+      "matched_through_frame": 29679,
+      "frames": 59247,
+      "original_frames": 59358,
+      "rule_version": 1,
+      "track": "Out of Bounds",
+      "trackId": "d57a81355f36d5ef0bd2c063d251baf6d28401c275a8b3e3a62e0ae5071a2559",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
