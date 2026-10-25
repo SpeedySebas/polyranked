@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-25T00:03:49Z",
+  "release_at": "2026-10-25T00:05:00Z",
+  "snapshot": "snapshots/a5b38d4e3ee0b10d5069441b5cf27e69b887aa309d266d395f431556b00b5939.json",
+  "source_commit": "fd2e1880765073418ae908f35b07e9c36ddd8484",
+  "tracks": 88,
+  "entries": 88000,
+  "players": 40230,
+  "index_sha256": "132333a0b2272acc1c2876a069c3c243f017b9a724a14c0f598e2c7e9124ba93",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3910.2
+    },
+    {
+      "rank": 2,
+      "player": "cheesebob (81)",
+      "gsi": 3722.1
+    },
+    {
+      "rank": 3,
+      "player": "SpeedySebas",
+      "gsi": 3549.8
+    },
+    {
+      "rank": 4,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3542.5
+    },
+    {
+      "rank": 5,
+      "player": "youngfella",
+      "gsi": 3386.9
+    },
+    {
+      "rank": 6,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3358.4
+    },
+    {
+      "rank": 7,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 3121.1
+    },
+    {
+      "rank": 8,
+      "player": "The Kroger",
+      "gsi": 2553.7
+    },
+    {
+      "rank": 9,
+      "player": "hwadz",
+      "gsi": 2543.7
+    },
+    {
+      "rank": 10,
+      "player": "jimy",
+      "gsi": 2267.6
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2227.2
+    },
+    {
+      "rank": 12,
+      "player": "M oo 21 5ki 3x!!",
+      "gsi": 2150.0
+    },
+    {
+      "rank": 13,
+      "player": "xtuov",
+      "gsi": 2140.6
+    },
+    {
+      "rank": 14,
+      "player": "↑   Who is bro   ↑",
+      "gsi": 2101.7
+    },
+    {
+      "rank": 15,
+      "player": "OL",
+      "gsi": 2002.5
+    },
+    {
+      "rank": 16,
+      "player": "Tvirty",
+      "gsi": 1990.7
+    },
+    {
+      "rank": 17,
+      "player": "tiro 😼",
+      "gsi": 1919.4
+    },
+    {
+      "rank": 18,
+      "player": "Neki",
+      "gsi": 1888.7
+    },
+    {
+      "rank": 19,
+      "player": "CSniper",
+      "gsi": 1812.5
+    },
+    {
+      "rank": 20,
+      "player": "sv5",
+      "gsi": 1723.4
+    }
+  ]
+}
