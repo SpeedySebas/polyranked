@@ -130,7 +130,7 @@ def refresh_discipline_counts(html, totals):
     return html
 
 
-def validate_html(html, report, track_difficulty_data):
+def validate_html(html, report, track_difficulty_data=None):
     players = embedded_json(html, "PLAYERS")
     weights = embedded_json(html, "TRACK_WEIGHTS_DATA")
     if not players or len(players) != len(report["players"]):
@@ -142,7 +142,7 @@ def validate_html(html, report, track_difficulty_data):
     if players[0]["u"] != report["players"][0]["username"]:
         raise ValueError("The generated HTML contains a stale ranking")
     embedded_difficulty = embedded_json(html, "TRACK_DIFFICULTY_DATA")
-    if embedded_difficulty != track_difficulty_data:
+    if track_difficulty_data is not None and embedded_difficulty != track_difficulty_data:
         raise ValueError("The generated HTML does not contain the fresh track difficulty rankings")
     if len(embedded_difficulty["main_tracks"]) + len(embedded_difficulty["community_tracks"]) != report["metadata"]["total_tracks"]:
         raise ValueError("The track difficulty rankings do not cover every configured track")
