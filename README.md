@@ -53,7 +53,10 @@ GitHub Pages has a 1 GB site limit and a 100 GB/month soft bandwidth limit. Page
 
 ## Automatic copy detection
 
-Each build scans the raw top ten on all 88 tracks before calculating any ratings.
+Each build scans the raw top 30 on all 88 tracks before calculating rankings or
+track difficulty. Track difficulty uses the same cleaned top 30 entries as the
+leaderboard rankings, after manual and automatic exclusions, [TAS] filtering,
+and alternate-account consolidation.
 Ghost inputs are Base64/zlib decoded into exact button-toggle frames. Two runs
 match when every control state is identical from frame zero through
 `ceil(max(finish_frames_a, finish_frames_b) / 2)`, inclusive, or when a run demonstrates
@@ -78,10 +81,10 @@ is `history/automatic_blacklist.json`, committed after successful publication.
 To override an automatic exclusion, add its user ID to `exempt_user_ids` in that
 file; manual bans still apply. No changes are made to the game's leaderboard.
 
-Previously scanned top-ten ghosts are cached in `cache/cheat_detection.json`
+Previously scanned ghosts are cached in `cache/cheat_detection.json`
 and restored in Actions. Missing ghosts are fetched in batches of up to ten,
 at one request per second with a shared cooldown for rate-limit responses.
-They remain references after leaving the top ten; cache
+They remain references after leaving the current top 30; cache
 eviction loses those references but does not remove durable bans. Detection
 details, unresolved pairs, and unavailable recordings appear in
 `cache/cheat_detection_report.json` and the Actions `copy-detection-report`

@@ -1639,10 +1639,25 @@ class PowerRankingSystem:
                     return leaderboards, totals
             raise
 
+    def clean_leaderboards(
+        self,
+        raw_leaderboards: Dict[str, List[Dict[str, Any]]],
+    ) -> Dict[str, List[Dict[str, Any]]]:
+        """Apply the ranking pipeline's shared filters and alt consolidation per track."""
+        return {
+            track_name: process_raw_leaderboard(
+                entries,
+                alt_mappings=self.alt_mappings,
+                blacklisted_players=self.blacklisted_players,
+            )
+            for track_name, entries in raw_leaderboards.items()
+        }
+
     def compute_all_rankings(
         self,
         raw_leaderboards: Dict[str, List[Dict[str, Any]]],
-        track_totals: Optional[Dict[str, int]] = None
+        track_totals: Optional[Dict[str, int]] = None,
+        cleaned_leaderboards: Optional[Dict[str, List[Dict[str, Any]]]] = None,
     ) -> Dict[str, Any]:
         """Execute v10.0 Pure Leaderboard Architecture Pipeline."""
         t_start = time.monotonic()
@@ -1651,17 +1666,14 @@ class PowerRankingSystem:
             self.registry.set_track_totals(track_totals)
 
         # Step 1: Clean leaderboards, consolidate alts per track, and extract canonical player metadata
-        cleaned_tracks: Dict[str, List[Dict[str, Any]]] = {}
+        cleaned_tracks = (
+            cleaned_leaderboards
+            if cleaned_leaderboards is not None
+            else self.clean_leaderboards(raw_leaderboards)
+        )
         all_players_meta: Dict[str, Dict[str, Any]] = {}
 
-        for track_name, entries in raw_leaderboards.items():
-            cleaned = process_raw_leaderboard(
-                entries,
-                alt_mappings=self.alt_mappings,
-                blacklisted_players=self.blacklisted_players
-            )
-            cleaned_tracks[track_name] = cleaned
-
+        for track_name, cleaned in cleaned_tracks.items():
             for entry in cleaned:
                 canonical_key = entry["canonicalKey"]
                 canonical_nick = entry["canonicalNickname"]

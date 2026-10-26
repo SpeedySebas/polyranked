@@ -11,6 +11,7 @@ import tempfile
 import urllib.request
 from publication_schedule import scheduled_release_time
 from power_rankings.cheat_detection import scan_leaderboards
+from power_rankings.track_difficulty import build_track_difficulty_data
 
 from power_rankings.power_ranking_system import (
     PowerRankingSystem,
@@ -21,7 +22,7 @@ from power_rankings.power_ranking_system import (
 ROOT = Path(__file__).resolve().parent
 SCRAPE_AMOUNT = 1000
 SITE_URL = "https://speedysebas.github.io/polyranked/"
-DATA_NAMES = ("PLAYERS", "TRACK_WEIGHTS_DATA", "TRACK_DOMAINS", "TRACK_SUBGENRES", "TRACK_STYLES")
+DATA_NAMES = ("PLAYERS", "TRACK_WEIGHTS_DATA", "TRACK_DOMAINS", "TRACK_SUBGENRES", "TRACK_STYLES", "TRACK_DIFFICULTY_DATA")
 
 
 def iso_time(value):
@@ -111,6 +112,16 @@ def embedded_json(html, name):
     return json.loads(match.group(1))
 
 
+def replace_embedded_json(html, name, data):
+    """Replace a one-line JSON dataset in the generated HTML template."""
+    encoded = json.dumps(data, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
+    pattern = r"(const " + re.escape(name) + r" = ).*?(;\s*\n)"
+    html, count = re.subn(pattern, lambda match: match.group(1) + encoded + match.group(2), html, count=1)
+    if count != 1:
+        raise ValueError(f"The HTML template is missing {name}")
+    return html
+
+
 def refresh_discipline_counts(html, totals):
     for domain in ("Fullspeed", "Technical"):
         count = totals[domain]
@@ -119,7 +130,7 @@ def refresh_discipline_counts(html, totals):
     return html
 
 
-def validate_html(html, report):
+def validate_html(html, report, track_difficulty_data):
     players = embedded_json(html, "PLAYERS")
     weights = embedded_json(html, "TRACK_WEIGHTS_DATA")
     if not players or len(players) != len(report["players"]):
@@ -130,6 +141,15 @@ def validate_html(html, report):
         raise ValueError("The generated HTML is missing the fresh update timestamp")
     if players[0]["u"] != report["players"][0]["username"]:
         raise ValueError("The generated HTML contains a stale ranking")
+    embedded_difficulty = embedded_json(html, "TRACK_DIFFICULTY_DATA")
+    if embedded_difficulty != track_difficulty_data:
+        raise ValueError("The generated HTML does not contain the fresh track difficulty rankings")
+    if len(embedded_difficulty["main_tracks"]) + len(embedded_difficulty["community_tracks"]) != report["metadata"]["total_tracks"]:
+        raise ValueError("The track difficulty rankings do not cover every configured track")
+    if {item["track"] for item in embedded_difficulty["main_tracks"]} != {item["track"] for item in embedded_difficulty["main_tracks_tas"]}:
+        raise ValueError("The TAS rankings do not cover every campaign track")
+    if {item["track"] for item in embedded_difficulty["community_tracks"]} != {item["track"] for item in embedded_difficulty["community_tracks_tas"]}:
+        raise ValueError("The TAS rankings do not cover every community track")
 
 
 def save_daily_summary(source, history_dir):
@@ -153,7 +173,7 @@ async def build():
     report_progress(f"Build started: fetching fresh data for {len(system.registry.all_tracks)} tracks.")
     # No disk-cache fallback: failed fetches must never appear as a fresh update.
     leaderboards, totals = await fetch_complete_leaderboards(system.registry.all_tracks)
-    report_progress("Checking top-ten ghost recordings for copied runs.")
+    report_progress("Checking top-30 ghost recordings for copied runs.")
     automatic_bans, detection = await scan_leaderboards(
         leaderboards, system.registry.all_tracks,
         ROOT / 'history' / 'automatic_blacklist.json',
@@ -165,8 +185,14 @@ async def build():
     system.blacklisted_players = set(system.blacklisted_players) | automatic_bans
     report_progress(f"Copy detection: {len(automatic_bans)} excluded accounts; {detection['findings']} matches, {detection['unresolved']} unresolved pairs, {detection['unavailable']} unavailable recordings.")
     system.registry.set_track_totals(totals)
+    cleaned_leaderboards = system.clean_leaderboards(leaderboards)
+    track_difficulty_data = build_track_difficulty_data(
+        cleaned_leaderboards, system.registry.main_tracks, system.registry.community_tracks
+    )
     report_progress("Calculating player ratings and track weights.")
-    report = system.compute_all_rankings(leaderboards, track_totals=totals)
+    report = system.compute_all_rankings(
+        leaderboards, track_totals=totals, cleaned_leaderboards=cleaned_leaderboards
+    )
     if not report["players"]:
         raise ValueError("The ranking calculation produced no players")
 
@@ -177,7 +203,8 @@ async def build():
         if not update_methodology_html(report, html_path=str(index), index_path=str(index)):
             raise ValueError("The HTML update failed; deployment cancelled")
         html = refresh_discipline_counts(index.read_text(encoding="utf-8"), report["metadata"]["discipline_totals"])
-        validate_html(html, report)
+        html = replace_embedded_json(html, "TRACK_DIFFICULTY_DATA", track_difficulty_data)
+        validate_html(html, report, track_difficulty_data)
         report_progress(f"Rankings calculated and validated for {len(report['players']):,} players. Preparing website files.")
         generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
         release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") in ("schedule", "workflow_dispatch") else datetime.now(timezone.utc)

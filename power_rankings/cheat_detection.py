@@ -12,6 +12,7 @@ import aiohttp
 from power_rankings.power_ranking_system import (
     API_VERSION, BASE_URL, HEADERS, TokenBucket, resolve_canonical_player,
 )
+from power_rankings.track_difficulty import TOP_RUNS
 
 RULE_VERSION = 1
 MAX_BYTES = 8 * 1024 * 1024
@@ -180,7 +181,7 @@ def valid_cached_run(run):
 
 
 async def scan_leaderboards(leaderboards, tracks, state_path, cache_path, report_path, alt_mappings=None, progress=None):
-    """Scan raw top ten, reuse historical top-ten ghosts, return durable ban IDs.
+    """Scan the raw top 30, reuse cached historical ghosts, and return durable ban IDs.
 
     Failure to obtain a ghost is reported as unavailable, never evidence. An
     unreadable durable ban ledger fails the build instead of silently unbanning.
@@ -215,54 +216,56 @@ async def scan_leaderboards(leaderboards, tracks, state_path, cache_path, report
                     missing.append(entry)
             if not missing:
                 return current
-            keys = ','.join(str(entry['id']) for entry in missing)
-            payload = None
-            for attempt in range(4):
-                try:
-                    async with sem:
-                        await limiter.acquire()
-                        delay = cooldown_until - asyncio.get_running_loop().time()
-                        if delay > 0:
-                            await asyncio.sleep(delay)
-                        async with session.get(BASE_URL.rsplit('/', 1)[0] + '/recordings', params={'version': API_VERSION, 'ids': keys}) as response:
-                            if response.status == 429:
-                                try:
-                                    retry_after = float(response.headers.get('Retry-After', 0))
-                                except (ValueError, TypeError):
-                                    retry_after = 0
-                                cooldown_until = max(cooldown_until, asyncio.get_running_loop().time() + max(retry_after, 15 * 2 ** attempt))
-                            response.raise_for_status()
-                            payload = await response.json()
-                    if not isinstance(payload, list) or len(payload) != len(missing):
-                        raise ValueError('Recording batch length mismatch')
-                    break
-                except (aiohttp.ClientError, asyncio.TimeoutError, ValueError) as error:
-                    payload = None
-                    if attempt == 3:
-                        failures.extend({'trackId': track_id, 'id': entry['id'], 'reason': str(error)} for entry in missing)
-                    else:
-                        await asyncio.sleep(2 ** attempt)
-            if payload is None:
-                return current
-            # The game's getRecordings(ids) protocol returns one slot per ID,
-            # including null for unavailable recordings; never drop null slots.
-            for entry, recording in zip(missing, payload):
-                try:
-                    if recording['frames'] != entry['frames'] or not entry.get('userId') or type(entry['frames']) is not int or entry['frames'] <= 0:
-                        raise ValueError('Recording metadata mismatch')
-                    inputs = decode_inputs(recording['recording'])
-                    saved = {k: entry.get(k) for k in ('id', 'userId', 'nickname', 'frames', 'time')}
-                    saved['inputs'] = inputs
-                    archive[track_id][str(entry['id'])] = saved
-                    current.append(saved)
-                except (ValueError, KeyError, TypeError, zlib.error) as error:
-                    failures.append({'trackId': track_id, 'id': entry['id'], 'reason': str(error)})
+            for offset in range(0, len(missing), 10):
+                batch = missing[offset:offset + 10]
+                keys = ','.join(str(entry['id']) for entry in batch)
+                payload = None
+                for attempt in range(4):
+                    try:
+                        async with sem:
+                            await limiter.acquire()
+                            delay = cooldown_until - asyncio.get_running_loop().time()
+                            if delay > 0:
+                                await asyncio.sleep(delay)
+                            async with session.get(BASE_URL.rsplit('/', 1)[0] + '/recordings', params={'version': API_VERSION, 'ids': keys}) as response:
+                                if response.status == 429:
+                                    try:
+                                        retry_after = float(response.headers.get('Retry-After', 0))
+                                    except (ValueError, TypeError):
+                                        retry_after = 0
+                                    cooldown_until = max(cooldown_until, asyncio.get_running_loop().time() + max(retry_after, 15 * 2 ** attempt))
+                                response.raise_for_status()
+                                payload = await response.json()
+                        if not isinstance(payload, list) or len(payload) != len(batch):
+                            raise ValueError('Recording batch length mismatch')
+                        break
+                    except (aiohttp.ClientError, asyncio.TimeoutError, ValueError) as error:
+                        payload = None
+                        if attempt == 3:
+                            failures.extend({'trackId': track_id, 'id': entry['id'], 'reason': str(error)} for entry in batch)
+                        else:
+                            await asyncio.sleep(2 ** attempt)
+                if payload is None:
+                    continue
+                # The game's getRecordings(ids) protocol returns one slot per ID,
+                # including null for unavailable recordings; never drop null slots.
+                for entry, recording in zip(batch, payload):
+                    try:
+                        if recording['frames'] != entry['frames'] or not entry.get('userId') or type(entry['frames']) is not int or entry['frames'] <= 0:
+                            raise ValueError('Recording metadata mismatch')
+                        inputs = decode_inputs(recording['recording'])
+                        saved = {k: entry.get(k) for k in ('id', 'userId', 'nickname', 'frames', 'time')}
+                        saved['inputs'] = inputs
+                        archive[track_id][str(entry['id'])] = saved
+                        current.append(saved)
+                    except (ValueError, KeyError, TypeError, zlib.error) as error:
+                        failures.append({'trackId': track_id, 'id': entry['id'], 'reason': str(error)})
             return current
 
         async def scan(track, entries):
             nonlocal completed
             track_id = tracks[track]
-            current = await fetch(track_id, entries[:10])
+            current = await fetch(track_id, entries[:TOP_RUNS])
             evidence, ambiguous = detect_copies(current, list(archive.get(track_id, {}).values()), alt_mappings)
             for item in evidence:
                 item.update(track=track, trackId=track_id, game_version=API_VERSION)
