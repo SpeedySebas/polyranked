@@ -12,7 +12,7 @@ import aiohttp
 from power_rankings.power_ranking_system import (
     API_VERSION, BASE_URL, HEADERS, TokenBucket, resolve_canonical_player,
 )
-from power_rankings.track_difficulty import TOP_RUNS
+from power_rankings.track_record_field import TOP_RUNS
 
 RULE_VERSION = 1
 MAX_BYTES = 8 * 1024 * 1024

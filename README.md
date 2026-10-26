@@ -54,9 +54,9 @@ GitHub Pages has a 1 GB site limit and a 100 GB/month soft bandwidth limit. Page
 ## Automatic copy detection
 
 Each build scans the raw top 30 on all 88 tracks before calculating rankings or
-track difficulty. Track difficulty uses the same cleaned top 30 entries as the
-leaderboard rankings, after manual and automatic exclusions, [TAS] filtering,
-and alternate-account consolidation.
+World Record versus field statistics. The statistics use the same cleaned top 30
+entries as the leaderboard rankings, after manual and automatic exclusions,
+[TAS] filtering, and alternate-account consolidation.
 Ghost inputs are Base64/zlib decoded into exact button-toggle frames. Two runs
 match when every control state is identical from frame zero through
 `ceil(max(finish_frames_a, finish_frames_b) / 2)`, inclusive, or when a run demonstrates

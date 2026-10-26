@@ -11,7 +11,7 @@ import tempfile
 import urllib.request
 from publication_schedule import scheduled_release_time
 from power_rankings.cheat_detection import scan_leaderboards
-from power_rankings.track_difficulty import build_track_difficulty_data
+from power_rankings.track_record_field import build_world_record_field_data
 
 from power_rankings.power_ranking_system import (
     PowerRankingSystem,
@@ -22,7 +22,7 @@ from power_rankings.power_ranking_system import (
 ROOT = Path(__file__).resolve().parent
 SCRAPE_AMOUNT = 1000
 SITE_URL = "https://speedysebas.github.io/polyranked/"
-DATA_NAMES = ("PLAYERS", "TRACK_WEIGHTS_DATA", "TRACK_DOMAINS", "TRACK_SUBGENRES", "TRACK_STYLES", "TRACK_DIFFICULTY_DATA")
+DATA_NAMES = ("PLAYERS", "TRACK_WEIGHTS_DATA", "TRACK_DOMAINS", "TRACK_SUBGENRES", "TRACK_STYLES", "WORLD_RECORD_FIELD_DATA")
 
 
 def iso_time(value):
@@ -130,7 +130,7 @@ def refresh_discipline_counts(html, totals):
     return html
 
 
-def validate_html(html, report, track_difficulty_data=None):
+def validate_html(html, report, world_record_field_data=None):
     players = embedded_json(html, "PLAYERS")
     weights = embedded_json(html, "TRACK_WEIGHTS_DATA")
     if not players or len(players) != len(report["players"]):
@@ -141,14 +141,14 @@ def validate_html(html, report, track_difficulty_data=None):
         raise ValueError("The generated HTML is missing the fresh update timestamp")
     if players[0]["u"] != report["players"][0]["username"]:
         raise ValueError("The generated HTML contains a stale ranking")
-    embedded_difficulty = embedded_json(html, "TRACK_DIFFICULTY_DATA")
-    if track_difficulty_data is not None and embedded_difficulty != track_difficulty_data:
-        raise ValueError("The generated HTML does not contain the fresh track difficulty rankings")
-    if len(embedded_difficulty["main_tracks"]) + len(embedded_difficulty["community_tracks"]) != report["metadata"]["total_tracks"]:
-        raise ValueError("The track difficulty rankings do not cover every configured track")
-    if {item["track"] for item in embedded_difficulty["main_tracks"]} != {item["track"] for item in embedded_difficulty["main_tracks_tas"]}:
+    embedded_field_stats = embedded_json(html, "WORLD_RECORD_FIELD_DATA")
+    if world_record_field_data is not None and embedded_field_stats != world_record_field_data:
+        raise ValueError("The generated HTML does not contain the fresh World Record versus field statistics")
+    if len(embedded_field_stats["main_tracks"]) + len(embedded_field_stats["community_tracks"]) != report["metadata"]["total_tracks"]:
+        raise ValueError("The World Record versus field statistics do not cover every configured track")
+    if {item["track"] for item in embedded_field_stats["main_tracks"]} != {item["track"] for item in embedded_field_stats["main_tracks_tas"]}:
         raise ValueError("The TAS rankings do not cover every campaign track")
-    if {item["track"] for item in embedded_difficulty["community_tracks"]} != {item["track"] for item in embedded_difficulty["community_tracks_tas"]}:
+    if {item["track"] for item in embedded_field_stats["community_tracks"]} != {item["track"] for item in embedded_field_stats["community_tracks_tas"]}:
         raise ValueError("The TAS rankings do not cover every community track")
 
 
@@ -186,7 +186,7 @@ async def build():
     report_progress(f"Copy detection: {len(automatic_bans)} excluded accounts; {detection['findings']} matches, {detection['unresolved']} unresolved pairs, {detection['unavailable']} unavailable recordings.")
     system.registry.set_track_totals(totals)
     cleaned_leaderboards = system.clean_leaderboards(leaderboards)
-    track_difficulty_data = build_track_difficulty_data(
+    world_record_field_data = build_world_record_field_data(
         cleaned_leaderboards, system.registry.main_tracks, system.registry.community_tracks
     )
     report_progress("Calculating player ratings and track weights.")
@@ -203,8 +203,8 @@ async def build():
         if not update_methodology_html(report, html_path=str(index), index_path=str(index)):
             raise ValueError("The HTML update failed; deployment cancelled")
         html = refresh_discipline_counts(index.read_text(encoding="utf-8"), report["metadata"]["discipline_totals"])
-        html = replace_embedded_json(html, "TRACK_DIFFICULTY_DATA", track_difficulty_data)
-        validate_html(html, report, track_difficulty_data)
+        html = replace_embedded_json(html, "WORLD_RECORD_FIELD_DATA", world_record_field_data)
+        validate_html(html, report, world_record_field_data)
         report_progress(f"Rankings calculated and validated for {len(report['players']):,} players. Preparing website files.")
         generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
         release_at = scheduled_release_time(started_at) if os.environ.get("GITHUB_EVENT_NAME") in ("schedule", "workflow_dispatch") else datetime.now(timezone.utc)

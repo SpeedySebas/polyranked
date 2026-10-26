@@ -1,4 +1,4 @@
-"""Build the World Record z-score rankings used by the Track Difficulty tab."""
+"""Build World Record versus field statistics for each track."""
 import math
 from typing import Any, Dict, Iterable, List, Mapping
 
@@ -14,7 +14,7 @@ TAS_TIMES = {
 }
 
 
-def _track_stats(track_name: str, entries: Iterable[Mapping[str, Any]], tas_baseline: bool) -> Dict[str, Any]:
+def _record_field_stats(track_name: str, entries: Iterable[Mapping[str, Any]], tas_baseline: bool) -> Dict[str, Any]:
     """Calculate a track's WR z-score from its fastest 30 leaderboard times."""
     valid_entries = [
         entry for entry in entries
@@ -54,15 +54,15 @@ def _track_stats(track_name: str, entries: Iterable[Mapping[str, Any]], tas_base
     }
 
 
-def build_track_difficulty_data(
+def build_world_record_field_data(
     leaderboards: Mapping[str, List[Dict[str, Any]]],
     main_tracks: Mapping[str, str],
     community_tracks: Mapping[str, str],
 ) -> Dict[str, List[Dict[str, Any]]]:
-    """Return human-WR and TAS-baseline z-score rankings for both track groups."""
+    """Return human-WR and TAS-baseline z-score statistics for both track groups."""
     def rank_group(track_names: Iterable[str], tas_baseline: bool) -> List[Dict[str, Any]]:
         results = [
-            _track_stats(name, leaderboards.get(name, []), tas_baseline)
+            _record_field_stats(name, leaderboards.get(name, []), tas_baseline)
             for name in track_names
         ]
         return sorted(results, key=lambda result: result["zScore"])

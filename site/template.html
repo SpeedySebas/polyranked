@@ -1107,39 +1107,39 @@
         .pqi-tier { background: rgba(6, 182, 212, 0.15); color: #38bdf8; }
         .vdi-tier { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
 
-        /* Track Difficulty Tab */
-        .difficulty-summary .stat-card { min-width: 0; }
-        .difficulty-summary .stat-val { font-size: clamp(1.05rem, 1.6vw, 1.65rem); overflow-wrap: anywhere; }
-        .difficulty-controls { justify-content: flex-start; }
-        .difficulty-search { flex: 1 1 260px; max-width: 420px; }
-        .difficulty-note { margin: 0 0 1rem; color: var(--text-muted); font-size: 0.88rem; }
-        .difficulty-section { margin-bottom: 1.5rem; }
-        .difficulty-section .section-header { justify-content: space-between; flex-wrap: wrap; }
-        .difficulty-legend { display: flex; flex-wrap: wrap; gap: 0.85rem; color: var(--text-muted); font-size: 0.78rem; }
-        .difficulty-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
-        .difficulty-legend i { display: inline-block; width: 0.62rem; height: 0.62rem; border-radius: 50%; }
-        .difficulty-legend .legend-human { background: var(--accent-gold); }
-        .difficulty-legend .legend-tas { background: var(--accent-purple); }
-        .difficulty-legend .legend-times { background: var(--accent-cyan); }
-        .difficulty-legend .legend-mean { width: 0.18rem; height: 0.85rem; border-radius: 0; background: var(--accent-rose); }
-        .difficulty-chart-scroll { overflow-x: auto; width: 100%; padding: 0.25rem 0 0.75rem; }
-        .difficulty-chart { display: block; width: 100%; min-width: 780px; height: auto; }
-        .difficulty-chart text { font-family: var(--font-sans); }
-        .difficulty-chart .chart-track { fill: var(--text-main); font-size: 12px; font-weight: 700; }
-        .difficulty-chart .chart-meta { fill: var(--text-muted); font-family: var(--font-mono); font-size: 10px; }
-        .difficulty-chart .chart-axis { fill: var(--text-dim); font-family: var(--font-mono); font-size: 10px; }
-        .difficulty-chart .chart-grid { stroke: var(--border); stroke-dasharray: 3 5; }
-        .difficulty-chart .chart-range { stroke: #334155; stroke-width: 1.5; }
-        .difficulty-chart .chart-time { fill: var(--accent-cyan); stroke: #0284c7; stroke-width: 0.7; opacity: 0.88; }
-        .difficulty-chart .chart-human { fill: var(--accent-gold); stroke: #d97706; stroke-width: 1.4; }
-        .difficulty-chart .chart-tas { fill: var(--accent-purple); stroke: #9333ea; stroke-width: 1.4; }
-        .difficulty-chart .chart-mean { stroke: var(--accent-rose); stroke-width: 2.5; }
-        .difficulty-chart-empty { padding: 2.5rem 1rem; color: var(--text-dim); text-align: center; }
-        .difficulty-table td { vertical-align: middle; }
-        .difficulty-z-score { color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 800; }
-        .difficulty-number { color: #e2e8f0; font-family: var(--font-mono); text-align: right; white-space: nowrap; }
-        .difficulty-wr-holder { color: var(--text-muted); }
-        .difficulty-info { margin: -0.25rem 0 1.5rem; color: var(--text-dim); font-size: 0.82rem; }
+        /* World Record vs. Field Statistics Tab */
+        .wr-field-summary .stat-card { min-width: 0; }
+        .wr-field-summary .stat-val { font-size: clamp(1.05rem, 1.6vw, 1.65rem); overflow-wrap: anywhere; }
+        .wr-field-controls { justify-content: flex-start; }
+        .wr-field-search { flex: 1 1 260px; max-width: 420px; }
+        .wr-field-note { margin: 0 0 1rem; color: var(--text-muted); font-size: 0.88rem; }
+        .wr-field-section { margin-bottom: 1.5rem; }
+        .wr-field-section .section-header { justify-content: space-between; flex-wrap: wrap; }
+        .wr-field-legend { display: flex; flex-wrap: wrap; gap: 0.85rem; color: var(--text-muted); font-size: 0.78rem; }
+        .wr-field-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+        .wr-field-legend i { display: inline-block; width: 0.62rem; height: 0.62rem; border-radius: 50%; }
+        .wr-field-legend .legend-human { background: var(--accent-gold); }
+        .wr-field-legend .legend-tas { background: var(--accent-purple); }
+        .wr-field-legend .legend-times { background: var(--accent-cyan); }
+        .wr-field-legend .legend-mean { width: 0.18rem; height: 0.85rem; border-radius: 0; background: var(--accent-rose); }
+        .wr-field-chart-scroll { overflow-x: auto; width: 100%; padding: 0.25rem 0 0.75rem; }
+        .wr-field-chart { display: block; width: 100%; min-width: 780px; height: auto; }
+        .wr-field-chart text { font-family: var(--font-sans); }
+        .wr-field-chart .chart-track { fill: var(--text-main); font-size: 12px; font-weight: 700; }
+        .wr-field-chart .chart-meta { fill: var(--text-muted); font-family: var(--font-mono); font-size: 10px; }
+        .wr-field-chart .chart-axis { fill: var(--text-dim); font-family: var(--font-mono); font-size: 10px; }
+        .wr-field-chart .chart-grid { stroke: var(--border); stroke-dasharray: 3 5; }
+        .wr-field-chart .chart-range { stroke: #334155; stroke-width: 1.5; }
+        .wr-field-chart .chart-time { fill: var(--accent-cyan); stroke: #0284c7; stroke-width: 0.7; opacity: 0.88; }
+        .wr-field-chart .chart-human { fill: var(--accent-gold); stroke: #d97706; stroke-width: 1.4; }
+        .wr-field-chart .chart-tas { fill: var(--accent-purple); stroke: #9333ea; stroke-width: 1.4; }
+        .wr-field-chart .chart-mean { stroke: var(--accent-rose); stroke-width: 2.5; }
+        .wr-field-chart-empty { padding: 2.5rem 1rem; color: var(--text-dim); text-align: center; }
+        .wr-field-table td { vertical-align: middle; }
+        .wr-field-z-score { color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 800; }
+        .wr-field-number { color: #e2e8f0; font-family: var(--font-mono); text-align: right; white-space: nowrap; }
+        .wr-field-wr-holder { color: var(--text-muted); }
+        .wr-field-info { margin: -0.25rem 0 1.5rem; color: var(--text-dim); font-size: 0.82rem; }
 
         /* Methodology Tab Styles */
         .methodology-container {
@@ -1567,7 +1567,7 @@
             .header-content { flex-wrap: wrap; justify-content: center; }
             .nav-tabs { max-width: 100%; overflow-x: auto; }
             .tab-btn { white-space: nowrap; padding: 0.5rem 0.65rem; font-size: 0.78rem; }
-            .difficulty-search { max-width: none; }
+            .wr-field-search { max-width: none; }
         }
         body[data-live-loading] main, body[data-live-loading] footer { display: none; }
         #loading-state { padding: 4rem 1.5rem; text-align: center; color: var(--text-muted); }
@@ -1590,8 +1590,8 @@
                 <span>🏆 Leaderboard</span>
                 <span class="tab-counter">35,996</span>
             </button>
-            <button class="tab-btn" id="tab-btn-track-difficulty" role="tab" aria-selected="false" onclick="switchTab('track-difficulty')">
-                <span>📊 Track Difficulty</span>
+            <button class="tab-btn" id="tab-btn-wr-vs-field" role="tab" aria-selected="false" onclick="switchTab('wr-vs-field')">
+                <span>📊 WR vs. Field</span>
             </button>
             <button class="tab-btn" id="tab-btn-methodology" role="tab" aria-selected="false" onclick="switchTab('methodology')">
                 <span>📐 Methodology</span>
@@ -1712,100 +1712,100 @@
         </div>
     </div>
 
-    <!-- TAB 2: Track Difficulty Z-Score Rankings -->
-    <div id="tab-track-difficulty" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-track-difficulty">
+    <!-- TAB 2: World Record vs. Field Statistics -->
+    <div id="tab-wr-vs-field" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-wr-vs-field">
         <div class="hero">
             <div class="hero-badge-wrap">
-                <span class="badge badge-purple" id="difficulty-track-count">88 Tracks</span>
+                <span class="badge badge-purple" id="wr-field-track-count">88 Tracks</span>
                 <span class="badge badge-cyan">Top 30 Times</span>
-                <span class="badge badge-orange" id="difficulty-last-updated">Live ranking data</span>
+                <span class="badge badge-orange" id="wr-field-last-updated">Live ranking data</span>
             </div>
-            <h1 class="hero-title"><span>World Record Track Difficulty</span></h1>
-            <p class="hero-subtitle">Compare each track’s World Record with the top 30 leaderboard times. More negative z-scores indicate a stronger lead over the field.</p>
+            <h1 class="hero-title"><span>World Record vs. Field Statistics</span></h1>
+            <p class="hero-subtitle">Compare each track’s fastest leaderboard time with the top 30 times. The z-score shows the record’s position relative to the field.</p>
         </div>
 
-        <div class="stats-grid difficulty-summary">
+        <div class="stats-grid wr-field-summary">
             <div class="stat-card stat-cyan">
                 <div class="stat-label">Tracks in View</div>
-                <div class="stat-val" id="difficulty-stat-count">—</div>
+                <div class="stat-val" id="wr-field-stat-count">—</div>
                 <div class="stat-sub">Matching the current filters</div>
             </div>
             <div class="stat-card stat-purple">
-                <div class="stat-label">Most Dominant WR</div>
-                <div class="stat-val" id="difficulty-stat-track">—</div>
-                <div class="stat-sub" id="difficulty-stat-holder">—</div>
+                <div class="stat-label">Lowest WR Z-Score</div>
+                <div class="stat-val" id="wr-field-stat-track">—</div>
+                <div class="stat-sub" id="wr-field-stat-holder">—</div>
             </div>
             <div class="stat-card stat-gold">
                 <div class="stat-label">WR Z-Score</div>
-                <div class="stat-val" id="difficulty-stat-zscore">—</div>
-                <div class="stat-sub">Lower means a larger lead</div>
+                <div class="stat-val" id="wr-field-stat-zscore">—</div>
+                <div class="stat-sub">Relative to the selected comparison set</div>
             </div>
             <div class="stat-card stat-green">
-                <div class="stat-label">WR to Field Mean</div>
-                <div class="stat-val" id="difficulty-stat-gap">—</div>
-                <div class="stat-sub">Seconds from the top 30 mean</div>
+                <div class="stat-label">Mean − WR</div>
+                <div class="stat-val" id="wr-field-stat-gap">—</div>
+                <div class="stat-sub">Seconds from the comparison mean</div>
             </div>
         </div>
 
-        <div class="controls-toolbar difficulty-controls">
-            <div class="search-box-wrap difficulty-search">
+        <div class="controls-toolbar wr-field-controls">
+            <div class="search-box-wrap wr-field-search">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="difficulty-search" class="search-input" placeholder="Search track name…" oninput="handleTrackDifficultySearch(this.value)">
-                <button id="difficulty-search-clear" class="search-clear-btn" onclick="clearTrackDifficultySearch()">✕</button>
+                <input type="text" id="wr-field-search" class="search-input" placeholder="Search track name…" oninput="handleWrFieldSearch(this.value)">
+                <button id="wr-field-search-clear" class="search-clear-btn" onclick="clearWrFieldSearch()">✕</button>
             </div>
             <div class="filters-group">
-                <select id="difficulty-group" class="filter-select" onchange="handleTrackDifficultyGroup(this.value)" aria-label="Track group">
+                <select id="wr-field-group" class="filter-select" onchange="handleWrFieldGroup(this.value)" aria-label="Track group">
                     <option value="all_tracks">All Tracks</option>
                     <option value="main_tracks">Campaign Tracks</option>
                     <option value="community_tracks">Community Tracks</option>
                 </select>
-                <select id="difficulty-baseline" class="filter-select" onchange="handleTrackDifficultyBaseline(this.value)" aria-label="World Record baseline">
+                <select id="wr-field-baseline" class="filter-select" onchange="handleWrFieldBaseline(this.value)" aria-label="World Record baseline">
                     <option value="human">Human World Record</option>
                     <option value="tas">TAS World Record (honorary)</option>
                 </select>
-                <select id="difficulty-sort" class="filter-select" onchange="handleTrackDifficultySort(this.value)" aria-label="Sort track rankings">
-                    <option value="difficulty">Sort: Z-Score</option>
+                <select id="wr-field-sort" class="filter-select" onchange="handleWrFieldSort(this.value)" aria-label="Sort track rankings">
+                    <option value="zscore">Sort: Z-Score</option>
                     <option value="track">Sort: Track Name</option>
                 </select>
             </div>
         </div>
-        <p class="difficulty-note" id="difficulty-note"></p>
+        <p class="wr-field-note" id="wr-field-note"></p>
 
-        <section class="section-card difficulty-section">
+        <section class="section-card wr-field-section">
             <div class="section-header">
                 <div class="section-title-wrap">
                     <div class="section-title">Track Time Distributions</div>
-                    <div class="section-subtitle">Every track matching the selected category and search · horizontal distance shows seconds behind the selected record</div>
+                    <div class="section-subtitle">Each row compares the selected record with the top 30 times and field mean</div>
                 </div>
-                <div class="difficulty-legend" aria-label="Chart legend">
+                <div class="wr-field-legend" aria-label="Chart legend">
                     <span><i class="legend-human"></i>Human WR</span>
                     <span><i class="legend-tas"></i>TAS WR</span>
                     <span><i class="legend-times"></i>Top 30 times</span>
                     <span><i class="legend-mean"></i>Mean</span>
                 </div>
             </div>
-            <div class="difficulty-chart-scroll" id="difficulty-chart" aria-live="polite"></div>
+            <div class="wr-field-chart-scroll" id="wr-field-chart" aria-live="polite"></div>
         </section>
 
         <div class="table-container">
             <div class="table-scroll">
-                <table class="rankings-table difficulty-table">
+                <table class="rankings-table wr-field-table">
                     <thead>
                         <tr>
                             <th style="width:4.5rem; text-align:center;">Rank</th>
                             <th>Track</th>
                             <th>WR Holder</th>
                             <th style="text-align:right;">WR Time</th>
-                            <th style="text-align:right;">Top 30 Mean</th>
+                            <th style="text-align:right;">Mean Time</th>
                             <th style="text-align:right;">Std Dev</th>
                             <th style="text-align:right;">Z-Score</th>
                         </tr>
                     </thead>
-                    <tbody id="difficulty-table-body"></tbody>
+                    <tbody id="wr-field-table-body"></tbody>
                 </table>
             </div>
         </div>
-        <p class="difficulty-info">Z-score = (World Record − mean time) ÷ population standard deviation. The TAS view includes an honorary TAS time when one is configured; the human top 30 times remain visible for comparison.</p>
+        <p class="wr-field-info">Z-score = (World Record − mean time) ÷ population standard deviation. The TAS view includes an honorary TAS time when one is configured; the human top 30 times remain visible for comparison.</p>
     </div>
 
     <!-- TAB 3: Mathematical Methodology -->
@@ -2810,7 +2810,7 @@
     const TRACK_SUBGENRES = {};
     const TRACK_STYLES = {};
     const TRACK_WEIGHTS_DATA = [];
-    const TRACK_DIFFICULTY_DATA = { main_tracks: [], community_tracks: [], main_tracks_tas: [], community_tracks_tas: [] };
+    const WORLD_RECORD_FIELD_DATA = { main_tracks: [], community_tracks: [], main_tracks_tas: [], community_tracks_tas: [] };
 
     // Embedded Player Dataset (0 Players)
     const PLAYERS = [];
@@ -2832,12 +2832,12 @@
     let twSubgenreFilter = 'ALL';
     let twCurrentSort = 'weight_desc';
 
-    // Track Difficulty State
-    let difficultyGroup = 'all_tracks';
-    let difficultyBaseline = 'human';
-    let difficultySort = 'difficulty';
-    let difficultySearch = '';
-    let difficultyUpdatedAt = '';
+    // World Record versus field statistics state
+    let wrFieldGroup = 'all_tracks';
+    let wrFieldBaseline = 'human';
+    let wrFieldSort = 'zscore';
+    let wrFieldSearch = '';
+    let wrFieldUpdatedAt = '';
 
     // Classification Definitions
     const CLASS_MAP = {
@@ -2865,6 +2865,7 @@
 
     // Tab Switching
     function switchTab(tabId) {
+        if (tabId === 'track-difficulty') tabId = 'wr-vs-field';
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.classList.remove('active');
             btn.setAttribute('aria-selected', 'false');
@@ -2883,8 +2884,8 @@
         }
         if (tabId === 'methodology') {
             renderTrackWeightsTable();
-        } else if (tabId === 'track-difficulty') {
-            renderTrackDifficulty();
+        } else if (tabId === 'wr-vs-field') {
+            renderWrField();
         }
     }
 
@@ -2892,8 +2893,8 @@
         const hash = window.location.hash.replace('#', '');
         if (hash === 'methodology') {
             switchTab('methodology');
-        } else if (hash === 'track-difficulty') {
-            switchTab('track-difficulty');
+        } else if (hash === 'wr-vs-field' || hash === 'track-difficulty') {
+            switchTab('wr-vs-field');
         } else {
             switchTab('rankings');
         }
@@ -3579,101 +3580,101 @@
         renderTrackWeightsTable();
     }
 
-    function handleTrackDifficultySearch(val) {
-        difficultySearch = val.trim();
-        const clearButton = document.getElementById('difficulty-search-clear');
-        if (clearButton) clearButton.style.display = difficultySearch ? 'block' : 'none';
-        renderTrackDifficulty();
+    function handleWrFieldSearch(val) {
+        wrFieldSearch = val.trim();
+        const clearButton = document.getElementById('wr-field-search-clear');
+        if (clearButton) clearButton.style.display = wrFieldSearch ? 'block' : 'none';
+        renderWrField();
     }
 
-    function clearTrackDifficultySearch() {
-        const input = document.getElementById('difficulty-search');
+    function clearWrFieldSearch() {
+        const input = document.getElementById('wr-field-search');
         if (input) input.value = '';
-        handleTrackDifficultySearch('');
+        handleWrFieldSearch('');
     }
 
-    function handleTrackDifficultyGroup(val) {
-        difficultyGroup = val;
-        renderTrackDifficulty();
+    function handleWrFieldGroup(val) {
+        wrFieldGroup = val;
+        renderWrField();
     }
 
-    function handleTrackDifficultyBaseline(val) {
-        difficultyBaseline = val;
-        renderTrackDifficulty();
+    function handleWrFieldBaseline(val) {
+        wrFieldBaseline = val;
+        renderWrField();
     }
 
-    function handleTrackDifficultySort(val) {
-        difficultySort = val;
-        renderTrackDifficulty();
+    function handleWrFieldSort(val) {
+        wrFieldSort = val;
+        renderWrField();
     }
 
-    function renderTrackDifficulty() {
-        const allMain = TRACK_DIFFICULTY_DATA.main_tracks || [];
-        const allCommunity = TRACK_DIFFICULTY_DATA.community_tracks || [];
+    function renderWrField() {
+        const allMain = WORLD_RECORD_FIELD_DATA.main_tracks || [];
+        const allCommunity = WORLD_RECORD_FIELD_DATA.community_tracks || [];
         const totalTracks = allMain.length + allCommunity.length;
-        const suffix = difficultyBaseline === 'tas' ? '_tas' : '';
-        const dataKeys = difficultyGroup === 'all_tracks'
+        const suffix = wrFieldBaseline === 'tas' ? '_tas' : '';
+        const dataKeys = wrFieldGroup === 'all_tracks'
             ? [`main_tracks${suffix}`, `community_tracks${suffix}`]
-            : [`${difficultyGroup}${suffix}`];
-        const baseRows = dataKeys.flatMap(key => TRACK_DIFFICULTY_DATA[key] || []).sort((a, b) => a.zScore - b.zScore);
+            : [`${wrFieldGroup}${suffix}`];
+        const baseRows = dataKeys.flatMap(key => WORLD_RECORD_FIELD_DATA[key] || []).sort((a, b) => a.zScore - b.zScore);
         const rankByTrack = new Map(baseRows.map((row, index) => [row.track, index + 1]));
-        let visibleRows = baseRows.filter(row => !difficultySearch || row.track.toLowerCase().includes(difficultySearch.toLowerCase()));
-        const hardest = visibleRows.reduce((best, row) => !best || row.zScore < best.zScore ? row : best, null);
-        if (difficultySort === 'track') visibleRows = visibleRows.slice().sort((a, b) => a.track.localeCompare(b.track));
+        let visibleRows = baseRows.filter(row => !wrFieldSearch || row.track.toLowerCase().includes(wrFieldSearch.toLowerCase()));
+        const lowestZScoreRow = visibleRows.reduce((best, row) => !best || row.zScore < best.zScore ? row : best, null);
+        if (wrFieldSort === 'track') visibleRows = visibleRows.slice().sort((a, b) => a.track.localeCompare(b.track));
 
         const setText = (id, value) => {
             const element = document.getElementById(id);
             if (element) element.textContent = value;
         };
-        setText('difficulty-track-count', `${baseRows.length} Tracks`);
-        setText('difficulty-stat-count', visibleRows.length.toLocaleString());
-        setText('difficulty-stat-track', hardest ? hardest.track : '—');
-        setText('difficulty-stat-holder', hardest ? `WR: ${hardest.wrHolder}` : '—');
-        setText('difficulty-stat-zscore', hardest ? hardest.zScore.toFixed(3) : '—');
-        setText('difficulty-stat-gap', hardest ? `${(hardest.topMean - hardest.wrTime).toFixed(3)} s` : '—');
-        if (difficultyUpdatedAt) {
-            const updated = new Date(difficultyUpdatedAt).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
-            setText('difficulty-last-updated', `Updated: ${updated}`);
+        setText('wr-field-track-count', `${baseRows.length} Tracks`);
+        setText('wr-field-stat-count', visibleRows.length.toLocaleString());
+        setText('wr-field-stat-track', lowestZScoreRow ? lowestZScoreRow.track : '—');
+        setText('wr-field-stat-holder', lowestZScoreRow ? `WR: ${lowestZScoreRow.wrHolder}` : '—');
+        setText('wr-field-stat-zscore', lowestZScoreRow ? lowestZScoreRow.zScore.toFixed(3) : '—');
+        setText('wr-field-stat-gap', lowestZScoreRow ? `${(lowestZScoreRow.topMean - lowestZScoreRow.wrTime).toFixed(3)} s` : '—');
+        if (wrFieldUpdatedAt) {
+            const updated = new Date(wrFieldUpdatedAt).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+            setText('wr-field-last-updated', `Updated: ${updated}`);
         }
 
         const hasTasRecord = baseRows.some(row => row.isTas);
-        const note = difficultyBaseline === 'tas' && !hasTasRecord
-            ? 'No honorary TAS times are configured for this track group, so this view matches the human World Record ranking.'
-            : difficultyBaseline === 'tas'
-                ? 'TAS times act as honorary records where available. Human World Records and their top 30 times remain visible in the chart.'
-                : 'The fastest human leaderboard time is compared with the population mean and standard deviation of the top 30 times.';
-        setText('difficulty-note', note);
+        const note = wrFieldBaseline === 'tas' && !hasTasRecord
+            ? 'No honorary TAS times are configured for this track group, so this view uses the human World Record.'
+            : wrFieldBaseline === 'tas'
+                ? 'Configured TAS times act as honorary records. Human records and top 30 times remain visible in the chart.'
+                : 'The fastest human leaderboard time is compared with the mean and population standard deviation of the top 30 times.';
+        setText('wr-field-note', note);
 
         const chartEntries = visibleRows.slice().sort((a, b) => a.zScore - b.zScore);
-        renderTrackDifficultyChart(chartEntries, rankByTrack);
+        renderWrFieldChart(chartEntries, rankByTrack);
 
-        const tbody = document.getElementById('difficulty-table-body');
+        const tbody = document.getElementById('wr-field-table-body');
         if (!tbody) return;
         if (!visibleRows.length) {
-            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:var(--text-dim);">${totalTracks ? 'No tracks match your search.' : 'Track difficulty data will appear with the next ranking snapshot.'}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:var(--text-dim);">${totalTracks ? 'No tracks match your search.' : 'World Record versus field statistics will appear with the next ranking snapshot.'}</td></tr>`;
             return;
         }
         tbody.innerHTML = visibleRows.map(row => {
             const holder = row.isTas
-                ? `<span class="difficulty-wr-holder"><span class="badge badge-purple">TAS</span> ${escapeHtml(row.humanWrHolder)} holds the human WR</span>`
-                : `<span class="difficulty-wr-holder">${escapeHtml(row.wrHolder)}</span>`;
+                ? `<span class="wr-field-wr-holder"><span class="badge badge-purple">TAS</span> ${escapeHtml(row.humanWrHolder)} holds the human WR</span>`
+                : `<span class="wr-field-wr-holder">${escapeHtml(row.wrHolder)}</span>`;
             return `<tr>
                 <td style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan); text-align:center;">#${rankByTrack.get(row.track) || '—'}</td>
                 <td><span style="font-weight:600; color:#ffffff;">${escapeHtml(row.track)}</span></td>
                 <td>${holder}</td>
-                <td class="difficulty-number">${row.wrTime.toFixed(3)} s</td>
-                <td class="difficulty-number">${row.topMean.toFixed(3)} s</td>
-                <td class="difficulty-number">${row.topStdDev.toFixed(3)} s</td>
-                <td class="difficulty-number difficulty-z-score">${row.zScore.toFixed(3)}</td>
+                <td class="wr-field-number">${row.wrTime.toFixed(3)} s</td>
+                <td class="wr-field-number">${row.topMean.toFixed(3)} s</td>
+                <td class="wr-field-number">${row.topStdDev.toFixed(3)} s</td>
+                <td class="wr-field-number wr-field-z-score">${row.zScore.toFixed(3)}</td>
             </tr>`;
         }).join('');
     }
 
-    function renderTrackDifficultyChart(entries, rankByTrack) {
-        const container = document.getElementById('difficulty-chart');
+    function renderWrFieldChart(entries, rankByTrack) {
+        const container = document.getElementById('wr-field-chart');
         if (!container) return;
         if (!entries.length) {
-            container.innerHTML = `<div class="difficulty-chart-empty">No track distributions to chart for this search.</div>`;
+            container.innerHTML = `<div class="wr-field-chart-empty">No field statistics to chart for this search.</div>`;
             return;
         }
 
@@ -3696,8 +3697,8 @@
         const xFor = value => plotLeft + plotWidth * Math.log1p(Math.max(0, value) / 0.01) / logMax;
         const ticks = [0, 0.01, 0.03, 0.08, 0.2, 0.5, 1, 2.5, 5, 10, 25, 50, 100].filter(value => value < chartMax);
         ticks.push(chartMax);
-        let svg = `<svg class="difficulty-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${entries.length} World Record time distributions">`;
-        svg += `<defs><clipPath id="difficulty-label-clip"><rect x="14" y="0" width="270" height="${height}" /></clipPath></defs>`;
+        let svg = `<svg class="wr-field-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${entries.length} World Record time distributions">`;
+        svg += `<defs><clipPath id="wr-field-label-clip"><rect x="14" y="0" width="270" height="${height}" /></clipPath></defs>`;
         for (const tick of ticks) {
             const x = xFor(tick);
             const label = tick === 0 ? '0 s' : (tick < 1 ? `${tick.toFixed(2)} s` : `${tick.toFixed(tick % 1 ? 1 : 0)} s`);
@@ -3713,7 +3714,7 @@
             const deltas = (row.times || []).map(time => Math.max(0, time - row.wrTime));
             const rangeEnd = Math.max(recordDelta, ...deltas, row.isTas ? Math.max(0, row.humanWrTime - row.wrTime) : 0);
             const truncatedName = row.track.length > 34 ? `${row.track.slice(0, 33)}…` : row.track;
-            svg += `<g clip-path="url(#difficulty-label-clip)"><text class="chart-track" x="16" y="${y - 2}">#${rank} ${escapeHtml(truncatedName)}</text><text class="chart-meta" x="16" y="${y + 12}">${row.wrTime.toFixed(3)} s · Z ${row.zScore.toFixed(2)}</text></g>`;
+            svg += `<g clip-path="url(#wr-field-label-clip)"><text class="chart-track" x="16" y="${y - 2}">#${rank} ${escapeHtml(truncatedName)}</text><text class="chart-meta" x="16" y="${y + 12}">${row.wrTime.toFixed(3)} s · Z ${row.zScore.toFixed(2)}</text></g>`;
             svg += `<line class="chart-range" x1="${xFor(0)}" y1="${y}" x2="${xFor(rangeEnd)}" y2="${y}" />`;
 
             // Match the source chart: plot the WR separately from the remaining human runs.
@@ -3757,8 +3758,8 @@
         replaceObject(TRACK_DOMAINS, snapshot.datasets.TRACK_DOMAINS);
         replaceObject(TRACK_SUBGENRES, snapshot.datasets.TRACK_SUBGENRES);
         replaceObject(TRACK_STYLES, snapshot.datasets.TRACK_STYLES);
-        replaceObject(TRACK_DIFFICULTY_DATA, snapshot.datasets.TRACK_DIFFICULTY_DATA || { main_tracks: [], community_tracks: [], main_tracks_tas: [], community_tracks_tas: [] });
-        difficultyUpdatedAt = snapshot.generated_at;
+        replaceObject(WORLD_RECORD_FIELD_DATA, snapshot.datasets.WORLD_RECORD_FIELD_DATA || snapshot.datasets.TRACK_DIFFICULTY_DATA || { main_tracks: [], community_tracks: [], main_tracks_tas: [], community_tracks_tas: [] });
+        wrFieldUpdatedAt = snapshot.generated_at;
 
         const setText = (selector, value) => { const element = document.querySelector(selector); if (element) element.textContent = value; };
         const count = PLAYERS.length.toLocaleString();
@@ -3791,7 +3792,7 @@
         }
         applyFiltersAndSort(false);
         renderTrackWeightsTable();
-        renderTrackDifficulty();
+        renderWrField();
         if (modalPlayer) {
             const updated = PLAYERS.find(player => player.u === modalPlayer);
             if (updated) openPlayerModal(updated.r); else closeModal();
