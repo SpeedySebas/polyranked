@@ -1328,6 +1328,22 @@
       "track": "Desert 2",
       "trackId": "88647ea04145fbbbb19b55f1590e038fb0378acb2571110f02cb545cc46b0d57",
       "game_version": "0.6.2"
+    },
+    "b77e1394cfc9c68e2d9daa30d53c59208c8ebc44249b35f2be23e25cb0d541af": {
+      "userId": "b77e1394cfc9c68e2d9daa30d53c59208c8ebc44249b35f2be23e25cb0d541af",
+      "nickname": "[TAS] yungy>hwadz",
+      "recording_id": 66605680,
+      "uploaded_at": "2026-10-27T20:18:05.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 65456473,
+      "original_uploaded_at": "2026-10-24T12:52:46.000Z",
+      "matched_through_frame": 18511,
+      "frames": 37021,
+      "original_frames": 37014,
+      "rule_version": 1,
+      "track": "Summer 6",
+      "trackId": "c117823cf6788e3247b9ee63a0c091c07352bbe352c650a7790dc6718148c2fa",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
