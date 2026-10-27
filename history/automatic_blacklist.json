@@ -1312,6 +1312,22 @@
       "track": "Winter 1",
       "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
       "game_version": "0.6.2"
+    },
+    "c6d2ca429c5f043249b631122861a7f926260e7b0740e9e10509f56786710284": {
+      "userId": "c6d2ca429c5f043249b631122861a7f926260e7b0740e9e10509f56786710284",
+      "nickname": " [TAS] yungy>hwadz",
+      "recording_id": 66483560,
+      "uploaded_at": "2026-10-27T15:30:27.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 26184976,
+      "original_uploaded_at": "2026-06-05T08:26:07.000Z",
+      "matched_through_frame": 14137,
+      "frames": 28274,
+      "original_frames": 28271,
+      "rule_version": 1,
+      "track": "Desert 2",
+      "trackId": "88647ea04145fbbbb19b55f1590e038fb0378acb2571110f02cb545cc46b0d57",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
