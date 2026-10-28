@@ -1376,6 +1376,22 @@
       "track": "Desert 5",
       "trackId": "e5d084e06db4ab71196fea44efeceb23c8561266a78669c324a38f92581fe2db",
       "game_version": "0.6.2"
+    },
+    "56a3cfe3ce641e91144a38b415ab37a3580ccf31eb2c231e94957192e885fd95": {
+      "userId": "56a3cfe3ce641e91144a38b415ab37a3580ccf31eb2c231e94957192e885fd95",
+      "nickname": "PLEK16",
+      "recording_id": 67073340,
+      "uploaded_at": "2026-10-28T20:51:41.000Z",
+      "original_userId": "b732f788bebe4a40d82870154af251668709c3655721976025da1fe32c082be8",
+      "original_recording_id": 13717653,
+      "original_uploaded_at": "2026-04-25T17:32:23.000Z",
+      "matched_through_frame": 7610,
+      "frames": 15217,
+      "original_frames": 15220,
+      "rule_version": 1,
+      "track": "Summer 2",
+      "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
