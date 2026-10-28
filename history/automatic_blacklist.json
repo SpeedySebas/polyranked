@@ -1360,6 +1360,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "e6a45de04923a10c18300bcd274e9bf75cfa85b7685a040cad4cc4011779effb": {
+      "userId": "e6a45de04923a10c18300bcd274e9bf75cfa85b7685a040cad4cc4011779effb",
+      "nickname": "[TAS]  AI #####r",
+      "recording_id": 67054083,
+      "uploaded_at": "2026-10-28T19:38:35.000Z",
+      "original_userId": "8b7db097f7e342c8f6efd0c91f1cd7ffa4a07710f408bdbcd3ba7b38d041dcf8",
+      "original_recording_id": 24065202,
+      "original_uploaded_at": "2026-05-31T19:20:22.000Z",
+      "matched_through_frame": 14533,
+      "frames": 29066,
+      "original_frames": 29039,
+      "rule_version": 1,
+      "track": "Desert 5",
+      "trackId": "e5d084e06db4ab71196fea44efeceb23c8561266a78669c324a38f92581fe2db",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
