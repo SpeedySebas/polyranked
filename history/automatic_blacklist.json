@@ -1520,6 +1520,22 @@
       "track": "Desert 1",
       "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
       "game_version": "0.6.2"
+    },
+    "4d9fef02acab2b7da5830787a8ee200b5665f80f1a98a2927580c87e6178bc20": {
+      "userId": "4d9fef02acab2b7da5830787a8ee200b5665f80f1a98a2927580c87e6178bc20",
+      "nickname": "404_not_found",
+      "recording_id": 67569282,
+      "uploaded_at": "2026-10-29T22:38:09.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 62650196,
+      "original_uploaded_at": "2026-10-17T08:35:49.000Z",
+      "matched_through_frame": 46313,
+      "frames": 92618,
+      "original_frames": 92626,
+      "rule_version": 1,
+      "track": "Zealot",
+      "trackId": "b77ec520a40c4b38d3d7d653b747b1f8627c98709096568db22cd1bfec534ba6",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
