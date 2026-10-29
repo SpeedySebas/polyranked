@@ -1424,6 +1424,22 @@
       "track": "Winter 1",
       "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
       "game_version": "0.6.2"
+    },
+    "96be37b48609159dd0cca7d766bf7b3305926db20d70fdd8e4d43d05f58d59ed": {
+      "userId": "96be37b48609159dd0cca7d766bf7b3305926db20d70fdd8e4d43d05f58d59ed",
+      "nickname": "[TAS] winter king",
+      "recording_id": 67299504,
+      "uploaded_at": "2026-10-29T11:43:43.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 58049269,
+      "original_uploaded_at": "2026-10-07T02:44:36.000Z",
+      "matched_through_frame": 8537,
+      "frames": 17073,
+      "original_frames": 16999,
+      "rule_version": 1,
+      "track": "Winter 1",
+      "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
