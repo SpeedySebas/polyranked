@@ -1472,6 +1472,22 @@
       "track": "Desert 1",
       "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
       "game_version": "0.6.2"
+    },
+    "a12c4924f3875965e2e9327499db8efdda2015a238356aa65a2944ddb8da267d": {
+      "userId": "a12c4924f3875965e2e9327499db8efdda2015a238356aa65a2944ddb8da267d",
+      "nickname": "[TAS] NEW STRAT",
+      "recording_id": 67367938,
+      "uploaded_at": "2026-10-29T13:44:21.000Z",
+      "original_userId": "03ed188ff27ff9e1970a7736ebb1c4eb804e2a882ca291392f7f8c040c740337",
+      "original_recording_id": 36082490,
+      "original_uploaded_at": "2026-07-17T22:36:31.000Z",
+      "matched_through_frame": 12979,
+      "frames": 24476,
+      "original_frames": 25958,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
