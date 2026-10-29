@@ -1608,7 +1608,7 @@
         <div class="hero">
             <div class="hero-badge-wrap">
                 <span class="badge badge-purple">35,996 Players</span>
-                <span class="badge badge-cyan">78 Tracks Analyzed</span>
+                <span class="badge badge-cyan">87 Tracks Analyzed</span>
                 <span class="badge badge-orange" id="badge-last-updated">Last updated: 2026-09-30</span>
                 <span class="badge badge-cyan" id="update-countdown" role="timer" aria-live="off">Checking next update…</span>
             </div>
@@ -1616,7 +1616,7 @@
                 <span>Global Player Power Rankings</span>
             </h1>
             <p class="hero-subtitle">
-                Pure Leaderboard competitive evaluation synthesized across all 78 official campaign and community tracks across 35,996 ranked players.
+                Pure Leaderboard competitive evaluation synthesized across all 87 official campaign and community tracks across 35,996 ranked players.
             </p>
         </div>
 
@@ -1635,12 +1635,12 @@
             <div class="stat-card stat-green">
                 <div class="stat-label">🥇 World Record Holders</div>
                 <div class="stat-val">14 Players</div>
-                <div class="stat-sub">Across 78 Total Tracks</div>
+                <div class="stat-sub">Across 87 Total Tracks</div>
             </div>
             <div class="stat-card stat-purple">
                 <div class="stat-label">🏁 Ecosystem Coverage</div>
-                <div class="stat-val">78 Tracks</div>
-                <div class="stat-sub">36 Fullspeed + 42 Technical (78 Pool)</div>
+                <div class="stat-val">87 Tracks</div>
+                <div class="stat-sub">41 Fullspeed + 46 Technical (87 Pool)</div>
             </div>
         </div>
 
@@ -1654,8 +1654,8 @@
             <div class="filters-group">
                 <select id="style-filter" class="filter-select" onchange="handleStyleFilter(this.value)" title="Filter leaderboard by macro-discipline">
                     <option value="ALL">All Disciplines (Global GSI)</option>
-                    <option value="Fullspeed">Fullspeed Discipline (36 tracks)</option>
-                    <option value="Technical">Technical Discipline (42 tracks)</option>
+                    <option value="Fullspeed">Fullspeed Discipline (41 tracks)</option>
+                    <option value="Technical">Technical Discipline (46 tracks)</option>
                 </select>
 
                 <select id="class-filter" class="filter-select" onchange="handleClassFilter(this.value)" title="Filter by player classification">
@@ -1716,7 +1716,7 @@
     <div id="tab-wr-vs-field" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-wr-vs-field">
         <div class="hero">
             <div class="hero-badge-wrap">
-                <span class="badge badge-purple" id="wr-field-track-count">88 Tracks</span>
+                <span class="badge badge-purple" id="wr-field-track-count">87 Tracks</span>
                 <span class="badge badge-cyan">Top 30 Times</span>
                 <span class="badge badge-orange" id="wr-field-last-updated">Live ranking data</span>
             </div>
@@ -1847,7 +1847,7 @@
                     <div class="concept-card">
                         <div class="concept-title" style="color: var(--accent-rose);">❌ The "Total Points" Trap (Playtime Grinding)</div>
                         <div class="concept-desc">
-                            If a system simply sums points across all 78 tracks, someone who plays 300 hours and finishes 25th on 70 small community tracks will easily beat a World Champion who holds 8 World Records on the hardest official campaign tracks. That rewards who has the most free time, not who drives the fastest.
+                            If a system simply sums points across all 87 tracks, someone who plays 300 hours and finishes 25th on 70 small community tracks will easily beat a World Champion who holds 8 World Records on the hardest official campaign tracks. That rewards who has the most free time, not who drives the fastest.
                         </div>
                     </div>
                     <div class="concept-card">
@@ -1861,7 +1861,7 @@
                 <div class="plain-box">
                     <div class="plain-title">💡 How Our Architecture Solves Both Problems</div>
                     <div class="plain-text">
-                        The system uses hard portfolio caps on how many tracks count toward your rating (6 tracks for peak pace, 15 for versatility). A specialist who masters a focused selection of tracks can legitimately contend for the World #1 spot against someone who drives all 78 tracks.
+                        The system uses hard portfolio caps on how many tracks count toward your rating (6 tracks for peak pace, 15 for versatility). A specialist who masters a focused selection of tracks can legitimately contend for the World #1 spot against someone who drives all 87 tracks.
                     </div>
                 </div>
 
@@ -1981,7 +1981,7 @@
                             • Evaluates your <strong>Top 6 best tracks</strong>.<br>
                             • Uses the <strong>15% discount ladder</strong> ($\gamma = 0.85$) to emphasize top placements.<br>
                             • Uses <strong>2 baseline anchor scores</strong> for sample regularization.<br>
-                            • <strong>Volume Cap:</strong> Tracks 7 through 78 give <strong>zero points</strong>.
+                            • <strong>Volume Cap:</strong> Your 7th and later tracks give <strong>zero points</strong>.
                         </div>
                     </div>
                     <div class="concept-card" style="border-left: 3px solid var(--accent-purple);">
@@ -1991,7 +1991,7 @@
                             • Evaluates your <strong>Top 15 best tracks</strong>.<br>
                             • Uses a <strong>10% discount ladder</strong> ($\gamma = 0.90$) across the larger window.<br>
                             • Uses <strong>3 baseline anchor scores (30 pts each)</strong> to ensure rating stability.<br>
-                            • <strong>Volume Cap:</strong> Tracks 16 through 78 give <strong>zero points</strong>.
+                            • <strong>Volume Cap:</strong> Your 16th and later tracks give <strong>zero points</strong>.
                         </div>
                     </div>
                 </div>
@@ -2041,15 +2041,15 @@
                 </p>
                 <div class="concept-grid">
                     <div class="concept-card" style="border-left: 3px solid var(--dom-fs-color);">
-                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Discipline (36 Tracks)</div>
+                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Discipline (41 Tracks)</div>
                         <div class="concept-desc">
-                            High velocity throughout with banking, wallrides, and loops. Includes <strong>Fullspeed</strong> (31 tracks) and <strong>Fakespeed</strong> (5 tracks).
+                            High velocity throughout with banking, wallrides, and loops. Includes <strong>Fullspeed</strong> (36 tracks) and <strong>Fakespeed</strong> (5 tracks).
                         </div>
                     </div>
                     <div class="concept-card" style="border-left: 3px solid var(--dom-tech-color);">
-                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Discipline (42 Tracks)</div>
+                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Discipline (46 Tracks)</div>
                         <div class="concept-desc">
-                            Tight cornering, drift angles, brake taps, rapid transitions, and sliding arcs. Includes <strong>Tech</strong> (14 tracks), <strong>Speedtech</strong> (14 tracks), and <strong>Speedfun</strong> (14 tracks).
+                            Tight cornering, drift angles, brake taps, rapid transitions, and sliding arcs. Includes <strong>Tech</strong> (16 tracks), <strong>Speedtech</strong> (15 tracks), and <strong>Speedfun</strong> (15 tracks).
                         </div>
                     </div>
                 </div>
@@ -2099,7 +2099,7 @@
                 </div>
 
                 <p class="section-text">
-                    Measuring player skill in a deterministic time-attack racing environment presents unique mathematical challenges compared to head-to-head match-based games. In PolyTrack, each competitor $i$ registers a personal best lap time $T_{i,k}$ on track $k \in \{1, \dots, K_{\text{total}}\}$ ($K_{\text{total}} = 78$). The global leaderboard on each track represents a continuous order-statistic distribution:
+                    Measuring player skill in a deterministic time-attack racing environment presents unique mathematical challenges compared to head-to-head match-based games. In PolyTrack, each competitor $i$ registers a personal best lap time $T_{i,k}$ on track $k \in \{1, \dots, K_{\text{total}}\}$ ($K_{\text{total}} = 87$). The global leaderboard on each track represents a continuous order-statistic distribution:
                 </p>
                 <div class="formula-box">
                     <div class="formula-title">Time-Attack Order Statistics</div>
@@ -2114,7 +2114,7 @@
                 </p>
                 <ul class="methodology-list">
                     <li><strong>Official Campaign Tracks (17 Tracks):</strong> Ranging from ~370,000 verified drivers on Desert 2 up to nearly 4.5 million on Summer 1 (with 5 tracks exceeding 1 million competitors). These tracks have extensive community participation, where leaderboard margins are separated by hundredths of a second.</li>
-                    <li><strong>Community Tracks (61 Tracks):</strong> A curated pool of verified player-created circuits. Participation ranges from over 140,000 players on popular courses like Sky Bound down to ~7,350 players on tracks like Flying Dreams.</li>
+                    <li><strong>Community Tracks (70 Tracks):</strong> A curated pool of verified player-created circuits. Participation ranges from over 140,000 players on popular courses like Sky Bound down to ~7,350 players on tracks like Flying Dreams.</li>
                 </ul>
 
                 <h3 class="subsection-title">Failure Modes of Standard Ranking Systems in Time Attack</h3>
@@ -2188,13 +2188,13 @@
                     </div>
                 </div>
 
-                <!-- Complete 78-Track Dynamic Weights Directory -->
+                <!-- Complete 87-Track Dynamic Weights Directory -->
                 <div class="track-weights-section">
                     <div class="tw-header">
                         <div>
                             <div class="tw-title">
-                                <span>⚖️ All 88 Track Weights & Difficulty Multipliers</span>
-                                <span class="badge badge-purple" id="track-count-badge">78 Tracks</span>
+                                <span>⚖️ All 87 Track Weights & Difficulty Multipliers</span>
+                                <span class="badge badge-purple" id="track-count-badge">87 Tracks</span>
                             </div>
                             <div class="tw-subtitle">
                                 Complete catalog of all official campaign and community tracks ordered by their dynamic Strength-of-Field weight multiplier ($\omega_k$).
@@ -2211,22 +2211,22 @@
                         </div>
                         <div class="filters-group" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                             <select id="tw-type-filter" class="filter-select" onchange="handleTrackWeightsTypeFilter(this.value)">
-                                <option value="ALL">All Categories (78)</option>
+                                <option value="ALL">All Categories (87)</option>
                                 <option value="Main">Official Campaign (17)</option>
-                                <option value="Community">Community Tracks (61)</option>
+                                <option value="Community">Community Tracks (70)</option>
                             </select>
                             <select id="tw-domain-filter" class="filter-select" onchange="handleTrackWeightsDomainFilter(this.value)">
-                                <option value="ALL">All Disciplines (78)</option>
-                                <option value="Fullspeed">Fullspeed (36)</option>
-                                <option value="Technical">Technical (42)</option>
+                                <option value="ALL">All Disciplines (87)</option>
+                                <option value="Fullspeed">Fullspeed (41)</option>
+                                <option value="Technical">Technical (46)</option>
                             </select>
                             <select id="tw-subgenre-filter" class="filter-select" onchange="handleTrackWeightsSubgenreFilter(this.value)">
-                                <option value="ALL">All Subgenres (78)</option>
-                                <option value="FS">FS (31)</option>
+                                <option value="ALL">All Subgenres (87)</option>
+                                <option value="FS">FS (36)</option>
                                 <option value="Fakespeed">Fakespeed (5)</option>
-                                <option value="Tech">Tech (14)</option>
-                                <option value="Speedtech">Speedtech (14)</option>
-                                <option value="Speedfun">Speedfun (14)</option>
+                                <option value="Tech">Tech (16)</option>
+                                <option value="Speedtech">Speedtech (15)</option>
+                                <option value="Speedfun">Speedfun (15)</option>
                             </select>
                             <select id="tw-sort-select" class="filter-select" onchange="handleTrackWeightsSort(this.value)">
                                 <option value="weight_desc">Sort: Weight (Highest → Lowest)</option>
@@ -2345,7 +2345,7 @@
                         <strong>Boundary Guarantees:</strong>
                         <ul class="methodology-list" style="margin-top: 0.5rem;">
                             <li><strong>Sample Size Regularization:</strong> When $N_{\text{eff}} \to 0$, $\text{PQI}_i \to 40.0$, preventing single-race fluke runs from topping the global leaderboard.</li>
-                            <li><strong>Volume Invariance:</strong> Completing tracks 7 through 78 has <strong>zero mathematical effect</strong> on PQI ($r > 6 \implies \text{weight} = 0$). A specialist who dominates 6 tracks cannot be overtaken by someone driving 70 tracks at mediocre pace.</li>
+                            <li><strong>Volume Invariance:</strong> Completing tracks after your top 6 has <strong>zero mathematical effect</strong> on PQI ($r > 6 \implies \text{weight} = 0$). A specialist who dominates 6 tracks cannot be overtaken by someone driving 70 tracks at mediocre pace.</li>
                             <li><strong>Full Evidence Saturation:</strong> At $N_{\text{eff}} = 6$, empirical performance accounts for $\frac{6}{6+2} = 75\%$ of the rating, with $25\%$ prior anchoring.</li>
                         </ul>
                     </div>
@@ -2437,15 +2437,15 @@
 
                 <div class="concept-grid">
                     <div class="concept-card" style="border-left: 3px solid var(--dom-fs-color);">
-                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Discipline (36 Tracks)</div>
+                        <div class="concept-title" style="color: var(--dom-fs-color);">🏎️ Fullspeed Discipline (41 Tracks)</div>
                         <div class="concept-desc">
-                            High velocity throughout with banking, wallrides, calculated entry angles, and looping layouts. Includes <strong>Fullspeed</strong> (31 tracks) and <strong>Fakespeed</strong> (5 tracks).
+                            High velocity throughout with banking, wallrides, calculated entry angles, and looping layouts. Includes <strong>Fullspeed</strong> (36 tracks) and <strong>Fakespeed</strong> (5 tracks).
                         </div>
                     </div>
                     <div class="concept-card" style="border-left: 3px solid var(--dom-tech-color);">
-                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Discipline (42 Tracks)</div>
+                        <div class="concept-title" style="color: var(--dom-tech-color);">🎯 Technical Discipline (46 Tracks)</div>
                         <div class="concept-desc">
-                            Tight cornering, drift angle control, brake taps, rapid transitions, and precision slide arcs. Includes <strong>Tech</strong> (14 tracks), <strong>Speedtech</strong> (14 tracks), and <strong>Speedfun</strong> (14 tracks).
+                            Tight cornering, drift angle control, brake taps, rapid transitions, and precision slide arcs. Includes <strong>Tech</strong> (16 tracks), <strong>Speedtech</strong> (15 tracks), and <strong>Speedfun</strong> (15 tracks).
                         </div>
                     </div>
                 </div>
@@ -2596,9 +2596,9 @@
 
                 <div style="display: flex; flex-direction: column; gap: 1rem;">
                     <div class="concept-card">
-                        <div class="concept-title" style="color: var(--accent-cyan);">Q: Does grinding all 78 tracks give someone an unfair advantage?</div>
+                        <div class="concept-title" style="color: var(--accent-cyan);">Q: Does grinding all 87 tracks give someone an unfair advantage?</div>
                         <div class="concept-desc">
-                            <strong>No.</strong> Your rating is calculated exclusively from your Top 6 tracks for peak pace (PQI) and Top 15 tracks for versatility (VDI). Completing tracks 16 through 78 adds <strong>zero additional points</strong> to your score. The system rewards performance quality, not time played.
+                            <strong>No.</strong> Your rating is calculated exclusively from your Top 6 tracks for peak pace (PQI) and Top 15 tracks for versatility (VDI). Completing tracks after your top 15 adds <strong>zero additional points</strong> to your score. The system rewards performance quality, not time played.
                         </div>
                     </div>
                     <div class="concept-card">
@@ -2712,7 +2712,7 @@
                             <div class="discipline-card-meta">
                                 <div class="discipline-meta-item">
                                     <span class="meta-label">Coverage:</span>
-                                    <span id="modal-fs-cov" class="meta-val">0 / 36 (0%)</span>
+                                    <span id="modal-fs-cov" class="meta-val">0 / 41 (0%)</span>
                                 </div>
                                 <div class="discipline-meta-item">
                                     <span class="meta-label">Accolades:</span>
@@ -2738,7 +2738,7 @@
                             <div class="discipline-card-meta">
                                 <div class="discipline-meta-item">
                                     <span class="meta-label">Coverage:</span>
-                                    <span id="modal-tech-cov" class="meta-val">0 / 42 (0%)</span>
+                                    <span id="modal-tech-cov" class="meta-val">0 / 46 (0%)</span>
                                 </div>
                                 <div class="discipline-meta-item">
                                     <span class="meta-label">Accolades:</span>
@@ -2805,7 +2805,7 @@
 
 <!-- Embedded Dataset & Client Logic -->
 <script>
-    // Track Subgenre & Domain Classifications (78 Tracks)
+    // Track Subgenre & Domain Classifications (87 Tracks)
     const TRACK_DOMAINS = {};
     const TRACK_SUBGENRES = {};
     const TRACK_STYLES = {};
@@ -2989,8 +2989,8 @@
             if (selectedStyle === 'Fullspeed' || selectedStyle === 'Technical') {
                 const isFs = selectedStyle === 'Fullspeed';
                 // sData format: [gsi, pqi, vdi, rank, driven, total, wrs, t5]
-                const sDataA = isFs ? (a.dp?.f || [0, 0, 0, 999999, 0, 36, 0, 0]) : (a.dp?.t || [0, 0, 0, 999999, 0, 42, 0, 0]);
-                const sDataB = isFs ? (b.dp?.f || [0, 0, 0, 999999, 0, 36, 0, 0]) : (b.dp?.t || [0, 0, 0, 999999, 0, 42, 0, 0]);
+                const sDataA = isFs ? (a.dp?.f || [0, 0, 0, 999999, 0, 41, 0, 0]) : (a.dp?.t || [0, 0, 0, 999999, 0, 46, 0, 0]);
+                const sDataB = isFs ? (b.dp?.f || [0, 0, 0, 999999, 0, 41, 0, 0]) : (b.dp?.t || [0, 0, 0, 999999, 0, 46, 0, 0]);
 
                 switch (currentSort.col) {
                     case 'rank':
@@ -3173,7 +3173,7 @@
             const p = visiblePlayers[i];
 
             if (isStyleMode) {
-                const sStats = isFs ? (p.dp?.f || [0, 0, 0, 0, 0, 36, 0, 0]) : (p.dp?.t || [0, 0, 0, 0, 0, 42, 0, 0]);
+                const sStats = isFs ? (p.dp?.f || [0, 0, 0, 0, 0, 41, 0, 0]) : (p.dp?.t || [0, 0, 0, 0, 0, 46, 0, 0]);
                 const [sGsi, sPqi, sVdi, sRank, sDriven, sTotal, sWrs, sT5] = sStats;
 
                 const rankClass = sRank === 1 ? 'rank-gold' : (sRank === 2 ? 'rank-silver' : (sRank === 3 ? 'rank-bronze' : ''));
@@ -3351,8 +3351,8 @@
 
         // 2-Domain Profile Section: [gsi, pqi, vdi, rank, driven, total, wrs, t5]
         const dp = p.dp || {};
-        const fsData = dp.f || [0, 0, 0, 0, 0, 36, 0, 0];
-        const techData = dp.t || [0, 0, 0, 0, 0, 42, 0, 0];
+        const fsData = dp.f || [0, 0, 0, 0, 0, 41, 0, 0];
+        const techData = dp.t || [0, 0, 0, 0, 0, 46, 0, 0];
         const bias = dp.b !== undefined ? dp.b : 0.5;
 
         // Archetype

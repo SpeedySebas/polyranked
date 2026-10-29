@@ -9,7 +9,7 @@ A comprehensive guide to how the PolyTrack power rankings work: how we score ind
 Measuring player skill in a time attack game like **PolyTrack** presents unique challenges:
 
 1. **Official Campaign Tracks (17 Tracks):** Ranging from ~370,000 players on Desert 2 up to nearly 4.5 million players on Summer 1 (with 5 tracks exceeding 1 million competitors). These tracks have extensive community participation, where leaderboard margins are separated by hundredths of a second.
-2. **Community Tracks (61 Tracks):** A curated pool of verified player-created courses. Participation ranges from over 140,000 players on popular tracks like Sky Bound down to around 7,350 players on tracks like Flying Dreams.
+2. **Community Tracks (70 Tracks):** A curated pool of verified player-created courses. Participation ranges from over 140,000 players on popular tracks like Sky Bound down to around 7,350 players on tracks like Flying Dreams.
 
 ### Problems with Common Leaderboard Systems:
 * **Total Points Grinding:** Basic systems that add up all track points ($1\text{st} = 100\text{ pts}$) reward playtime over skill. Someone grinding top 20s on 60 less active tracks would outscore a player holding 8 World Records on the hardest official campaign tracks.
@@ -18,7 +18,7 @@ Measuring player skill in a time attack game like **PolyTrack** presents unique 
 
 ### How The System Solves This:
 1. **Top Speed (Top 6 Tracks, 70% Weight):** Evaluates how fast you are on your strongest tracks.
-2. **Track Variety (Top 15 Tracks, 30% Weight):** Evaluates whether you can maintain that pace across 15 different maps without requiring you to play all 78.
+2. **Track Variety (Top 15 Tracks, 30% Weight):** Evaluates whether you can maintain that pace across 15 different maps without requiring you to play all 87.
 
 ---
 
@@ -26,8 +26,8 @@ Measuring player skill in a time attack game like **PolyTrack** presents unique 
 
 ```
                                   ┌─────────────────────────────────────────┐
-                                  │      78 Scraped Track Leaderboards      │
-                                  │ (17 Main Tracks + 61 Community Tracks)  │
+                                  │      87 Scraped Track Leaderboards      │
+                                  │ (17 Main Tracks + 70 Community Tracks)  │
                                   └────────────────────┬────────────────────┘
                                                        │
                                                        ▼
@@ -156,18 +156,18 @@ $$\text{GSI} = 1000.0 + 200.0 \cdot \left( 0.70 \cdot Z_{\text{PQI}} + 0.30 \cdo
 
 ## 3. 2-Domain Macro-Discipline Engine (v10.2 Dual-Axis Mastery)
 
-All 78 tracks are organized into two balanced macro-disciplines:
+All 87 tracks are organized into two balanced macro-disciplines:
 
-1. **Fullspeed Discipline (36 Tracks):**
-   * **Fullspeed (FS):** 31 tracks
+1. **Fullspeed Discipline (41 Tracks):**
+   * **Fullspeed (FS):** 36 tracks
    * **Fakespeed:** 5 tracks
-   * **Total:** 36 Tracks
+   * **Total:** 41 Tracks
 
-2. **Technical Discipline (42 Tracks):**
-   * **Tech:** 14 tracks
-   * **Speedtech:** 14 tracks
-   * **Speedfun:** 14 tracks
-   * **Total:** 42 Tracks
+2. **Technical Discipline (46 Tracks):**
+   * **Tech:** 16 tracks
+   * **Speedtech:** 15 tracks
+   * **Speedfun:** 15 tracks
+   * **Total:** 46 Tracks
 
 ### Discipline Rating Formula:
 For each domain $D \in \{\text{Fullspeed}, \text{Technical}\}$, a player's rating evaluates their **Top 6 best runs** ($K=6$) with harmonic decay ($\gamma = 0.85$) and full-window normalization:

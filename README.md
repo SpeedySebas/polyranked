@@ -10,7 +10,7 @@ The main publisher fetches fresh rankings **every five minutes**, at **:02, :07,
 
 ## How it works
 
-`build_site.py` fetches the top 1,000 raw entries from each of the 88 configured tracks and applies the existing ranking engine. It publishes a small HTML interface, an update manifest, and complete versioned ranking snapshots in `dist/`. Both `/` and `/methodology.html` serve the rankings. It does not publish Python source or internal files as website assets, and it does not commit generated datasets.
+`build_site.py` fetches the top 1,000 raw entries from each of the 87 configured tracks and applies the existing ranking engine. It publishes a small HTML interface, an update manifest, and complete versioned ranking snapshots in `dist/`. Both `/` and `/methodology.html` serve the rankings. It does not publish Python source or internal files as website assets, and it does not commit generated datasets.
 
 Scheduled builds carry forward the current released snapshot alongside the prepared next snapshot. Browsers download, verify, and parse the next data in the background, then update the display when the live countdown reaches zero. There is no reload or network request on that transition: searches, filters, pagination, and open player details are preserved. New visitors receive the most recent released snapshot. The last-updated label includes the data-generation date and time to the minute in UTC. Until the next data is downloaded, the timer labels its deadline as scheduled. If the next build is late or unavailable, the page keeps the existing data, displays the elapsed delay, and checks again every fifteen seconds. It applies late data automatically and never resets the timer as if an update succeeded. Connection failures are labeled as reconnecting.
 
@@ -53,7 +53,7 @@ GitHub Pages has a 1 GB site limit and a 100 GB/month soft bandwidth limit. Page
 
 ## Automatic copy detection
 
-Each build scans the raw top 30 on all 88 tracks before calculating rankings or
+Each build scans the raw top 30 on all 87 tracks before calculating rankings or
 World Record versus field statistics. The statistics use the same cleaned top 30
 entries as the leaderboard rankings, after manual and automatic exclusions,
 [TAS] filtering, and alternate-account consolidation.

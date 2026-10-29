@@ -2,7 +2,7 @@
 """PolyTrack Global Player Power Ranking System (v10.2 Pure Leaderboard Architecture).
 
 Unified mathematically rigorous Player Skill Rating & Power Ranking System
-for PolyTrack, bridging across 17 Main Tracks and 61 Community Tracks (78 total).
+for PolyTrack, bridging across 17 Main Tracks and 70 Community Tracks (87 total).
 
 Architectural Highlights (v10.2):
 1. Pure Dual-Tier Leaderboard Evaluation:
@@ -1145,7 +1145,7 @@ def load_track_styles(csv_path: Optional[str] = None) -> Tuple[Dict[str, str], D
 
 
 class TrackRegistry:
-    """Registry maintaining metadata, categories, domains, subgenres, player counts, and dynamic weights for all 78 tracks."""
+    """Registry maintaining metadata, categories, domains, subgenres, player counts, and dynamic weights for all 87 tracks."""
 
     def __init__(self, comm_csv_path: Optional[str] = None, style_csv_path: Optional[str] = None):
         self.main_tracks: Dict[str, str] = dict(MAIN_TRACKS)
@@ -1589,7 +1589,7 @@ class PowerRankingSystem:
         use_cache: bool = False,
         cache_path: Optional[str] = None
     ) -> Tuple[Dict[str, List[Dict[str, Any]]], Dict[str, int]]:
-        """Fetch or load cached leaderboards and total player counts for all 78 tracks."""
+        """Fetch or load cached leaderboards and total player counts for all 87 tracks."""
         if cache_path is None:
             cache_path = get_default_cache_path()
 
@@ -1995,8 +1995,8 @@ class PowerRankingSystem:
             # Build 2-Domain Discipline Profile
             fs_cnt = res["count_fs"]
             tech_cnt = res["count_tech"]
-            tot_fs = domain_totals_map.get("Fullspeed", 37)
-            tot_tech = domain_totals_map.get("Technical", 41)
+            tot_fs = domain_totals_map.get("Fullspeed", 41)
+            tot_tech = domain_totals_map.get("Technical", 46)
 
             fs_gsi, z_pqi_fs, z_vdi_fs = player_fs_gsi_map[key]
             tech_gsi, z_pqi_tech, z_vdi_tech = player_tech_gsi_map[key]
@@ -2200,7 +2200,7 @@ def print_terminal_tables(report: Dict[str, Any], top_n: int = 50):
 
     print("\n" + "=" * 125)
     print("                POLYTRACK GLOBAL PLAYER POWER RANKING SYSTEM (v10.0 Pure Leaderboard)")
-    print(f"       78 Tracks ({meta['main_tracks_count']} Main + {meta['community_tracks_count']} Community) | {meta['total_unique_players']} Unique Competitors")
+    print(f"       {meta['total_tracks']} Tracks ({meta['main_tracks_count']} Main + {meta['community_tracks_count']} Community) | {meta['total_unique_players']} Unique Competitors")
     print("       Ranked by Global Skill Index (GSI): 70% Peak Ceiling (PQI Top 6) + 30% Sustained Depth (VDI Top 15)")
     print("=" * 125)
     print(f"| {'Rank':<5} | {'Username':<22} | {'GSI Score':<11} | {'PQI (Ceil)':<11} | {'VDI (Depth)':<12} | {'WRs (M/C)':<10} | {'Top 5s':<8} | {'Tracks':<8} | {'Classification':<18} |")
@@ -2290,7 +2290,7 @@ def generate_markdown_report(report: Dict[str, Any], output_path: str):
         e1 = gp["engine1"]
         e2 = gp["engine2"]
         lines.append(
-            f"| {gp['gsi_rank']} | **{gp['username']}** | {gp['gsi']:.1f} | {e1['pqi']:.2f} | {e2['vdi']:.2f} | {e1['main_tracks_count']} / 17 | {e1['comm_tracks_count']} / 61 | {e1['wr_total_count']} |"
+            f"| {gp['gsi_rank']} | **{gp['username']}** | {gp['gsi']:.1f} | {e1['pqi']:.2f} | {e2['vdi']:.2f} | {e1['main_tracks_count']} / {meta['main_tracks_count']} | {e1['comm_tracks_count']} / {meta['community_tracks_count']} | {e1['wr_total_count']} |"
         )
 
     lines.append("\n## 4. Top Peak Quality Titans (Top 6 Mechanical Ceiling PQI)\n")
@@ -2354,7 +2354,7 @@ def generate_secondary_exports(
     blacklisted_players: Optional[Set[str]] = None
 ):
     """Generate secondary exports:
-    1. Complete scraped dataset for all 78 tracks in JSON.
+    1. Complete scraped dataset for all configured tracks in JSON.
     2. Ultra-condensed minimal CSV for Top 20 players (sorted by GSI): 1 row per player.
     3. Formatted Markdown breakdown for Top 20 players.
     4. Auto-update interactive methodology.html with latest rankings dataset.
@@ -2389,7 +2389,7 @@ def generate_secondary_exports(
             f.write("\n".join(csv_lines) + "\n")
         print(f"Saved ultra-condensed Top 20 track data to '{top20_condensed_path}' (Lines: {len(csv_lines)})")
 
-    # Structure 2: Complete Scraped Dataset for All 78 Tracks
+    # Structure 2: Complete Scraped Dataset for All Configured Tracks
     if scraped_json_path:
         all_scraped_data = {}
         for tr_name, entries in raw_leaderboards.items():
@@ -2425,7 +2425,7 @@ def generate_secondary_exports(
                 "total_tracks": meta["total_tracks"],
                 "total_unique_competitors": meta["total_unique_players"],
                 "active_competitors": meta["active_players_count"],
-                "description": "Complete scraped leaderboard entries across all 78 PolyTrack tracks."
+                "description": f"Complete scraped leaderboard entries across all {meta['total_tracks']} PolyTrack tracks."
             },
             "tracks": all_scraped_data
         }
@@ -2558,7 +2558,7 @@ def update_methodology_html(report: Dict[str, Any], html_path: str = "methodolog
         track_styles_json = json.dumps(track_styles_dict, separators=(',', ':'), ensure_ascii=False)
         track_domains_json = json.dumps(track_domains_dict, separators=(',', ':'), ensure_ascii=False)
 
-        # Track Weights Dataset for all 78 tracks, ordered by weight descending
+        # Track Weights Dataset for all configured tracks, ordered by weight descending
         track_weights_list = []
         for tr_name, tdata in track_stats.items():
             w_k = tdata.get("dynamic_weight", 1.0)
@@ -2641,7 +2641,7 @@ def update_methodology_html(report: Dict[str, Any], html_path: str = "methodolog
                         round(fs_info.get("vdi", 0.0), 2),
                         fs_info.get("global_rank", 0),
                         fs_info.get("tracks_driven", 0),
-                        fs_info.get("total_tracks", 36),
+                        fs_info.get("total_tracks", 41),
                         fs_info.get("wr_count", 0),
                         fs_info.get("top5_count", 0)
                     ],
@@ -2651,7 +2651,7 @@ def update_methodology_html(report: Dict[str, Any], html_path: str = "methodolog
                         round(tech_info.get("vdi", 0.0), 2),
                         tech_info.get("global_rank", 0),
                         tech_info.get("tracks_driven", 0),
-                        tech_info.get("total_tracks", 42),
+                        tech_info.get("total_tracks", 46),
                         tech_info.get("wr_count", 0),
                         tech_info.get("top5_count", 0)
                     ]
