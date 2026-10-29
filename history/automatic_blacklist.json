@@ -1440,6 +1440,38 @@
       "track": "Winter 1",
       "trackId": "7239b17057127936907a805b0caa5d8c6f6c97eca9bdabf1a5312dce479629b7",
       "game_version": "0.6.2"
+    },
+    "ec7971f0e11e88cc8694309b81e525cd105b71b335abe162ce5ae47a86bed28e": {
+      "userId": "ec7971f0e11e88cc8694309b81e525cd105b71b335abe162ce5ae47a86bed28e",
+      "nickname": "[TAS] argoon",
+      "recording_id": 67358101,
+      "uploaded_at": "2026-10-29T13:26:44.000Z",
+      "original_userId": "03ed188ff27ff9e1970a7736ebb1c4eb804e2a882ca291392f7f8c040c740337",
+      "original_recording_id": 36082490,
+      "original_uploaded_at": "2026-07-17T22:36:31.000Z",
+      "matched_through_frame": 12979,
+      "frames": 24100,
+      "original_frames": 25958,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
+    },
+    "08da376a4265b07fb8e936fa9a8f9c7032c292082b0b348261bd53c6182cf441": {
+      "userId": "08da376a4265b07fb8e936fa9a8f9c7032c292082b0b348261bd53c6182cf441",
+      "nickname": "[TAS] new strat",
+      "recording_id": 67360281,
+      "uploaded_at": "2026-10-29T13:30:35.000Z",
+      "original_userId": "03ed188ff27ff9e1970a7736ebb1c4eb804e2a882ca291392f7f8c040c740337",
+      "original_recording_id": 36082490,
+      "original_uploaded_at": "2026-07-17T22:36:31.000Z",
+      "matched_through_frame": 12979,
+      "frames": 25465,
+      "original_frames": 25958,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
