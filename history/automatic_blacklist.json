@@ -1392,6 +1392,22 @@
       "track": "Summer 2",
       "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
       "game_version": "0.6.2"
+    },
+    "4b73f1e0ff4fdd2c247f65021be27e632dc8accf8e5952c80b186bb1619cf1f3": {
+      "userId": "4b73f1e0ff4fdd2c247f65021be27e632dc8accf8e5952c80b186bb1619cf1f3",
+      "nickname": "P4xt0n7",
+      "recording_id": 67128677,
+      "uploaded_at": "2026-10-29T01:36:43.000Z",
+      "original_userId": "1987ed4a7aa603c21cc66955fb4f8d5afa48e142ff32f82a8d3d3a0bb527c6e4",
+      "original_recording_id": 66674693,
+      "original_uploaded_at": "2026-10-28T02:35:11.000Z",
+      "matched_through_frame": 7620,
+      "frames": 15239,
+      "original_frames": 15239,
+      "rule_version": 1,
+      "track": "Summer 2",
+      "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
