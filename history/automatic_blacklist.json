@@ -1536,6 +1536,22 @@
       "track": "Zealot",
       "trackId": "b77ec520a40c4b38d3d7d653b747b1f8627c98709096568db22cd1bfec534ba6",
       "game_version": "0.6.2"
+    },
+    "7c48d121c23fa40528e03b95f6860d7ddf19d53df4c681fdc6760b2dd367b832": {
+      "userId": "7c48d121c23fa40528e03b95f6860d7ddf19d53df4c681fdc6760b2dd367b832",
+      "nickname": "Anonymous",
+      "recording_id": 67582010,
+      "uploaded_at": "2026-10-29T23:44:01.000Z",
+      "original_userId": "1ce3cd89376163de3d574cbb29578be3e9d454779110987e25e1de5f2c3a55c6",
+      "original_recording_id": 67566517,
+      "original_uploaded_at": "2026-10-29T22:23:38.000Z",
+      "matched_through_frame": 10189,
+      "frames": 20377,
+      "original_frames": 20359,
+      "rule_version": 1,
+      "track": "Summer 3",
+      "trackId": "148826aa16ffaa23dbc453b32cff05e025ddbce1773fc7733cc13d218926515a",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
