@@ -1600,6 +1600,22 @@
       "track": "Winter 2",
       "trackId": "99864b635d1891d22e17eb9267527a07a92c49c0f02893729fa2ded90e3ca0f9",
       "game_version": "0.6.2"
+    },
+    "c6d288f044869495b70439a4dfdcd295a5797e67530dcde3dab09bcad32001d8": {
+      "userId": "c6d288f044869495b70439a4dfdcd295a5797e67530dcde3dab09bcad32001d8",
+      "nickname": "Brad",
+      "recording_id": 68053429,
+      "uploaded_at": "2026-10-31T01:07:15.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 62810389,
+      "original_uploaded_at": "2026-10-18T01:40:46.000Z",
+      "matched_through_frame": 9208,
+      "frames": 18415,
+      "original_frames": 18394,
+      "rule_version": 1,
+      "track": "Winter 5",
+      "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
