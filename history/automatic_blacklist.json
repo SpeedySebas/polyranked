@@ -2224,6 +2224,38 @@
       "track": "Summer 6",
       "trackId": "c117823cf6788e3247b9ee63a0c091c07352bbe352c650a7790dc6718148c2fa",
       "game_version": "0.6.2"
+    },
+    "5b15f28fa3d40a7aa26b9f97b84ec0039a977922899c0719c04b3326585f1f7f": {
+      "userId": "5b15f28fa3d40a7aa26b9f97b84ec0039a977922899c0719c04b3326585f1f7f",
+      "nickname": "joaq",
+      "recording_id": 69292403,
+      "uploaded_at": "2026-11-03T20:59:06.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 54141474,
+      "original_uploaded_at": "2026-09-29T04:33:52.000Z",
+      "matched_through_frame": 22079,
+      "frames": 44158,
+      "original_frames": 44158,
+      "rule_version": 1,
+      "track": "Winterfell",
+      "trackId": "9f4597449906aa0c2baf9a4737406385c829533e64e9e972b25b4189f4593a54",
+      "game_version": "0.6.2"
+    },
+    "1b983d8657b92c04568ac6cbef23dd9215e93a34b111e289847d0137d4997f77": {
+      "userId": "1b983d8657b92c04568ac6cbef23dd9215e93a34b111e289847d0137d4997f77",
+      "nickname": "zealot",
+      "recording_id": 69291726,
+      "uploaded_at": "2026-11-03T20:56:30.000Z",
+      "original_userId": "a1a2a3a22f0c4b452ff6254c82e0c351b79dbd0d46f34ee631cc4f6e7f0ed7f2",
+      "original_recording_id": 37803891,
+      "original_uploaded_at": "2026-07-31T18:58:58.000Z",
+      "matched_through_frame": 46379,
+      "frames": 92757,
+      "original_frames": 92757,
+      "rule_version": 1,
+      "track": "Zealot",
+      "trackId": "b77ec520a40c4b38d3d7d653b747b1f8627c98709096568db22cd1bfec534ba6",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
