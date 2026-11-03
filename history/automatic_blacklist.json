@@ -1904,6 +1904,38 @@
       "track": "Winter 5",
       "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
       "game_version": "0.6.2"
+    },
+    "f5b8acd30d0525336b30b97ae8e78c12ad9103292ca398bc76db73c8ac3eb05c": {
+      "userId": "f5b8acd30d0525336b30b97ae8e78c12ad9103292ca398bc76db73c8ac3eb05c",
+      "nickname": "tesingv2",
+      "recording_id": 69264053,
+      "uploaded_at": "2026-11-03T19:27:26.000Z",
+      "original_userId": "a1a2a3a22f0c4b452ff6254c82e0c351b79dbd0d46f34ee631cc4f6e7f0ed7f2",
+      "original_recording_id": 33687180,
+      "original_uploaded_at": "2026-07-01T19:20:33.000Z",
+      "matched_through_frame": 9228,
+      "frames": 18456,
+      "original_frames": 18456,
+      "rule_version": 1,
+      "track": "Winter 5",
+      "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
+      "game_version": "0.6.2"
+    },
+    "6e6a005772fa5a78b35ed646af84ed3e587dc7db8f4e97bb75d7af7f7e7bd1b7": {
+      "userId": "6e6a005772fa5a78b35ed646af84ed3e587dc7db8f4e97bb75d7af7f7e7bd1b7",
+      "nickname": "testingman",
+      "recording_id": 69264188,
+      "uploaded_at": "2026-11-03T19:27:49.000Z",
+      "original_userId": "0242738c933112690c03077e63d1e5e6167029ddf2a4b909ae1736fb75c8b1bf",
+      "original_recording_id": 62577934,
+      "original_uploaded_at": "2026-10-16T23:51:48.000Z",
+      "matched_through_frame": 9706,
+      "frames": 19412,
+      "original_frames": 19412,
+      "rule_version": 1,
+      "track": "Winter 4",
+      "trackId": "7d134c939df80c676a258266201beedd3b93572d5603f3ff4339ff8679803715",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
