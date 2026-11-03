@@ -9,7 +9,7 @@
         const active = runs.find(run => run.status !== 'completed');
         if (active) return `Cloud run #${active.run_number} is ${label(active)}. See its steps below.`;
         const latest = runs[0];
-        const scheduledStart = Math.floor((now - 120000) / 300000) * 300000 + 120000;
+        const scheduledStart = Math.floor((now - 60000) / 300000) * 300000 + 60000;
         const missed = Date.parse(latest.created_at) < scheduledStart && now - scheduledStart > 60000;
         const outcome = `Latest cloud run #${latest.run_number}: ${label(latest)} (${latest.event}, started ${utc(latest.created_at)}).`;
         if (missed) return `${outcome} No newer run is reported for the scheduled start at ${utc(new Date(scheduledStart).toISOString())}; the script has not started for that slot as of this check.`;

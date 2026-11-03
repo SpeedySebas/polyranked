@@ -2,8 +2,8 @@ name: Update and publish rankings
 
 on:
   schedule:
-    # Fetch every five minutes, three minutes before each display boundary.
-    - cron: '2-57/5 * * * *'
+    # Fetch every five minutes, four minutes before each display boundary.
+    - cron: '1-56/5 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
