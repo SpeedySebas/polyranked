@@ -4,7 +4,7 @@ const { diagnose, stepText } = require('../site/update-diagnostics.js');
 const now = Date.parse('2026-10-01T03:20:00Z');
 const completed = {run_number:12,status:'completed',conclusion:'success',event:'push',created_at:'2026-10-01T03:10:00Z'};
 test('a missing scheduled run is distinguished from a running script', () => {
-    assert.match(diagnose([completed], now), /No newer run is reported.*03:16:00 UTC/);
+    assert.match(diagnose([completed], now), /No newer run is reported.*03:17:00 UTC/);
     assert.match(diagnose([{...completed,status:'queued',conclusion:null}], now), /is queued/);
     assert.match(diagnose([{...completed,status:'in_progress',conclusion:null}], now), /is in progress/);
 });

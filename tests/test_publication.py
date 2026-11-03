@@ -58,7 +58,7 @@ class PublicationSafetyTests(unittest.TestCase):
                 retain_current_snapshot(Path(temporary), datetime(2026, 9, 30, 12, 30, tzinfo=timezone.utc))
 
     def test_scheduled_build_prepares_the_next_boundary_and_preserves_late_target(self):
-        for start, expected in [('2026-09-30T12:26:00', '2026-09-30T12:30:00'), ('2026-09-30T12:30:30', '2026-09-30T12:30:00'), ('2026-09-30T23:56:00', '2026-10-01T00:00:00')]:
+        for start, expected in [('2026-09-30T12:27:00', '2026-09-30T12:30:00'), ('2026-09-30T12:31:00', '2026-09-30T12:30:00'), ('2026-09-30T23:58:00', '2026-10-01T00:00:00')]:
             with self.subTest(start=start):
                 self.assertEqual(scheduled_release_time(datetime.fromisoformat(start).replace(tzinfo=timezone.utc)), datetime.fromisoformat(expected).replace(tzinfo=timezone.utc))
 

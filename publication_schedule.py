@@ -9,15 +9,15 @@ SITE_URL = "https://speedysebas.github.io/polyranked/"
 
 
 def scheduled_release_time(started_at):
-    # Start at :01/:06/... and prepare the :05/:10/... display boundary.
+    # Start at :02/:07/... and prepare the :05/:10/... display boundary.
     seconds = started_at.timestamp()
-    build_slot = ((seconds - 1 * 60) // 300) * 300 + 1 * 60
-    return datetime.fromtimestamp(build_slot + 240, timezone.utc)
+    build_slot = ((seconds - 2 * 60) // 300) * 300 + 2 * 60
+    return datetime.fromtimestamp(build_slot + 180, timezone.utc)
 
 
 def build_needed(manifest, now):
     target = scheduled_release_time(now)
-    window_start = target.timestamp() - 240
+    window_start = target.timestamp() - 180
     if manifest.get("schema") != 1:
         return True
     for item in manifest.get("snapshots", []):
