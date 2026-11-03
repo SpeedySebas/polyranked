@@ -1936,6 +1936,38 @@
       "track": "Winter 4",
       "trackId": "7d134c939df80c676a258266201beedd3b93572d5603f3ff4339ff8679803715",
       "game_version": "0.6.2"
+    },
+    "05147b62c0e7953cc68e8dc54f97dcc9b27a63eee232fff2b03d7af2cfd3a970": {
+      "userId": "05147b62c0e7953cc68e8dc54f97dcc9b27a63eee232fff2b03d7af2cfd3a970",
+      "nickname": "te",
+      "recording_id": 69270269,
+      "uploaded_at": "2026-11-03T19:44:39.000Z",
+      "original_userId": "f630d2d467a0e909268eb43be6935a213ece2780cfe6e63bcb2badd4eb6a624f",
+      "original_recording_id": 37538235,
+      "original_uploaded_at": "2026-07-29T21:01:17.000Z",
+      "matched_through_frame": 10138,
+      "frames": 20276,
+      "original_frames": 20276,
+      "rule_version": 1,
+      "track": "Summer 3",
+      "trackId": "148826aa16ffaa23dbc453b32cff05e025ddbce1773fc7733cc13d218926515a",
+      "game_version": "0.6.2"
+    },
+    "0b578ccba1eec7a07075b7f24a355820199038678839023610a35ecb448294f9": {
+      "userId": "0b578ccba1eec7a07075b7f24a355820199038678839023610a35ecb448294f9",
+      "nickname": "te",
+      "recording_id": 69270661,
+      "uploaded_at": "2026-11-03T19:45:48.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 10993982,
+      "original_uploaded_at": "2026-04-15T08:15:49.000Z",
+      "matched_through_frame": 10161,
+      "frames": 20321,
+      "original_frames": 20321,
+      "rule_version": 1,
+      "track": "Summer 3",
+      "trackId": "148826aa16ffaa23dbc453b32cff05e025ddbce1773fc7733cc13d218926515a",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
