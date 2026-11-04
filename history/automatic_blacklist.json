@@ -2320,6 +2320,22 @@
       "track": "Winter 5",
       "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
       "game_version": "0.6.2"
+    },
+    "54b15a399f7df8d09448f3e26f26861d221607663f12fcf597e7f7481594741c": {
+      "userId": "54b15a399f7df8d09448f3e26f26861d221607663f12fcf597e7f7481594741c",
+      "nickname": "Anonymous",
+      "recording_id": 69404750,
+      "uploaded_at": "2026-11-04T06:30:29.000Z",
+      "original_userId": "feaa0d18256f8cb5dfc53da072ff5fda038f7ea7e52f575bc3cc7e4ca25a7bad",
+      "original_recording_id": 54673709,
+      "original_uploaded_at": "2026-09-29T23:10:49.000Z",
+      "matched_through_frame": 12630,
+      "frames": 25243,
+      "original_frames": 25259,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
