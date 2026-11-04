@@ -2288,6 +2288,22 @@
       "track": "Summer 2",
       "trackId": "7eac4fee1111152cfba4d3737410264ca0f22c7f5a2211e79f0099589b8b48c0",
       "game_version": "0.6.2"
+    },
+    "c9aede686effda3e4b12ab3f56b1d4084122b5b468df63ddef5290790896900c": {
+      "userId": "c9aede686effda3e4b12ab3f56b1d4084122b5b468df63ddef5290790896900c",
+      "nickname": "Ad0lf Hitl€r",
+      "recording_id": 69390471,
+      "uploaded_at": "2026-11-04T05:32:26.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 67621784,
+      "original_uploaded_at": "2026-10-30T03:40:19.000Z",
+      "matched_through_frame": 14514,
+      "frames": 29004,
+      "original_frames": 29027,
+      "rule_version": 1,
+      "track": "Desert 5",
+      "trackId": "e5d084e06db4ab71196fea44efeceb23c8561266a78669c324a38f92581fe2db",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
