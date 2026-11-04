@@ -2304,6 +2304,22 @@
       "track": "Desert 5",
       "trackId": "e5d084e06db4ab71196fea44efeceb23c8561266a78669c324a38f92581fe2db",
       "game_version": "0.6.2"
+    },
+    "acc8062dd421820162f8fe4d9df6991d067a85a8e8e568d8ba5ae793262502aa": {
+      "userId": "acc8062dd421820162f8fe4d9df6991d067a85a8e8e568d8ba5ae793262502aa",
+      "nickname": "N€T€NYAHU (burned)",
+      "recording_id": 69401468,
+      "uploaded_at": "2026-11-04T06:19:46.000Z",
+      "original_userId": "c8873ca6a05717d0b8386dae318da578dd7e881f41359f4c0b02e28bb675efa8",
+      "original_recording_id": 69168917,
+      "original_uploaded_at": "2026-11-03T15:57:58.000Z",
+      "matched_through_frame": 9162,
+      "frames": 18322,
+      "original_frames": 18323,
+      "rule_version": 1,
+      "track": "Winter 5",
+      "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
