@@ -2496,6 +2496,22 @@
       "track": "Desert 2",
       "trackId": "88647ea04145fbbbb19b55f1590e038fb0378acb2571110f02cb545cc46b0d57",
       "game_version": "0.6.2"
+    },
+    "5a993db368cacce8346915ad00d65c844fe3b634a20edac044d79d152cfcdb82": {
+      "userId": "5a993db368cacce8346915ad00d65c844fe3b634a20edac044d79d152cfcdb82",
+      "nickname": "TzTech",
+      "recording_id": 70117644,
+      "uploaded_at": "2026-11-05T12:16:26.000Z",
+      "original_userId": "03ed188ff27ff9e1970a7736ebb1c4eb804e2a882ca291392f7f8c040c740337",
+      "original_recording_id": 36082490,
+      "original_uploaded_at": "2026-07-17T22:36:31.000Z",
+      "matched_through_frame": 12979,
+      "frames": 20626,
+      "original_frames": 25958,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
