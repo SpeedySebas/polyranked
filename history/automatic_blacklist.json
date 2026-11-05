@@ -2960,6 +2960,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "82b31ed2853557bfcd1ea051474ea7a80c9f2244b9d575240ffe3eaac47143bd": {
+      "userId": "82b31ed2853557bfcd1ea051474ea7a80c9f2244b9d575240ffe3eaac47143bd",
+      "nickname": "bannedbyanticheat",
+      "recording_id": 70360220,
+      "uploaded_at": "2026-11-05T19:26:26.000Z",
+      "original_userId": "f630d2d467a0e909268eb43be6935a213ece2780cfe6e63bcb2badd4eb6a624f",
+      "original_recording_id": 36632648,
+      "original_uploaded_at": "2026-07-22T11:57:37.000Z",
+      "matched_through_frame": 15571,
+      "frames": 31129,
+      "original_frames": 31142,
+      "rule_version": 1,
+      "track": "Summer 7",
+      "trackId": "e4bcaca3a583bb0eb62a700a69d14e89c852f0c5bf740fca76e0519ebdfc9ab1",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
