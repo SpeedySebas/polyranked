@@ -3008,6 +3008,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "95b301f5553744ce7bee027524a96a2728158eedda0f68f2ca004b6dccc62fe9": {
+      "userId": "95b301f5553744ce7bee027524a96a2728158eedda0f68f2ca004b6dccc62fe9",
+      "nickname": "Purn@Spor",
+      "recording_id": 70512812,
+      "uploaded_at": "2026-11-06T07:15:04.000Z",
+      "original_userId": "c8873ca6a05717d0b8386dae318da578dd7e881f41359f4c0b02e28bb675efa8",
+      "original_recording_id": 68809273,
+      "original_uploaded_at": "2026-11-02T21:17:29.000Z",
+      "matched_through_frame": 17195,
+      "frames": 34382,
+      "original_frames": 34389,
+      "rule_version": 1,
+      "track": "Winter 3",
+      "trackId": "a5341fe706097cff2a3812a3fc0d87399254557328351ae8e5c882700fc1a196",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
