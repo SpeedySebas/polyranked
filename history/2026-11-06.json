@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-11-06T00:14:46Z",
+  "release_at": "2026-11-06T00:15:00Z",
+  "snapshot": "snapshots/0c2831bba7308e68d0a327e4cd28663d48e6f5b7c5521161f415484a0f4bd2d9.json",
+  "source_commit": "dfc8918bd666faf90d1ca26172967713adf2fe94",
+  "tracks": 87,
+  "entries": 87000,
+  "players": 40032,
+  "index_sha256": "5d455c2496a6ec915f8206126f1922c8c01c0fbd110a2b559a89fcc1d8aa88a5",
+  "top_20": [
+    {
+      "rank": 1,
+      "player": "Monstrosity",
+      "gsi": 3957.1
+    },
+    {
+      "rank": 2,
+      "player": "SpeedySebas",
+      "gsi": 3897.9
+    },
+    {
+      "rank": 3,
+      "player": "cheesebob (81)",
+      "gsi": 3597.7
+    },
+    {
+      "rank": 4,
+      "player": "🇭🇰🦈 Wak3son🦈🇭🇰",
+      "gsi": 3529.5
+    },
+    {
+      "rank": 5,
+      "player": "ıllıllı 𝐊𝐢𝐤𝐢 ıllıllı",
+      "gsi": 3383.5
+    },
+    {
+      "rank": 6,
+      "player": "youngfella",
+      "gsi": 3217.4
+    },
+    {
+      "rank": 7,
+      "player": "LanceB_YT 🍃🌿",
+      "gsi": 2581.4
+    },
+    {
+      "rank": 8,
+      "player": "The Kroger",
+      "gsi": 2535.5
+    },
+    {
+      "rank": 9,
+      "player": "hwadz",
+      "gsi": 2534.9
+    },
+    {
+      "rank": 10,
+      "player": "jimy",
+      "gsi": 2244.1
+    },
+    {
+      "rank": 11,
+      "player": "Schemzboi",
+      "gsi": 2215.5
+    },
+    {
+      "rank": 12,
+      "player": "M oo 21 5ki 3x!!",
+      "gsi": 2140.7
+    },
+    {
+      "rank": 13,
+      "player": "xtuov",
+      "gsi": 2126.6
+    },
+    {
+      "rank": 14,
+      "player": "NeoRacer",
+      "gsi": 2106.9
+    },
+    {
+      "rank": 15,
+      "player": "OL",
+      "gsi": 2004.4
+    },
+    {
+      "rank": 16,
+      "player": "Tvirty",
+      "gsi": 1987.6
+    },
+    {
+      "rank": 17,
+      "player": "Neki",
+      "gsi": 1909.5
+    },
+    {
+      "rank": 18,
+      "player": "tiro 😼",
+      "gsi": 1901.3
+    },
+    {
+      "rank": 19,
+      "player": "CSniper",
+      "gsi": 1828.2
+    },
+    {
+      "rank": 20,
+      "player": "🐭Simo_900 (1nd)😫",
+      "gsi": 1730.1
+    }
+  ]
+}
