@@ -4256,6 +4256,38 @@
       "track": "Desert 1",
       "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
       "game_version": "0.6.2"
+    },
+    "7f704fed75caf063954e749619e083a0c620de23f6cb52195760b16092b649e8": {
+      "userId": "7f704fed75caf063954e749619e083a0c620de23f6cb52195760b16092b649e8",
+      "nickname": "Synergy-testing-agent",
+      "recording_id": 71160958,
+      "uploaded_at": "2026-11-07T17:51:32.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 59372564,
+      "original_uploaded_at": "2026-10-09T08:22:09.000Z",
+      "matched_through_frame": 11062,
+      "frames": 22123,
+      "original_frames": 22123,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
+    },
+    "a0beff86224b0b9eaa83e2b6372e2d25f69139f4b73d507f402ea603b9aae8e8": {
+      "userId": "a0beff86224b0b9eaa83e2b6372e2d25f69139f4b73d507f402ea603b9aae8e8",
+      "nickname": "Synergy-testing-agent",
+      "recording_id": 71160959,
+      "uploaded_at": "2026-11-07T17:51:32.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 59372564,
+      "original_uploaded_at": "2026-10-09T08:22:09.000Z",
+      "matched_through_frame": 11062,
+      "frames": 22123,
+      "original_frames": 22123,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
