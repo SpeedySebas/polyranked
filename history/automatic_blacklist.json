@@ -4224,6 +4224,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "de9fc6c254d0e9f339f6176a1f79e6cdaf3025bb1fc7c74894dc428d96a8b9bf": {
+      "userId": "de9fc6c254d0e9f339f6176a1f79e6cdaf3025bb1fc7c74894dc428d96a8b9bf",
+      "nickname": "CYXNB",
+      "recording_id": 71047361,
+      "uploaded_at": "2026-11-07T09:02:56.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 36861195,
+      "original_uploaded_at": "2026-07-24T04:57:18.000Z",
+      "matched_through_frame": 14454,
+      "frames": 28907,
+      "original_frames": 28907,
+      "rule_version": 1,
+      "track": "Clay Temples",
+      "trackId": "009fad7fcc215022c6b2dbb2b6de622f07cd88d4930b8e2b6a6b74c1f5de9e44",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
