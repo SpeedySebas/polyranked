@@ -4240,6 +4240,22 @@
       "track": "Clay Temples",
       "trackId": "009fad7fcc215022c6b2dbb2b6de622f07cd88d4930b8e2b6a6b74c1f5de9e44",
       "game_version": "0.6.2"
+    },
+    "b2ad75e196f581e0db73110b4339dde9cadeacf67e1de4f16fbde128f414ac82": {
+      "userId": "b2ad75e196f581e0db73110b4339dde9cadeacf67e1de4f16fbde128f414ac82",
+      "nickname": "wjairplane",
+      "recording_id": 71102479,
+      "uploaded_at": "2026-11-07T13:26:45.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 69374558,
+      "original_uploaded_at": "2026-11-04T03:50:08.000Z",
+      "matched_through_frame": 12581,
+      "frames": 21034,
+      "original_frames": 25161,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
