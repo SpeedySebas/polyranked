@@ -4304,6 +4304,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "2d7131f3bd2e9c4744c38412f21bf725ac07b9b811ee4b09ec8d50cf92822f02": {
+      "userId": "2d7131f3bd2e9c4744c38412f21bf725ac07b9b811ee4b09ec8d50cf92822f02",
+      "nickname": "TetoTaserLol",
+      "recording_id": 71165377,
+      "uploaded_at": "2026-11-07T18:13:15.000Z",
+      "original_userId": "f7d03c6c325248cf4703eaa2bda9c13e975e0cd7658e6d8e03ce3fa7aa85c73e",
+      "original_recording_id": 70453773,
+      "original_uploaded_at": "2026-11-06T01:19:26.000Z",
+      "matched_through_frame": 10076,
+      "frames": 20150,
+      "original_frames": 20152,
+      "rule_version": 1,
+      "track": "Summer 3",
+      "trackId": "148826aa16ffaa23dbc453b32cff05e025ddbce1773fc7733cc13d218926515a",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
