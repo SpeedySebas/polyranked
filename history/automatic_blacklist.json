@@ -4336,6 +4336,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "c04f3f79a7918bcf43a49188244d3a7d67e449dddcdddcc957e2cbb14073caa3": {
+      "userId": "c04f3f79a7918bcf43a49188244d3a7d67e449dddcdddcc957e2cbb14073caa3",
+      "nickname": "Anonymous",
+      "recording_id": 71284867,
+      "uploaded_at": "2026-11-08T07:58:25.000Z",
+      "original_userId": "03ed188ff27ff9e1970a7736ebb1c4eb804e2a882ca291392f7f8c040c740337",
+      "original_recording_id": 36082490,
+      "original_uploaded_at": "2026-07-17T22:36:31.000Z",
+      "matched_through_frame": 12979,
+      "frames": 20546,
+      "original_frames": 25958,
+      "rule_version": 1,
+      "track": "Desert 1",
+      "trackId": "c20b4ee3cd517ca6cae7e43f047548757287fbd08ba81b97892a3ef520159a34",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
