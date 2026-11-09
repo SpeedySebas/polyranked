@@ -4480,6 +4480,22 @@
       "track": "Summer 3",
       "trackId": "148826aa16ffaa23dbc453b32cff05e025ddbce1773fc7733cc13d218926515a",
       "game_version": "0.6.2"
+    },
+    "d67e7fdb07a7152d08085c2c6f19d26942b8c8d42b2eae42a5b6ecacfa548a48": {
+      "userId": "d67e7fdb07a7152d08085c2c6f19d26942b8c8d42b2eae42a5b6ecacfa548a48",
+      "nickname": "flam8ys17",
+      "recording_id": 71604752,
+      "uploaded_at": "2026-11-09T09:40:41.000Z",
+      "original_userId": "8a20be6e1f16bf393882db438e6ebb8fc225457c9299a2b25dbb4f4a54789f99",
+      "original_recording_id": 26669921,
+      "original_uploaded_at": "2026-06-06T21:58:52.000Z",
+      "matched_through_frame": 13415,
+      "frames": 26816,
+      "original_frames": 26830,
+      "rule_version": 1,
+      "track": "Winter 2",
+      "trackId": "99864b635d1891d22e17eb9267527a07a92c49c0f02893729fa2ded90e3ca0f9",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
