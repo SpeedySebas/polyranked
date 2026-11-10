@@ -4544,6 +4544,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "21e9c15d5c0a9359c27fa24c6148d0cfa3524052cd4e625437fef248f6810a69": {
+      "userId": "21e9c15d5c0a9359c27fa24c6148d0cfa3524052cd4e625437fef248f6810a69",
+      "nickname": "I Miss Her (a)",
+      "recording_id": 72090762,
+      "uploaded_at": "2026-11-10T08:40:26.000Z",
+      "original_userId": "5396c2a170964690a81332c4c14155e78e59ac30d16d27d91670ac6f74c4c3ed",
+      "original_recording_id": 71940978,
+      "original_uploaded_at": "2026-11-09T22:31:32.000Z",
+      "matched_through_frame": 9107,
+      "frames": 18208,
+      "original_frames": 18213,
+      "rule_version": 1,
+      "track": "Winter 5",
+      "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
