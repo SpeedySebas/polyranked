@@ -4560,6 +4560,22 @@
       "track": "Winter 5",
       "trackId": "2fe4bd46b0075cc25fc770ce50adbb68447cf493c999635bb272d231811dd264",
       "game_version": "0.6.2"
+    },
+    "357b01f99f2cb1554b8625f52501fdcddd66744f7091da13ffd3ab1cdbd15dd8": {
+      "userId": "357b01f99f2cb1554b8625f52501fdcddd66744f7091da13ffd3ab1cdbd15dd8",
+      "nickname": "YoungFella casual",
+      "recording_id": 72354757,
+      "uploaded_at": "2026-11-10T17:12:52.000Z",
+      "original_userId": "f630d2d467a0e909268eb43be6935a213ece2780cfe6e63bcb2badd4eb6a624f",
+      "original_recording_id": 36567552,
+      "original_uploaded_at": "2026-07-22T01:42:12.000Z",
+      "matched_through_frame": 9678,
+      "frames": 19355,
+      "original_frames": 19311,
+      "rule_version": 1,
+      "track": "Winter 4",
+      "trackId": "7d134c939df80c676a258266201beedd3b93572d5603f3ff4339ff8679803715",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
