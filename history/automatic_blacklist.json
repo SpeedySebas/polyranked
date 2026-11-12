@@ -4672,6 +4672,22 @@
       "track": "Summer 5",
       "trackId": "7603aaeffa1989a649dfaa8e1804bed4481b49df233e377687d0669899566e52",
       "game_version": "0.6.2"
+    },
+    "10068aa5576f815a598f9e9823008e5f01d0b3f136affc6baa37a538d786c5e2": {
+      "userId": "10068aa5576f815a598f9e9823008e5f01d0b3f136affc6baa37a538d786c5e2",
+      "nickname": "Anonymous",
+      "recording_id": 73478937,
+      "uploaded_at": "2026-11-12T21:09:13.000Z",
+      "original_userId": "0641686a43714adbe76dc63874648c04952dd91557add4000ef776b5197abb70",
+      "original_recording_id": 67968991,
+      "original_uploaded_at": "2026-10-30T19:03:03.000Z",
+      "matched_through_frame": 14870,
+      "frames": 29611,
+      "original_frames": 29739,
+      "rule_version": 1,
+      "track": "Last Remnant",
+      "trackId": "f79b1d863d50f9e3b4489988698065c6d775ff3ec90bf91085bad05ad5ec8316",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
