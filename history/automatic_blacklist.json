@@ -4576,6 +4576,22 @@
       "track": "Winter 4",
       "trackId": "7d134c939df80c676a258266201beedd3b93572d5603f3ff4339ff8679803715",
       "game_version": "0.6.2"
+    },
+    "8fb96af454b15878a41c609c93472496996fe701573d4b987620b100e95a7043": {
+      "userId": "8fb96af454b15878a41c609c93472496996fe701573d4b987620b100e95a7043",
+      "nickname": "Blue",
+      "recording_id": 72964670,
+      "uploaded_at": "2026-11-12T00:44:42.000Z",
+      "original_userId": "645dae10402a92900b304db46440388833558a89a36647c864c872af60d8d518",
+      "original_recording_id": 59372564,
+      "original_uploaded_at": "2026-10-09T10:22:09.000Z",
+      "matched_through_frame": 11062,
+      "frames": 22107,
+      "original_frames": 22123,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
