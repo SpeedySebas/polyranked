@@ -4608,6 +4608,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "85d466e02612e76bbed2ab4c0d8808a7ad0138c5b5b0b5f18e574a137b1d1900": {
+      "userId": "85d466e02612e76bbed2ab4c0d8808a7ad0138c5b5b0b5f18e574a137b1d1900",
+      "nickname": "ZUCC",
+      "recording_id": 73325387,
+      "uploaded_at": "2026-11-12T16:08:24.000Z",
+      "original_userId": "4e172e424c5817e62ff069cadd9aee6efb5413fecea17b4192156e7f13e818ff",
+      "original_recording_id": 36869696,
+      "original_uploaded_at": "2026-07-24T08:20:11.000Z",
+      "matched_through_frame": 15951,
+      "frames": 31901,
+      "original_frames": 31902,
+      "rule_version": 1,
+      "track": "Natsujo",
+      "trackId": "a510bbd3341f2992a12db8a3780cb8943b6087538345d58d16602d6129742df0",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
