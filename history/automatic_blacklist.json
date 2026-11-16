@@ -6976,6 +6976,38 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "232cdaba4b6f9fb18302caccfad0b5160bb9c376bde981f62a81bb0b603ce9b0": {
+      "userId": "232cdaba4b6f9fb18302caccfad0b5160bb9c376bde981f62a81bb0b603ce9b0",
+      "nickname": "wow",
+      "recording_id": 75084926,
+      "uploaded_at": "2026-11-16T23:29:24.000Z",
+      "original_userId": "85d9a3082f9e13648061244d1f7b35fc345bb379e5b20eca3f7f29b09ef79433",
+      "original_recording_id": 67725285,
+      "original_uploaded_at": "2026-10-30T10:57:05.000Z",
+      "matched_through_frame": 11143,
+      "frames": 22285,
+      "original_frames": 22285,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
+    },
+    "746685863796716592f826072c00ce11f54a9dcb228aa8ec351f6b48446d065d": {
+      "userId": "746685863796716592f826072c00ce11f54a9dcb228aa8ec351f6b48446d065d",
+      "nickname": "wow",
+      "recording_id": 75085165,
+      "uploaded_at": "2026-11-16T23:30:31.000Z",
+      "original_userId": "85d9a3082f9e13648061244d1f7b35fc345bb379e5b20eca3f7f29b09ef79433",
+      "original_recording_id": 67725285,
+      "original_uploaded_at": "2026-10-30T10:57:05.000Z",
+      "matched_through_frame": 11143,
+      "frames": 22285,
+      "original_frames": 22285,
+      "rule_version": 1,
+      "track": "Summer 1",
+      "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
