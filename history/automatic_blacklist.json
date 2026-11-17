@@ -8192,6 +8192,22 @@
       "track": "Summer 1",
       "trackId": "5803f9e963625804e3de3246d043dc7dde847aa32e991f7f7326b0453f1fa038",
       "game_version": "0.6.2"
+    },
+    "ad4a5ebe53ec47c8a7f9f8a9cfefaa22eb120313cd6a0138bae424c088ccbee9": {
+      "userId": "ad4a5ebe53ec47c8a7f9f8a9cfefaa22eb120313cd6a0138bae424c088ccbee9",
+      "nickname": "Anonymous",
+      "recording_id": 75480119,
+      "uploaded_at": "2026-11-17T18:27:56.000Z",
+      "original_userId": "c8873ca6a05717d0b8386dae318da578dd7e881f41359f4c0b02e28bb675efa8",
+      "original_recording_id": 74622162,
+      "original_uploaded_at": "2026-11-16T02:32:55.000Z",
+      "matched_through_frame": 29294,
+      "frames": 58583,
+      "original_frames": 58587,
+      "rule_version": 1,
+      "track": "݁˖.˚ Evanescent Bliss. ݁₊˚ .",
+      "trackId": "0338f449b9948f06c03ffc2ab3ab6cf551fd08a9f2c09a16156b93ef52dd4411",
+      "game_version": "0.6.2"
     }
   },
   "exempt_user_ids": []
